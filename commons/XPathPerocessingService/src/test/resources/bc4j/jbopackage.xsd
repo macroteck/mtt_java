@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="JboPackage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Properties" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime"/>
+        <xs:element ref="Entity"/>
+        <xs:element ref="ViewObject"/>
+        <xs:element ref="DBConnection"/>
+        <xs:element ref="Association"/>
+        <xs:element ref="JboObject"/>
+        <xs:element ref="ViewLink"/>
+        <xs:element ref="Domain"/>
+        <xs:element ref="AppModule"/>
+        <xs:element ref="ComponentObject"/>
+        <xs:element ref="Containee"/>
+        <xs:element ref="AttrArray"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="PackageName" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="SeparateXMLFiles" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

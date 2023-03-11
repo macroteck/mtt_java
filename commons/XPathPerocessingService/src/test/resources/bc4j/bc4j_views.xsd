@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+           elementFormDefault="qualified">
+  <xs:element name="ViewUsage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>          
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>  
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Properties" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+        <xs:element ref="Remote" minOccurs="0"/>
+        <xs:element ref="ViewCriteriaUsage" minOccurs="0"/>
+        <xs:element ref="ParameterMap" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="PDefViewObject" minOccurs="0" maxOccurs="1"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="ViewObjectName" type="xs:string"/>
+      <xs:attribute name="EntityName" type="xs:string"/>
+      <xs:attribute name="SelectList" type="xs:string"/>
+      <xs:attribute name="FromList" type="xs:string"/>
+      <xs:attribute name="Where" type="xs:string"/>
+      <xs:attribute name="OrderBy" type="xs:string"/>
+      <xs:attribute name="Query" type="xs:string"/>
+      <xs:attribute name="ClientProxyName" type="xs:string"/>
+      <xs:attribute name="InstanceName" type="xs:string"/>
+      <xs:attribute name="AccessorName" type="xs:string"/>
+      <xs:attribute name="FetchMode" type="xs:string"/>
+      <xs:attribute name="FetchSize" type="xs:int"/>
+      <xs:attribute name="MaxFetchSize" type="xs:int"/>
+      <xs:attribute name="RangeSize" type="xs:int"/>
+      <xs:attribute name="RangePagingCacheFactor" type="xs:int"/>
+      <xs:attribute name="AccessMode" default="DEFAULT">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="DEFAULT"/>
+            <xs:enumeration value="SCROLLABLE"/>
+            <xs:enumeration value="FORWARD_ONLY"/>
+            <xs:enumeration value="RANGE_PAGING"/>
+            <xs:enumeration value="RANGE_PAGING_AUTO_POST"/>
+            <xs:enumeration value="RANGE_PAGING_INCR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Shared" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="SharedScope" type="xs:string"/>
+      <xs:attribute name="ConfigurationName" type="xs:string"/>
+      <xs:attribute name="Hidden" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewObject">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>          
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>  
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="SQLQuery" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Data"/>
+        <xs:element name="Properties" type="ViewObjectPropertiesType"
+                    minOccurs="0"/>
+        <xs:element ref="Attribute"/>
+        <xs:element ref="ViewAttribute"/>
+        <xs:element ref="ViewKey"/>
+        <xs:element ref="ViewCriteria"/>
+        <xs:element ref="AttrArray"/>
+        <xs:element ref="DesignTime"/>
+        <xs:element ref="Publisher"/>
+        <xs:element ref="ViewLinkAccessor"/>
+        <xs:element ref="Variable"/>
+        <xs:element ref="Finder"/>
+        <xs:element ref="EntityUsage"/>
+        <xs:element ref="AssociationUsage"/>
+        <xs:element ref="ClientInterface"/>
+        <xs:element ref="ClientRowInterface"/>
+        <xs:element ref="ViewAccessor"/>
+        <xs:element ref="ListBinding"/>
+        <xs:element ref="PropertySets"/>
+        <xs:element ref="LOVUIHints" maxOccurs="1"/>
+        <xs:element ref="StaticList" maxOccurs="1"/>
+        <xs:element ref="ComponentInterfaceBase" minOccurs="0"/>
+        <xs:element ref="RowInterfaceBase" minOccurs="0"/>
+        <xs:element ref="ResourceBundle" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="DataSource" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="DeclarativeWhereClause" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SortCriteria" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="ViewLogicGroup"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="queryStatement" type="xs:string"/>
+      <xs:attribute name="SelectList" type="xs:string"/>
+      <xs:attribute name="FromList" type="xs:string"/>
+      <xs:attribute name="Where" type="xs:string"/>
+      <xs:attribute name="SelectListFlags" type="xs:int"/>
+      <xs:attribute name="FromListFlags" type="xs:int"/>
+      <xs:attribute name="WhereFlags" type="xs:int"/>
+      <xs:attribute name="OrderBy" type="xs:string"/>
+      <xs:attribute name="QueryHint" type="xs:string"/>
+      <xs:attribute name="RowMatch" type="xs:string"/>
+      <xs:attribute name="BindingStyle" default="OracleName">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="OracleName"/>
+            <xs:enumeration value="Oracle"/>
+            <xs:enumeration value="JDBC"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="CustomQuery" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsLibraryPrivate" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="MaxRowsPerNode" type="xs:string"/>
+      <xs:attribute name="MaxActiveNodes" type="xs:string"/>
+      <xs:attribute name="RowClass" type="xs:string"/>
+      <xs:attribute name="ComponentClass" type="xs:string"/>
+      <xs:attribute name="MsgBundleClass" type="xs:string"/>
+      <xs:attribute name="DefClass" type="xs:string"/>
+      <xs:attribute name="ComponentInterface" type="xs:string"/>
+      <xs:attribute name="ClientProxyName" type="xs:string"/>
+      <xs:attribute name="ClientRowProxyName" type="xs:string"/>
+      <xs:attribute name="ResourceProviderId" type="xs:string"/>
+      <xs:attribute name="RowInterface" type="xs:string"/>
+      <xs:attribute name="FetchMode" type="xs:string"/>
+      <xs:attribute name="FetchSize" type="xs:int"/>
+      <xs:attribute name="MaxFetchSize" type="xs:int"/>
+      <xs:attribute name="StoredProcedure" type="xs:string"/>
+      <xs:attribute name="SdoName" type="xs:string"/>
+      <xs:attribute name="SdoNameSpace" type="xs:string"/>
+      <xs:attribute name="PropertySet" type="xs:string"/>
+      <xs:attribute name="SdoGen" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ServiceWarnings" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Passivate" default="NoTransient">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="None"/>
+            <xs:enumeration value="All"/>
+            <xs:enumeration value="NoTransient"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="PageIterMode" default="Full">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Partial"/>
+            <xs:enumeration value="Full"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ViewLinkAccessorRetained" type="xs:string"/>
+      <xs:attribute name="LBThrowOnMisMatch" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="UseGlueCode" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Extends" type="xs:string"/>
+      <xs:attribute name="IsFinderView" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsEffectiveDated" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="SelectAllAttributes" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="AutoRefresh" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="RangeSize" type="xs:int"/>
+      <xs:attribute name="AccessMode" default="DEFAULT">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="DEFAULT"/>
+            <xs:enumeration value="SCROLLABLE"/>
+            <xs:enumeration value="FORWARD_ONLY"/>
+            <xs:enumeration value="RANGE_PAGING"/>
+            <xs:enumeration value="RANGE_PAGING_AUTO_POST"/>
+            <xs:enumeration value="RANGE_PAGING_INCR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="RangePagingCacheFactor" type="xs:int"/>
+      <xs:attribute name="ViewLogicGroupName" type="xs:string"/>
+      <xs:attribute name="ViewLogicUnitName" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewAttribute"> 
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>          
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>  
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="generic:ViewAttributeType">
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Properties" type="ViewAttributePropertiesType"
+                        minOccurs="0"/>
+            <xs:element ref="Data" minOccurs="0"/>
+            <xs:element ref="DesignTime" minOccurs="0"/>
+            <xs:element name="RecalcCondition" minOccurs="0" maxOccurs="1">
+              <xs:complexType mixed="true">
+                <xs:complexContent>
+                  <xs:restriction base="xs:anyType"/>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element ref="TransientExpression" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="CompOper" minOccurs="0"/>
+            <xs:element ref="Dependencies" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="validation:BaseValidationBean" minOccurs="0"/>
+            <xs:element ref="BaseValidationBean" minOccurs="0"/>
+          </xs:choice>
+          <xs:attribute name="AliasName" type="xs:string"/>
+          <xs:attribute name="EntityAttrName" type="xs:string"/>
+          <xs:attribute name="EntityUsage" type="xs:string"/>
+          <xs:attribute name="AssociationUsage" type="xs:string"/>
+          <xs:attribute name="Expression" type="xs:string"/>
+          <xs:attribute name="ColumnType" type="xs:string"/>
+          <xs:attribute name="ElemType" type="xs:string"/>
+          <xs:attribute name="SQLType" type="xs:string"/>
+          <xs:attribute name="Domain" type="xs:string"/>
+          <xs:attribute name="LOVName" type="xs:string"/>
+          <xs:attribute name="LOVFinder" type="xs:string"/>
+          <xs:attribute name="SDOHidden" type="xs:boolean"/>
+          <xs:attribute name="PrecisionRule" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="AttrLoad" default="Each">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="Skip"/>
+                <xs:enumeration value="Each"/>
+                <xs:enumeration value="Bulk"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="DiscrColumn" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="EntityDiscrColumn" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Passivate" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Scale" type="xs:int"/>
+          <xs:attribute name="Precision" type="xs:int"/>
+          <xs:attribute name="IsEffectiveStartDate" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="IsEffectiveEndDate" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StaticList">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="Rows" type="xs:string"/>
+      <xs:attribute name="Columns" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LOVUIHints">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="AttrArray"/>
+        </xs:choice>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+        <xs:element ref="DisplayCriteria" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="MRUCount" type="xs:string"/>
+      <xs:attribute name="ListRangeSize" type="xs:string"/>
+      <xs:attribute name="ListType" type="xs:string"/>
+      <xs:attribute name="NullValueFlag" type="xs:string"/>
+      <xs:attribute name="NullValueId" type="xs:string"/>
+      <xs:attribute name="ComboAttributeCount" type="xs:int" default="0"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeclarativeWhereClause">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ViewCriteria" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SortCriteria">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Sort" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="Attribute" type="xs:string"/>
+            <xs:attribute name="Ascending" default="true">
+              <xs:simpleType>
+                <xs:restriction base="xs:NMTOKEN">
+                  <xs:enumeration value="true"/>
+                  <xs:enumeration value="false"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewLogicGroup">
+    <xs:complexType>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="DiscrAttrName" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

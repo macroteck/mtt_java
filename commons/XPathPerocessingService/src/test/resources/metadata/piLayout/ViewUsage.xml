@@ -1,0 +1,30 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}">
+    <display-group id="typeGroup">
+      <property id="@Name"/>
+      <property id="@InstanceName"/>
+      <property id="@ViewObjectName"/>
+      <property id="@EntityName"/>
+      <property id="@Hidden"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="tuning" title="${CATEGORY_TUNING_KEY}" expanded="true">
+    <display-group id="tuningGroup">
+      <property id="@FetchMode"/>
+      <property id="@FetchSize"/>
+      <property id="@MaxFetchSize"/>
+      <property id="@AccessMode"/>
+      <property id="@RangeSize"/>
+      <property id="@RangePagingCacheFactor"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="query" title="${CATEGORY_QUERY_KEY}">
+    <display-group id="queryGroup">
+      <property id="@Query"/>
+      <property id="@SelectList"/>
+      <property id="@FromList"/>
+      <property id="@Where"/>
+      <property id="@OrderBy"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

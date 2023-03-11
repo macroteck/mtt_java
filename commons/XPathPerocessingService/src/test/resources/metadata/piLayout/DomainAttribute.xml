@@ -1,0 +1,36 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}" expanded="true">
+    <display-group id="typeGroup">
+      <property id="@Name"/>
+      <property id="@Type"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="database" title="${CATEGORY_DATABASE_KEY}" expanded="true">  
+    <display-group id="databaseGroup">
+      <property id="@ColumnName"/>
+      <property id="@ColumnType"/>
+      <property id="@IsQueriable"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="hints" title="${CATEGORY_UIHINTS_KEY}">
+   <display-group id="propertySetGrp">
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/LABEL"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/TOOLTIP"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/CONTROLTYPE"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYHINT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYWIDTH"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYHEIGHT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FMT_FORMATTER"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FMT_FORMAT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FORMTYPE"/>
+    </display-group>
+    
+    <display-group id="displayGroupCustomProps" title="${DISPLAY_GROUP_CUST_PROP_KEY}" expanded="false">
+      <!--property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DESCRIPTION"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FILE_NAME"/-->
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/XML_ELEMENT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/XML_EXPLICIT_NULL"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAY_AS_ATTRIBUTE"/>
+    </display-group>  
+  </category-layout>
+</property-form-layout>

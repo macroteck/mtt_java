@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+           elementFormDefault="qualified">
+  <xs:element name="PDefVariable">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="generic:PDefVariableType">
+          <xs:sequence>
+            <xs:element ref="TransientExpression" minOccurs="0" maxOccurs="1"/>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element ref="Data"/>
+              <xs:element name="Properties" type="AttributePropertiesType"
+                          minOccurs="0"/>
+              <xs:element ref="validation:BaseValidationBean"/>
+              <xs:element ref="BaseValidationBean"/>
+            </xs:choice>
+            <xs:element ref="Dependencies" minOccurs="0" maxOccurs="1"/>
+          </xs:sequence>
+          <xs:attribute name="Scale" type="xs:int"/>
+          <xs:attribute name="Precision" type="xs:int"/>
+          <xs:attribute name="PrecisionRule">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

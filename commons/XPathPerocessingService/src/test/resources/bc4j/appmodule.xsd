@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="AppModuleUsage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="Properties" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+      </xs:all>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="FullName" use="required" type="xs:string"/>
+      <xs:attribute name="SharedScope" type="xs:string"/>
+      <xs:attribute name="ConfigurationName" type="xs:string"/>
+      <xs:attribute name="Hidden" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ServiceViewUsage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string"/>
+      <xs:attribute name="ViewUsageName" type="xs:string"/>
+      <xs:attribute name="CanInsert" type="xs:boolean"/>
+      <xs:attribute name="CanCreate" type="xs:boolean"/>
+      <xs:attribute name="CanUpdate" type="xs:boolean"/>
+      <xs:attribute name="CanDelete" type="xs:boolean"/>
+      <xs:attribute name="CanMerge" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AppModule">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Properties" type="AppModulePropertiesType"
+                    minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime"/>
+        <xs:element ref="AppModuleUsage"/>
+        <xs:element ref="ViewUsage"/>
+        <xs:element ref="AttrArray"/>
+        <xs:element ref="ComponentUsage"/>
+        <xs:element ref="ViewLinkUsage"/>
+        <xs:element ref="Variable"/>
+        <xs:element ref="ClientInterface"/>
+        <xs:element ref="Remote"/>
+        <xs:element ref="ServiceViewUsage"/>
+        <xs:element name="ServiceInterface" type="ClientInterfaceType"/>
+        <xs:element ref="ComponentInterfaceBase" minOccurs="0"/>
+        <xs:element ref="PropertySets"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="ComponentClass" type="xs:string"/>
+      <xs:attribute name="DefClass" type="xs:string"/>
+      <xs:attribute name="Extends" type="xs:string"/>
+      <xs:attribute name="ComponentInterface" type="xs:string"/>
+      <xs:attribute name="ClientProxyName" type="xs:string"/>
+      <xs:attribute name="PropertySet" type="xs:string"/>
+      <xs:attribute name="ClearCacheOnCommit" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ClearCacheOnRollback" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="RequeryOnCommit" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="LoadComponentsLazily" default="default">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="default"/>
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsLibraryPrivate" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

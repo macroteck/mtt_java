@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/generic"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:element name="AccessorAttribute" type="generic:AccessorAttributeType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType mixed="true" name="AccessorAttributeType">
+    <xs:attribute name="Name" type="xs:string"/>
+    <xs:attribute name="Type" type="xs:string"/>
+    <xs:attribute name="IsUpdateable" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="while_insert"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>
+

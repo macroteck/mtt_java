@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.oracle.com/bc4j" xmlns:tns="http://xmlns.oracle.com/bc4j">
+
+ <xs:annotation>
+   <xs:documentation>
+    This schema defines the types for the properties of all BC4J objects. Currently the schema defines
+    properties for PropertySet, Application Module, View Object, Entity Object, View Attribute and
+    Entity Attributes.
+
+    Clients can extend this schema to provide custom properties for the BC4J objects in addition to
+    what is predefined here.
+
+    This schema describes schema based properties for property set as well as any BC4J object.
+   </xs:documentation>
+ </xs:annotation>
+
+ <!--
+    ********************************************************************************
+
+                        ABSTRACT DEFINITIONS FOR SUBSTITUTION GROUPS
+
+    ********************************************************************************
+ -->
+
+ <!--
+   +===============================================================================+
+   | "AbstractProperty" is an abstract property set property. This abstract        |
+   | property allows substitutions to let a client extend as many properties from  |
+   | a different namespace for a property set                                      |
+   +===============================================================================+
+ -->
+ <xs:element name="AbstractProperty" abstract="true"/>
+
+ <!--
+   +===============================================================================+
+   | "AbstractAttribute" is an extensible Entity attribute property. This          |
+   | abstract property allows substitutions to let a client extend as many         |
+   | properties from a different namespace for a Entity attribute                  |
+   | These extended substitutions will show up against an entity attribute when    |
+   | edited from property inspector.                                               |
+   +===============================================================================+
+ -->
+ <xs:element name="AbstractAttributeProperty" abstract="true"/>
+
+ <!--
+   +===============================================================================+
+   | "AbstractViewAttributeProperty" is an extensible View attribute property.     |
+   | This abstract property allows substitutions to let a client extend as many    |
+   | properties from a different namespace for a View attribute                    |
+   | These extended substitutions will show up against an View attribute when      |
+   | edited from property inspector.                                               |
+   +===============================================================================+
+ -->
+ <xs:element name="AbstractViewAttributeProperty" abstract="true"/>
+
+ <!--
+   +===============================================================================+
+   | "AbstractAppModuleProperty" is an extensible Appmodule property.              |
+   | This abstract property allows substitutions to let a client extend as many    |
+   | properties from a different namespace for an Appmodule                        |
+   | These extended substitutions will show up against an AppModule when           |
+   | edited from property inspector.                                               |
+   +===============================================================================+
+ -->
+ <xs:element name="AbstractAppModuleProperty" abstract="true"/>
+
+ <!--
+   +===============================================================================+
+   | "AbstractEntityProperty" is an extensible Entity Object property.             |
+   | This abstract property allows substitutions to let a client extend as many    |
+   | properties from a different namespace for an Entity Object                    |
+   | These extended substitutions will show up against an Entity Object when       |
+   | edited from property inspector.                                               |
+   +===============================================================================+
+ -->
+ <xs:element name="AbstractEntityProperty" abstract="true"/>
+
+ <!--
+   +===============================================================================+
+   | "AbstractViewProperty" is an extensible View Object property.                 |
+   | This abstract property allows substitutions to let a client extend as many    |
+   | properties from a different namespace for a View Object                       |
+   | These extended substitutions will show up against an view Object when         |
+   | edited from property inspector.                                               |
+   +===============================================================================+
+ -->
+ <xs:element name="AbstractViewProperty" abstract="true"/>
+
+ <!--
+  **********************************************************************************
+
+                               TYPE DEFINITIONS
+
+  **********************************************************************************
+ -->
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  | Complex type definition for the property set. This type lists all the preseeded |
+  | properties that can appear in a property set instance document. These properties|
+  | are classified into 2 groups Translatable and NonTranslatable. Translatable     |
+  | properties define a RESOURCE_ID into a known Resource bundle. The Non           |
+  | translatable properties define a well defined ( possibly restricted )           |
+  | set of values the property can take.                                            |
+  | This type extends from base Properties type to allow backward compatibility     |
+  +=================================================================================+
+ -->
+ <xs:complexType name="PropertySetType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" minOccurs="0">
+       <xs:complexType>
+         <xs:choice maxOccurs="unbounded">
+           <xs:group ref="controlHintsGroup"/>
+           <xs:element ref="AbstractProperty" maxOccurs="unbounded" minOccurs="0"/>
+         </xs:choice>
+       </xs:complexType>
+     </xs:element>
+   </xs:sequence>
+   <xs:attribute name="IsLibraryPrivate" default="false">
+    <xs:simpleType>
+       <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="true"/>
+         <xs:enumeration value="false"/>
+       </xs:restriction>
+    </xs:simpleType>
+   </xs:attribute>
+ </xs:complexType>
+
+ <!--
+  +==================================================================================+
+  |                                                                                  |
+  | for the properties of a ANY BC4J object.                                         |
+  | This group lists properties associated with any BC4J object                      |
+  +==================================================================================+
+ -->
+ <xs:group name="BaseObjectProperties">
+   <xs:all>
+     <xs:element name="DESCRIPTION" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="FILE_NAME" type="tns:simpleStringType" minOccurs="0"/>
+   </xs:all>
+ </xs:group>
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for an application Module properties.                  |
+  +=================================================================================+
+ -->
+ <xs:complexType name="AppModulePropertiesType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" type="AppModuleSchemaPropertiesType" minOccurs="0"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="AppModuleSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element name="DATA_CONTROL_NAME" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element ref="AbstractAppModuleProperty" minOccurs="0" maxOccurs="unbounded"/>
+   </xs:choice>
+ </xs:complexType>
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for Entity Object properties.                          |
+  +=================================================================================+
+ -->
+ <xs:complexType name="EntityObjectPropertiesType">
+    <xs:sequence>
+      <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+      <xs:element name="SchemaBasedProperties" type="EntityObjectSchemaPropertiesType" minOccurs="0"/>
+    </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="EntityObjectSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element ref="AbstractEntityProperty" minOccurs="0" maxOccurs="unbounded"/>
+   </xs:choice>
+ </xs:complexType>
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for a View Object Properties.                          |
+  +=================================================================================+
+ -->
+ <xs:complexType name="ViewObjectPropertiesType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" type="ViewObjectSchemaPropertiesType" minOccurs="0"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="ViewObjectSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element name="XML_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_ROW_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_EXPLICIT_NULL" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element ref="AbstractViewProperty" minOccurs="0" maxOccurs="unbounded"/>
+</xs:choice>
+ </xs:complexType>
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for a Association Object Properties.                          |
+  +=================================================================================+
+ -->
+ <xs:complexType name="AssociationPropertiesType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" type="AssociationSchemaPropertiesType" minOccurs="0"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="AssociationSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element name="XML_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_ROW_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_EXPLICIT_NULL" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element ref="AbstractViewProperty" minOccurs="0" maxOccurs="unbounded"/>
+   </xs:choice>
+ </xs:complexType>
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for a ViewLink Object Properties.                      |
+  +=================================================================================+
+ -->
+ <xs:complexType name="ViewLinkPropertiesType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" type="ViewLinkSchemaPropertiesType" minOccurs="0"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="ViewLinkSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element name="XML_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_ROW_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_EXPLICIT_NULL" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element ref="AbstractViewProperty" minOccurs="0" maxOccurs="unbounded"/>
+   </xs:choice>
+ </xs:complexType>
+
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for a BC4J object attribute.                           |
+  +=================================================================================+
+ -->
+ <xs:complexType name="AttributePropertiesType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" type="AttributeSchemaPropertiesType" minOccurs="0"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="AttributeSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element name="XML_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_EXPLICIT_NULL" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="DISPLAY_AS_ATTRIBUTE" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element ref="AbstractAttributeProperty" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:group ref="controlHintsGroup"/>
+     <xs:group ref="bc4jAttrHintsGroup"/>
+   </xs:choice>
+ </xs:complexType>
+
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Complex type definition for a BC4J View attribute.                             |
+  +=================================================================================+
+ -->
+ <xs:complexType name="ViewAttributePropertiesType">
+   <xs:sequence>
+     <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:element ref="tns:CustomProperties" minOccurs="0"/>
+     <xs:element name="SchemaBasedProperties" type="ViewAttributeSchemaPropertiesType" minOccurs="0"/>
+   </xs:sequence>
+ </xs:complexType>
+
+ <xs:complexType name="ViewAttributeSchemaPropertiesType">
+   <xs:choice maxOccurs="unbounded">
+     <xs:group ref="BaseObjectProperties"/>
+     <xs:element name="XML_ELEMENT" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="XML_EXPLICIT_NULL" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element ref="AbstractViewAttributeProperty" minOccurs="0" maxOccurs="unbounded"/>
+     <xs:group ref="controlHintsGroup"/>
+     <xs:group ref="dynamicFormHintsGroup"/>
+     <xs:group ref="bc4jAttrHintsGroup"/>
+  </xs:choice>
+ </xs:complexType>
+
+
+ <!--
+  +================================================================================+
+  |                                                                                |
+  |    Properties that represent the control hints for an attribute. Control hints |
+  |    are specified both on View attributes and entity attributes                 |
+  +================================================================================+
+  -->
+
+ <xs:group name="controlHintsGroup">
+   <xs:all>
+     <xs:element name="LABEL"         type="tns:simpleResourceType" minOccurs="0"/>
+     <xs:element name="TOOLTIP"       type="tns:simpleResourceType" minOccurs="0"/>
+     <xs:element name="CONTROLTYPE"   type="tns:simpleStringType"   minOccurs="0"/>
+     <xs:element name="DISPLAYHINT"   type="tns:displayHintType"    minOccurs="0"/>
+     <xs:element name="DISPLAYWIDTH"  type="tns:simpleIntegerType"  minOccurs="0"/>
+     <xs:element name="DISPLAYHEIGHT" type="tns:simpleIntegerType"  minOccurs="0"/>
+     <xs:element name="FORMTYPE"      type="tns:formType"           minOccurs="0"/>
+     <xs:element name="FMT_FORMATTER" type="tns:simpleResourceType"   minOccurs="0"/>
+     <xs:element name="FMT_FORMAT"    type="tns:simpleResourceType"   minOccurs="0"/>
+   </xs:all>
+ </xs:group>
+ 
+ <xs:group name="dynamicFormHintsGroup">
+   <xs:all>
+     <xs:element name="FIELDORDER" type="tns:simpleStringType" minOccurs="0"/>
+     <xs:element name="CATEGORY"   type="tns:simpleStringType" minOccurs="0"/>
+   </xs:all>
+ </xs:group>
+ 
+ <xs:group name="bc4jAttrHintsGroup">
+   <xs:all>
+     <xs:element name="AUTOSUBMIT" type="tns:simpleBooleanType"   minOccurs="0"/>
+   </xs:all>
+ </xs:group>
+
+  
+ <!--
+  +=================================================================================+
+  |                                                                                 |
+  |  Type definition for attribute types for properties                             |
+  +=================================================================================+
+ -->
+ <xs:complexType name="simpleResourceType">
+   <xs:attribute name="ResId" type="xs:string" use="required"/>
+ </xs:complexType>
+
+ <xs:complexType name="simpleStringType">
+   <xs:attribute name="Value" type="xs:string" use="required"/>
+ </xs:complexType>
+
+ <xs:complexType name="simpleIntegerType">
+   <xs:attribute name="Value" type="xs:int" use="required"/>
+ </xs:complexType>
+
+ <xs:complexType name="simpleBooleanType">
+   <xs:attribute name="Value" type="xs:boolean" default="false"/>
+ </xs:complexType>
+
+ <xs:complexType name="formType">
+   <xs:attribute name="Value" default="Detail">
+     <xs:simpleType>
+       <xs:restriction base="xs:string">
+         <xs:enumeration value="Detail"/>
+         <xs:enumeration value="Summary"/>
+       </xs:restriction>
+     </xs:simpleType>
+   </xs:attribute>
+ </xs:complexType>
+
+ <xs:complexType name="displayHintType">
+   <xs:attribute name="Value" default="Display">
+     <xs:simpleType>
+       <xs:restriction base="xs:string">
+         <xs:enumeration value="Display"/>
+         <xs:enumeration value="Hide"/>
+       </xs:restriction>
+     </xs:simpleType>
+   </xs:attribute>
+ </xs:complexType>
+
+</xs:schema>

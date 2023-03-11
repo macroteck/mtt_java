@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<!--  $Header: bc4jrt/modules/adf-model/src/oracle/jbo/schema/metadata/piLayout/AccessorAttribute.xml /main/2 2009/02/04 11:36:24 wychan Exp $ -->
+
+<!-- 
+ Copyright (c) 2008, 2009, Oracle and/or its affiliates.All rights reserved. 
+
+   NAME
+     AccessorAttribute.xml - <one-line expansion of the name>
+
+   DESCRIPTION
+     <short description of component this file declares/defines>
+
+   NOTES
+     <other useful comments, qualifications, etc.>
+
+   MODIFIED   (MM/DD/YY)
+   wychan      06/30/08 - Creation
+
+-->
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="common" title="${CATEGORY_TYPE_KEY}">
+    <display-group id="commonGroup">
+      <property id="@Name"/>
+      <property id="@Association"/>
+      <property id="@AssociationEnd"/>
+      <property id="@AssociationOtherEnd"/>
+      <property id="@IsUpdateable"/>
+      <property id="@Type"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

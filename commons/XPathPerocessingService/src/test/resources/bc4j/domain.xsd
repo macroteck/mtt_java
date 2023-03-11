@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema
+   targetNamespace="http://xmlns.oracle.com/bc4j"
+   xmlns="http://xmlns.oracle.com/bc4j"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:generic="http://xmlns.oracle.com/generic"
+   xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+   elementFormDefault="qualified">
+  <xs:element name="Domain">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Properties" type="PropertySetType" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+        <xs:element ref="ResourceBundle" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Attribute"/>
+        <xs:element ref="validation:BaseValidationBean"/>
+        <xs:element ref="BaseValidationBean"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="Extends" type="xs:string"/>
+      <xs:attribute name="ResourceProviderId" type="xs:string"/>
+      <xs:attribute name="MsgBundleClass" type="xs:string"/>
+      <xs:attribute name="IsLibraryPrivate" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

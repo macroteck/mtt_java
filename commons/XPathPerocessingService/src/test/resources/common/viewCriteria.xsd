@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/generic"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:element name="ViewCriteria" type="generic:ViewCriteriaType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ViewCriteriaRow" type="generic:ViewCriteriaRowType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ViewCriteriaItem" type="generic:ViewCriteriaItemType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ViewCriteriaItemCompound"
+              type="generic:ViewCriteriaItemCompoundType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ViewCriteriaUsage" type="generic:ViewCriteriaUsageType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ViewCriteriaType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="ViewCriteriaRow"/>
+      <xs:element ref="ViewCriteria"/>
+      <xs:element ref="ViewCriteriaUsage"/>
+    </xs:choice>
+    <xs:attribute name="Name" type="xs:string"/>
+    <xs:attribute name="ViewObjectName" type="xs:string"/>
+    <xs:attribute name="Conjunction" type="xs:string"/>
+    <xs:attribute name="Mode" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ViewCriteriaRowType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="ViewCriteriaItem"/>
+      <xs:element ref="ViewCriteriaItemCompound"/>
+    </xs:choice>
+    <xs:attribute name="Conjunction" type="xs:string"/>
+    <xs:attribute name="ItemConjunction" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ViewCriteriaItemType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="ViewCriteria"/>
+    </xs:choice>
+    <xs:attribute name="ViewAttribute" type="xs:string"/>
+    <xs:attribute name="Operator" type="xs:string"/>
+    <xs:attribute name="IsNestedCriteria" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Value" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ViewCriteriaItemCompoundType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="ViewCriteriaItem"/>
+    </xs:choice>
+    <xs:attribute name="ViewAttribute" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ViewCriteriaUsageType">
+    <xs:choice minOccurs="1" maxOccurs="unbounded">
+      <xs:element ref="Properties" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ViewCriteriaItemUsage" minOccurs="0">
+        <xs:complexType>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element ref="Properties" minOccurs="0" maxOccurs="1"/>
+          </xs:choice>
+          <xs:attribute name="Name" use="required"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element ref="ViewCriteria"/>
+    </xs:choice>
+    <xs:attribute name="Name" use="required" type="xs:string"/>
+    <xs:attribute name="FullName" use="required" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>
+

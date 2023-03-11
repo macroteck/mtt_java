@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="PDefEntityObject">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SQLQuery" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <md:elementMetadata>
+                <mds:customizationAllowed>true</mds:customizationAllowed>
+              </md:elementMetadata>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="Data"/>
+          <xs:element ref="Properties"/>
+          <xs:element ref="validation:BaseValidationBean"/>
+          <xs:element ref="BaseValidationBean"/>
+          <xs:element ref="Attribute"/>
+          <xs:element ref="AccessorAttribute"/>
+          <xs:element ref="PDefAttribute"/>
+          <xs:element ref="AttrArray"/>
+          <xs:element ref="DesignTime"/>
+          <xs:element ref="Publisher"/>
+          <xs:element ref="Variable"/>
+          <xs:element ref="ViewAccessor"/>
+        </xs:choice>
+        <xs:element ref="ResourceBundle" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <md:elementMetadata>
+                <mds:customizationAllowed>true</mds:customizationAllowed>
+              </md:elementMetadata>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="StaticDef" use="required" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  *******************************************************************************************
+  * Copyright 2007 by Oracle Corporation,                                                   *
+  *                                                                                         *
+  * 500 Oracle Parkway, Redwood Shores, California, 94065, U.S.A.                           * 
+  * All rights reserved.                                                                    *
+  *                                                                                         *
+  * This Document is a proprietary information of Oracle Corporation.                       *
+  *                                                                                         *
+  *******************************************************************************************
+-->
+
+  <!-- 
+    +=======================================================================================+
+    |   Property form layout for a VO Bind Variable                                         |
+    +=======================================================================================+
+  -->
+
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <!--
+    ******************************************************************************
+       - Control Hints
+    ******************************************************************************
+  --> 
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}" expanded="true">
+    <display-group id="typeG">
+    <property id="@Name"/>
+      <property id="@Type"/>
+      <property id="@IsUpdateable"/>
+    </display-group>
+  </category-layout>
+  
+  <category-layout id="value" title="${CATEGORY_VALUE_KEY}" expanded="true">
+    <display-group id="valueG">
+      <property id="@DefaultValue"/>
+    </display-group>
+  </category-layout>
+  
+  <category-layout id="hints" title="${DISPLAY_GROUP_UI_HINTS_KEY}">
+    <display-group id="displayGroupUihints">
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/LABEL"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/TOOLTIP"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/CONTROLTYPE"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYHINT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYWIDTH"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYHEIGHT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FMT_FORMATTER"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FMT_FORMAT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FORMTYPE"/>
+    </display-group>
+    
+    <!-- Custom properties -->
+    <display-group id="displayGroupCustomProps" title="${DISPLAY_GROUP_CUST_PROP_KEY}" expanded="false">
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DESCRIPTION"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FILE_NAME"/>
+    </display-group>  
+  </category-layout>
+
+</property-form-layout>

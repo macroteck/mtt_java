@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+           elementFormDefault="qualified">
+  <xs:element name="Variable">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="generic:VariableType">
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="TransientExpression" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Properties" type="AttributePropertiesType"
+                        minOccurs="0"/>
+            <xs:element ref="DesignTime"/>
+            <xs:element ref="validation:BaseValidationBean"/>
+            <xs:element ref="BaseValidationBean"/>
+            <xs:element ref="AttrArray"/>
+          </xs:choice>
+          <xs:attribute name="ElemType" type="xs:string"/>
+          <xs:attribute name="ColumnType" type="xs:string"/>
+          <xs:attribute name="Scale" default="-127" type="xs:int"/>
+          <xs:attribute name="Precision" default="0" type="xs:int"/>          
+          <xs:attribute name="PrecisionRule" default="true">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

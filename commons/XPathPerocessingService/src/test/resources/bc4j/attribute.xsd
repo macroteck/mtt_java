@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+           elementFormDefault="qualified">
+  <xs:element name="Attribute">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>          
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="generic:AttributeType">
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="RecalcCondition" minOccurs="0" maxOccurs="1">
+              <xs:complexType mixed="true">
+                <xs:complexContent>
+                  <xs:restriction base="xs:anyType"/>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+            <xs:element ref="TransientExpression" minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="Data"/>
+            <xs:element name="Properties" type="AttributePropertiesType"
+                        minOccurs="0"/>
+            <xs:element ref="DesignTime"/>
+            <xs:element ref="CompOper"/>
+            <xs:element ref="validation:BaseValidationBean"/>
+            <xs:element ref="BaseValidationBean"/>
+            <xs:element ref="Permission"/>
+            <xs:element ref="PropertySets"/>
+            <xs:element ref="Dependencies" minOccurs="0" maxOccurs="1"/>
+          </xs:choice>
+          <xs:attribute name="ElemType" type="xs:string"/>
+          <xs:attribute name="Domain" type="xs:string"/>
+          <xs:attribute name="IsSessionScope" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="IsQueriable" default="true">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ColumnName" type="xs:string"/>
+          <xs:attribute name="ColumnType" use="required" type="xs:string"/>
+          <xs:attribute name="SQLType" type="xs:string"/>
+          <xs:attribute name="TableName" type="xs:string"/>
+          <xs:attribute name="PrimaryKey" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="DiscrColumn" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="OIDAttrNames" type="xs:string"/>
+          <xs:attribute name="ChangeIndicator" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="RetrievedOnUpdate" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="RetrievedOnInsert" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="HistoryColumn" type="xs:string"
+                        default="NonHistory"/>
+          <xs:attribute name="Scale" default="-127" type="xs:int"/>
+          <xs:attribute name="Precision" default="0" type="xs:int"/>
+          <xs:attribute name="PrecisionRule" default="true">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Expression" type="xs:string"/>
+          <xs:attribute name="DefaultValue" type="xs:string"/>
+          <xs:attribute name="LOVName" type="xs:string"/>
+          <xs:attribute name="LOVFinder" type="xs:string"/>
+          <xs:attribute name="IsEffectiveStartDate" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="IsEffectiveEndDate" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="IsEffectiveDateSequence" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="IsEffectiveDateSequenceFlag" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

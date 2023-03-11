@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog
+	xmlns:journal="http://www.w3.org/2001/XMLSchema-Instance" >
+	
+	<journal:journal title="XML" publisher="Richard Qualis developer labs">
+		<artical journal:level="Intermediate"
+				date="July 14, 2009">
+			<title>Processing XML Docs using XPath and Java</title>
+			<author>Richard Qualis</author>
+		</artical>
+	</journal:journal>
+	
+	<journal title="Java Technology" publisher="Richard Qualis dev labs">
+		<article level="Advanced"  date="June 12, 2009">
+			<title>Design SOA Frameworks with JEE Technology</title>
+			<author>Richard Qualis</author>
+		</article>
+	</journal>
+</catalog>

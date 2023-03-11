@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/generic"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:element name="Variable" type="generic:VariableType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="VariableType">
+    <xs:sequence>
+      <xs:element ref="Properties" minOccurs="0"/>
+      <xs:element ref="Data" minOccurs="0"/>
+      <xs:choice minOccurs="0" maxOccurs="unbounded"></xs:choice>
+    </xs:sequence>
+    <xs:attribute name="Name" use="required" type="xs:string"/>
+    <xs:attribute name="Type" use="required" type="xs:string"/>
+    <xs:attribute name="Kind" default="null">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="where"/>
+          <xs:enumeration value="viewcriteria"/>
+          <xs:enumeration value="null"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsUpdateable" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="while_insert"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsNotNull" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="DefaultValue" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>

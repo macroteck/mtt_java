@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/generic"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="ViewUsage" type="ViewUsageType">
+  </xs:element>
+  <xs:element name="ViewObject" type="generic:ViewObjectType">
+  </xs:element>
+  <xs:element name="ViewAttribute" type="generic:ViewAttributeType">
+  </xs:element>
+  <xs:complexType name="ViewAttributeType">
+    <xs:sequence>
+      <xs:element ref="Properties" minOccurs="0"/>
+      <xs:element ref="Data" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Name" use="required" type="xs:string"/>
+    <xs:attribute name="Type" type="xs:string"/>
+    <xs:attribute name="IsUpdateable" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="while_insert"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsSessionScope" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsSelected" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsQueriable" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsVisible" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsPersistent" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsUnique" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsNotNull" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="DefaultValue" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ViewObjectType">
+    <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Properties"/>
+        <xs:element ref="Attribute"/>
+        <xs:element ref="ViewAttribute"/>
+        <xs:element ref="ViewCriteria"/>
+        <xs:element ref="ViewCriteriaUsage"/>
+        <xs:element ref="AttrArray"/>
+        <xs:element ref="ViewLinkAccessor"/>
+        <xs:element ref="Variable"/>
+        <xs:element ref="ClientInterface"/>
+        <xs:element ref="ClientRowInterface"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="Name" use="required" type="xs:ID"/>
+    <xs:attribute name="MsgBundleClass" type="xs:string"/>
+    <xs:attribute name="DefClass" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ViewUsageType"> 
+    <xs:sequence>
+      <xs:element ref="Properties" minOccurs="0"/>
+      <xs:element ref="Data" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Name" use="required" type="xs:ID"/>
+    <xs:attribute name="ViewObjectName" use="required" type="xs:string"/>
+    <xs:attribute name="ClientProxyName" type="xs:string"/>
+    <xs:attribute name="InstanceName" type="xs:string"/>
+    <xs:attribute name="AccessorName" type="xs:string"/>
+    <xs:attribute name="Shared" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SharedScope" type="xs:string"/>
+    <xs:attribute name="ConfigurationName" type="xs:string"/>
+    <xs:attribute name="Hidden" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>
+

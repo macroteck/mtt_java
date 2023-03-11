@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+   <xs:element name="Permission" type="XSPermissionType"/>
+   <xs:complexType name="XSPermissionType">
+      <xs:sequence>
+         <xs:element ref="privilege-map" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="permissionClass" type="xs:string"/>
+      <xs:attribute name="SecurityClass" type="xs:string"/>
+      <xs:attribute name="target" type="xs:string"/>
+      <xs:attribute name="xdbNamespace" type="xs:string"/>
+      <xs:attribute name="SecurityNamespace" type="xs:string"/>
+   </xs:complexType>
+   <xs:element name="privilege-map" type="PrivilegeMapType"/>
+   <xs:complexType name="PrivilegeMapType">
+      <xs:attribute name="operation" type="xs:string" use="required"/> 
+      <xs:attribute name="privilege" type="xs:string"/> 
+   </xs:complexType> 
+</xs:schema>
+

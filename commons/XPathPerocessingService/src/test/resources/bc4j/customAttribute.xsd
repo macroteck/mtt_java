@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="CustomAttribute">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType mixed="true">
+      <xs:complexContent>
+        <xs:restriction base="xs:anyType">
+          <xs:attribute name="DefClass" use="required" type="xs:string"/>
+          <xs:attribute name="Name" type="xs:string"/>
+          <xs:attribute name="Association" type="xs:string"/>
+          <xs:attribute name="AssociationEnd" type="xs:string"/>
+          <xs:attribute name="AssociationOtherEnd" type="xs:string"/>
+          <xs:attribute name="Type" type="xs:string"/>
+          <xs:attribute name="CmrAccessor" type="xs:string"/>
+          <xs:attribute name="IsUpdateable" default="false">
+            <xs:simpleType>
+              <xs:restriction base="xs:NMTOKEN">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

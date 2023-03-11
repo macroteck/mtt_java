@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="PDefApplicationModule">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SQLQuery" minOccurs="0" maxOccurs="1"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="Data"/>
+          <xs:element ref="Properties"/>
+          <xs:element ref="AppModuleUsage"/>
+          <xs:element ref="ViewUsage"/>
+          <xs:element ref="ViewLinkUsage"/>
+          <xs:element ref="AttrArray"/>
+          <xs:element ref="DesignTime"/>
+          <xs:element ref="Publisher"/>
+          <xs:element ref="Variable"/>
+        </xs:choice>
+        <xs:element ref="ResourceBundle" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:appinfo>
+              <md:elementMetadata>
+                <mds:customizationAllowed>true</mds:customizationAllowed>
+              </md:elementMetadata>
+            </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="StaticDef" use="required" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

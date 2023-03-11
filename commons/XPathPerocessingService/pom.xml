@@ -1,0 +1,141 @@
+<project 
+		xmlns="http://maven.apache.org/POM/4.0.0" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+  	<groupId>com.macroteck</groupId>
+  	<artifactId>com.macroteck.services.processors.xpath</artifactId>
+  	<packaging>jar</packaging>
+  	<name>XPathPerocessingService</name>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<url>http://www.macroteck.com</url>
+  	<description>Process data using XPath</description>
+  
+	<properties>
+		<organization>MacroTeck Technologies Inc</organization>
+		<url>http://www.macroteck.com</url>
+		<project.name>XPathPerocessingService</project.name>
+		<junit.version>4.4</junit.version>
+		<log4j.version>1.2.8</log4j.version>
+    </properties>
+
+    <inceptionYear>2005</inceptionYear>
+
+    <organization>
+        <name>${organization}</name>
+        <url>${url}</url>
+    </organization>
+    
+  <developers>
+  	<developer>
+  		<id>${project.name}</id>
+  		<name>Richard Qualis</name>
+  		<email>rqualis@macroteck.com</email>
+  		<url>http://www.macroteck.com</url>
+  		<organization>${organization}</organization>
+  		<organizationUrl>${url}</organizationUrl>
+  		<timezone>-5</timezone>
+  		<roles>
+  			<role>Software Engineer</role>
+  		</roles>
+  	</developer>
+  </developers>
+
+	<repositories>
+		<repository>
+		  <id>java.net</id>
+		  <url>http://download.java.net/maven/1</url>
+		  <layout>legacy</layout>
+		</repository>
+	</repositories>		
+
+
+  <dependencies>
+	<!--  dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit.version}</version>
+		<scope>test</scope>
+	</dependency -->
+
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>${log4j.version}</version>
+		<scope>compile</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>com.sun.jmx</groupId>
+				<artifactId>jmxri</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>com.sun.jdmk</groupId>
+				<artifactId>jmxtools</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>javax.jms</groupId>
+				<artifactId>jms</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+  		<artifactId>servlet-api</artifactId>
+  		<version>2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-logging</groupId>
+  		<artifactId>commons-logging</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>commons-configuration</groupId>
+	    <artifactId>commons-configuration</artifactId>
+	    <version>1.6</version>
+	</dependency>
+  </dependencies>
+  
+  
+  	<build>
+		<finalName>${project.name}</finalName>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.0</version>
+					<configuration>
+					</configuration>
+				</plugin>
+	
+				<plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-javadoc-plugin</artifactId>
+	                <configuration>
+	                    <classpath>/src/main/java</classpath>
+	                </configuration>
+            	</plugin>
+
+            	<plugin>
+	                <artifactId>maven-ejb-plugin</artifactId>
+	                <configuration>
+	                    <ejbVersion>3.0</ejbVersion>
+	                    <archive>
+	                        <manifest>
+	                            <addClasspath>true</addClasspath>
+	                        </manifest>
+	                    </archive>
+	                </configuration>
+	            </plugin>
+		</plugins>
+	</build>
+</project>

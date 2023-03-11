@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:element name="SQLQuery">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+                <xs:complexType mixed="true">
+                        <xs:complexContent>
+                                <xs:restriction base="xs:anyType"/>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+        <xs:element name="AttrArray" type="AttrArrayType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Attr" type="AttrType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Item" type="ItemType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="CompOper" type="CompOperType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="StringItem" type="StringItemType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="PropertySet" type="PropertySetNameType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="PropertySets"
+                    type="PropertySetNameArrayType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DesignTimeStringArray"
+                    type="DesignTimeStringArrayType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DesignTime" type="DesignTimeType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Properties" type="PropertiesType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Property" type="PropertyType">
+         <xs:annotation>
+                  <xs:appinfo>
+                          <md:elementMetadata>
+                                  <mds:customizationAllowed>true</mds:customizationAllowed>
+                                  <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+                          </md:elementMetadata>
+                  </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Data" type="DataType">
+         <xs:annotation>
+                  <xs:appinfo>
+                          <md:elementMetadata>
+                                  <mds:customizationAllowed>true</mds:customizationAllowed>
+                          </md:elementMetadata>
+                  </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DataItem" type="DataItemType">
+         <xs:annotation>
+                  <xs:appinfo>
+                          <md:elementMetadata>
+                                  <mds:customizationAllowed>true</mds:customizationAllowed>
+                          </md:elementMetadata>
+                  </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="NamedData" type="NamedDataType">
+         <xs:annotation>
+                  <xs:appinfo>
+                          <md:elementMetadata>
+                                  <mds:customizationAllowed>true</mds:customizationAllowed>
+                          </md:elementMetadata>
+                  </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Preloaded" type="PreloadedType"/>
+        <xs:element name="AppContainee" type="AppContaineeType"/>
+        <xs:element name="Containee" type="ContaineeType">
+         <xs:annotation>
+                  <xs:appinfo>
+                          <md:elementMetadata>
+                                  <mds:customizationAllowed>true</mds:customizationAllowed>
+                          </md:elementMetadata>
+                  </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ClientInterface" type="ClientInterfaceType"/>
+        <xs:element name="ClientRowInterface" type="ClientRowInterfaceType"/>
+        <xs:element name="Method" type="MethodType"/>
+        <xs:element name="Return" type="ReturnT"/>
+        <xs:element name="Parameter" type="ParameterT">
+         <xs:annotation>
+                  <xs:appinfo>
+                          <md:elementMetadata>
+                                  <mds:customizationAllowed>true</mds:customizationAllowed>
+                          </md:elementMetadata>
+                  </xs:appinfo>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Element" type="ElementT"/>
+        <xs:element name="ParameterMap" type="ParameterMapType"/>
+        <xs:element name="PIMap" type="PIMapType"/>
+        <xs:element name="Dependencies" type="DependenciesType"/>
+        <xs:element name="CustomProperties" type="CustomPropertiesType">
+                <xs:annotation>
+                        <xs:appinfo>
+                                <md:elementMetadata>
+                                        <mds:customizationAllowed>true</mds:customizationAllowed>
+                                </md:elementMetadata>
+                        </xs:appinfo>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="AttrArrayType">
+                <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="Name" use="required" type="xs:string"/>
+        </xs:complexType>
+        <xs:complexType name="AttrType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="Name" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="Value" use="required"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ItemType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="Value" use="required"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="CompOperType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:sequence>
+                                        <xs:element ref="TransientExpression"
+                                                    maxOccurs="1"
+                                                    minOccurs="0"/>
+                                </xs:sequence>
+                                <xs:attribute name="Name" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="ToDo" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="MsgBundleClass"
+                                              type="xs:string"/>
+                                <xs:attribute name="OperDescStrCode"
+                                              type="xs:string"/>
+                                <xs:attribute name="OperDesc" type="xs:string"/>
+                                <xs:attribute name="Oper" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="MinCardinality"
+                                              type="xs:string"/>
+                                <xs:attribute name="MaxCardinality"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="StringItemType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="Value" use="required"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PropertySetNameType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="Name" use="required"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="DesignTimeStringArrayType">
+                <xs:sequence>
+                        <xs:element ref="StringItem" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="Name" use="required" type="xs:string"/>
+        </xs:complexType>
+        <xs:complexType name="PropertySetNameArrayType">
+                <xs:sequence>
+                        <xs:element ref="PropertySet" maxOccurs="unbounded"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="DesignTimeType">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Attr"/>
+                        <xs:element ref="AttrArray"/>
+                </xs:choice>
+        </xs:complexType>
+        <xs:complexType name="PropertiesType">
+                <xs:sequence>
+                        <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="CustomProperties" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="CustomPropertiesType">
+                <xs:sequence>
+                        <xs:element ref="Property" maxOccurs="unbounded"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="PropertyType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="Name" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="Value" use="optional"
+                                              type="xs:string"/>
+                                <xs:attribute name="ResId" use="optional"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="DataType">
+                <xs:sequence>
+                        <xs:element ref="Property" maxOccurs="unbounded"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="DataItemType">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="Name" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="Value" use="required"
+                                              type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="NamedDataType" mixed="true">
+                <xs:complexContent>
+                        <xs:restriction base="xs:anyType">
+                                <xs:attribute name="NDName" use="required"
+                                              type="xs:string"/>
+                                <xs:attribute name="NDType" type="xs:string"/>
+                                <xs:attribute name="NDValue" type="xs:string"/>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ContaineeType">
+                <xs:sequence>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="Name" use="required" type="xs:string"/>
+                <xs:attribute name="FullName" type="xs:string"/>
+                <xs:attribute name="PackageName" type="xs:string"/>
+                <xs:attribute name="ObjectType" use="required"
+                              type="xs:string"/>
+        </xs:complexType>
+        <xs:complexType name="AppContaineeType">
+                <xs:sequence>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="Name" use="required" type="xs:string"/>
+                <xs:attribute name="FullName" use="optional" type="xs:string"/>
+                <xs:attribute name="ObjectType" use="required"
+                              type="xs:string"/>
+        </xs:complexType>
+        <xs:complexType name="PreloadedType">
+                <xs:sequence>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="FullName" use="required" type="xs:string"/>
+        </xs:complexType>
+        <xs:complexType name="ClientInterfaceType">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="Method" minOccurs="0"/>
+                </xs:choice>
+        </xs:complexType>
+        <xs:complexType name="ClientRowInterfaceType">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="Method" minOccurs="0"/>
+                </xs:choice>
+        </xs:complexType>
+        <xs:complexType name="MethodType">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="Return" minOccurs="0" maxOccurs="1"/>
+                        <xs:element ref="Permission" minOccurs="0"/>
+                        <xs:element ref="Parameter" minOccurs="0"/>
+                </xs:choice>
+                <xs:attribute name="Name" use="required" type="xs:string"/>
+                <xs:attribute name="ServiceWarnings" default="false">
+                        <xs:simpleType>
+                                <xs:restriction base="xs:NMTOKEN">
+                                        <xs:enumeration value="true"/>
+                                        <xs:enumeration value="false"/>
+                                </xs:restriction>
+                        </xs:simpleType>
+                </xs:attribute>
+        </xs:complexType>
+        <xs:complexType name="ReturnT">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="Element" minOccurs="0" maxOccurs="1"/>
+                </xs:choice>
+                <xs:attribute name="Name" type="xs:string"/>
+                <xs:attribute name="Type" type="xs:string"/>
+                <xs:attribute name="ViewObjectName" type="xs:string"/>
+                <xs:attribute name="IsGeneric" default="false">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:NMTOKEN">
+                      <xs:enumeration value="true"/>
+                      <xs:enumeration value="false"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+        </xs:complexType>
+        <xs:complexType name="ParameterT">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="Element" minOccurs="0" maxOccurs="1"/>
+                </xs:choice>
+                <xs:attribute name="Name" use="required" type="xs:string"/>
+                <xs:attribute name="Type" type="xs:string"/>
+                <xs:attribute name="ViewObjectName" type="xs:string"/>
+                <xs:attribute name="IsGeneric" default="false">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:NMTOKEN">
+                      <xs:enumeration value="true"/>
+                      <xs:enumeration value="false"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+        </xs:complexType>
+        <xs:complexType name="ElementT">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                </xs:choice>
+                <xs:attribute name="Name" type="xs:string"/>
+                <xs:attribute name="Type" type="xs:string"/>
+                <xs:attribute name="ViewObjectName" type="xs:string"/>
+                <xs:attribute name="IsGeneric" default="false">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:NMTOKEN">
+                      <xs:enumeration value="true"/>
+                      <xs:enumeration value="false"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+        </xs:complexType>
+        <xs:complexType name="ParameterMapType">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="PIMap" minOccurs="0"/>
+                </xs:choice>
+        </xs:complexType>
+        <xs:complexType name="PIMapType">
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:element ref="Properties" minOccurs="0"/>
+                        <xs:element ref="Data" minOccurs="0"/>
+                        <xs:element ref="DesignTime" minOccurs="0"/>
+                        <xs:element ref="TransientExpression" minOccurs="0"
+                                    maxOccurs="1"/>
+                </xs:choice>
+                <xs:attribute name="Variable" use="required" type="xs:string"/>
+        </xs:complexType>
+        <xs:complexType name="DependenciesType">
+                <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0"
+                                    maxOccurs="unbounded"/>
+                </xs:sequence>
+        </xs:complexType>
+</xs:schema>

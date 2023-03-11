@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!--  $Header: bc4jrt/modules/adf-model/src/oracle/jbo/schema/metadata/piLayout/ListBinding.xml /main/3 2009/02/04 11:36:24 wychan Exp $ -->
+
+<!-- 
+ Copyright (c) 2007, 2009, Oracle and/or its affiliates.All rights reserved. 
+
+   NAME
+     ListBinding.xml - <one-line expansion of the name>
+
+   DESCRIPTION
+     <short description of component this file declares/defines>
+
+   NOTES
+     <other useful comments, qualifications, etc.>
+
+   MODIFIED   (MM/DD/YY)
+   lxlyons     03/31/08 - 
+   shshen      07/12/07 - Creation
+
+-->
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="common" title="${NAME_LABEL_KEY}">
+    <display-group id="commonGroup">
+      <property id="@Name"/>
+      <property id="@ListVOName"/>
+      <property id="@ListRangeSize"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

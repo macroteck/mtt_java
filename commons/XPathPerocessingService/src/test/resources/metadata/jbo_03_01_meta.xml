@@ -1,0 +1,2569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammarMetadata xmlns="http://xmlns.oracle.com/bali/xml/metadata"
+                 xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+                 xmlns:mmd="http://xmlns.oracle.com/bali/xml/metadata/model"
+                 namespace="http://xmlns.oracle.com/bc4j">
+
+  <sharedElementMetadata>
+    <mmd:propertyFormLayout>/oracle/jbo/schema/metadata/piLayout/${jboxml:getPiLayout(context, key)}.xml</mmd:propertyFormLayout>
+  </sharedElementMetadata>
+  <defaultBundle>oracle.jbo.dt.jdevx.ui.xmlef.resource.SchemaResources</defaultBundle>
+  <preferredPrefix>jboxml</preferredPrefix>
+  <preferNamespaceDeclarations>false</preferNamespaceDeclarations>
+
+  <functions>
+    <method name="getAttribute"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="getAttribute(org.w3c.dom.Node, String)"/>
+    <method name="getXmlKeyName"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="getXmlKeyName(oracle.bali.xml.metadata.XmlKey)"/>
+    <method name="getRuleDisplay"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="getRuleDisplay(org.w3c.dom.Node, oracle.bali.xml.metadata.XmlKey)"/>
+    <method name="getMethodNameDisplay"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="getMethodNameDisplay(org.w3c.dom.Node, oracle.bali.xml.metadata.XmlKey)"/>
+    <method name="isJaasPlus"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="isJaasPlus()"/>
+    <method name="propertySetsAvailable"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="propertySetsAvailable()"/>
+    <method name="getPiLayout"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="getPiLayout(oracle.bali.xml.model.XmlContext,
+                                     oracle.bali.xml.metadata.XmlKey)"/>
+    <method name="hideProperty"
+            class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+            nameAndSig="hideProperty(oracle.bali.xml.model.XmlContext, org.w3c.dom.Node,
+                                     oracle.bali.xml.metadata.XmlKey)"/>
+   <method name="formatTypeEnable"
+           class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+           nameAndSig="formatTypeEnable(oracle.bali.xml.model.XmlContext)"/>
+   <method name="getVirtualAttributeDataSourceValue"
+           class="oracle.jbo.dt.jdevx.ui.xmlef.metadata.JdvXmlMetadataFunctions"
+           nameAndSig="getVirtualAttributeDataSourceValue(oracle.bali.xml.model.XmlContext)"/>
+  </functions>
+
+  <elementMetadata elementName="ViewLink">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/viewlink.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <shortDescription>${md:getTranslatedString("DESCRIPTION_DESCRIPTION_KEY")}</shortDescription>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ViewlinkNodeCustomizer</customizer>-->
+    <attributeMetadata attributeName="Extends">
+      <displayOrder>1</displayOrder>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EXTENDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXTENDS_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Name">
+      <displayOrder>2</displayOrder>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.ObjectDeclaration</mmd:declaration>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+      <writable>false</writable>
+    </attributeMetadata>
+    <attributeMetadata attributeName="xmlns">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EntityAssociation">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EntityAssociationReversed">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsLibraryPrivate">
+      <group>General</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.LibraryPrivateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SDOHidden">
+      <group>${md:getTranslatedString("CATEGORY_SERVICE_KEY")}</group>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.SDOHiddenBooleanEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("SDO_HIDDEN_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("SDO_HIDDEN_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Where">
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VL_WHERE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VL_WHERE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="WhereReverse">
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VL_WHEREREVERSE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VL_WHEREREVERSE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="WhereFlags">
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("VL_WHEREFLAGS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VL_WHEREFLAGS_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="SQLQuery">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="VCItem">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+    <attributeMetadata attributeName="operator"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="value"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="isCaseSensitive"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <!--elementMetadata elementName="RegisteredRule">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="ValidationBeanClass">
+      <mmd:refInfo2>${jboxml:simpleJavaInfoWarning("")}</mmd:refInfo2>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DisplayName"></attributeMetadata>
+  </elementMetadata -->
+  <elementMetadata elementName="ViewCriterion">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="viewAttr"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ParameterType">
+    <favoriteProperty>Name</favoriteProperty>
+    <includeGroup name="keyAttributes"/>
+  </elementMetadata>
+  <elementMetadata elementName="Domain">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/domain.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <shortDescription>${md:getTranslatedString("DESCRIPTION_DESCRIPTION_KEY")}</shortDescription>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.DomainNodeCustomizer</customizer>-->
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="ResourceProviderId">
+      <group>Resource</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Extends">
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("EXTENDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXTENDS_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsLibraryPrivate">
+      <group>Core</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.LibraryPrivateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MsgBundleClass"><hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:refInfo2>${jboxml:simpleJavaInfoWarning("oracle.jbo.common.JboResourceBundle")}</mmd:refInfo2>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="xmlns">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <elementMetadata elementName="Properties">
+      <attributeMetadata attributeName="IsLibraryPrivate">
+        <group>Core</group>
+        <hidden>true</hidden>
+        <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+        <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+      <virtualAttributeDataSource>${jboxml:getVirtualAttributeDataSourceValue(context)}</virtualAttributeDataSource>
+      <elementMetadata elementName="SchemaBasedProperties">
+        <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+        <includeGroup name="controlHintMetadata"/>
+     </elementMetadata>
+   </elementMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ValidationBean">
+    <attributeMetadata attributeName="OnAttribute">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="PIMap">
+    <attributeMetadata attributeName="Variable">
+     <mmd:reference>oracle.jbo.dt.dependency.xdf.PIMapReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Expression">
+     <mmd:reference>oracle.jbo.dt.dependency.xdf.PIMapReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Remote">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributesName"/>
+    <attributeMetadata attributeName="ServerClassName">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClientProxyName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ClientRowProxyName"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Substitutes">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="ViewCriteriaUsage">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/ViewCriteriaUsage.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributesName1"/>
+    <attributeMetadata attributeName="FullName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="ViewAttribute">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/attribute.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ViewNodeCustomizer</customizer>-->
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.ViewCreator</creationWizard>-->
+    <includeGroup name="keyAttributesAttr"/>
+    <attributeMetadata attributeName="AliasName">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>2</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VOA_ALIASNAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VOA_ALIASNAME_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AliasReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Type">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>3</displayOrder>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <!--propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.ColumnTypeListEditor</propertyEditor-->
+      <mmd:refInfo2>${jboxml:getTypeRefInfo()}</mmd:refInfo2>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EOATTR_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOATTR_TYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsNotNull">
+      <group>${md:getTranslatedString("CATEGORY_VALUE_KEY")}</group>
+      <displayOrder>4</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("NOTNULL_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NOTNULL_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AttrLoad">
+      <group>Core</group>
+      <displayOrder>5</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable">
+      <group>${md:getTranslatedString("CATEGORY_VALUE_KEY")}</group>
+      <displayOrder>6</displayOrder>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.entity.UpdateableSelectorEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("UPDATABLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("UPDATABLE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsPersistent">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <displayOrder>7</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("MAPPED_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("MAPPED_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EntityUsage">
+      <group>Entity</group>
+      <mmd:reference>oracle.bali.xml.model.dependency.id.IdReference</mmd:reference>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationUsage">
+      <group>Entity</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.model.dependency.id.IdReference</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EntityAttrName">
+      <group>Entity</group>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.entity.EntityAttrValidator</validator>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsSelected">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("SELECTEDINQUERY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("SELECTEDINQUERY_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.SelectedInQueryBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DiscrColumn">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("DISCRIMINATOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("DISCRIMINATOR_DESCRIPTION_KEY")}</shortDescription>
+      <hidden>false</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EntityDiscrColumn">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Scale">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Precision">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="PrecisionRule">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ColumnType">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("COLUMN_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("COLUMN_TYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SQLType">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <!--propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.TypeListEditor</propertyEditor-->
+    </attributeMetadata>
+    <attributeMetadata attributeName="DefaultValue">
+      <group>${md:getTranslatedString("CATEGORY_VALUE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("DEFAULT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("DEFAULT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsQueriable">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("QUERIABLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("QUERIABLE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Expression">
+      <group>${md:getTranslatedString("CATEGORY_VALUE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("EXPRESSION_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXPRESSION_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LOVName">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LOVFinder">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SDOHidden">
+      <group>${md:getTranslatedString("CATEGORY_SERVICE_KEY")}</group>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.SDOHiddenBooleanEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("SDO_HIDDEN_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("SDO_HIDDEN_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ElemType">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <!--propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.TypeListEditor</propertyEditor-->
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <mmd:refInfo2>${jboxml:getTypeRefInfo()}</mmd:refInfo2>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EOATTR_ELEMTYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOATTR_ELEMTYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsSessionScope">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsVisible">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUnique">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Domain">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("PROPERTY_SET_LABEL_KEY")}</shortDisplayName>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <attributeValueProvider>oracle.jbo.dt.jdevx.ui.xmlef.editors.PropertySetAttributeProvider</attributeValueProvider>
+      <writable>${jboxml:propertySetsAvailable()}</writable>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Passivate">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VOA_PASSIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VOA_PASSIVATE_END_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveEndDate">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVEDATE_END_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVEDATE_END_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveStartDate">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVEDATE_START_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVEDATE_START_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <elementMetadata elementName="TransientExpression">
+      <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+      <textDisplayedAsAttribute>true</textDisplayedAsAttribute>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+    </elementMetadata>
+    <elementMetadata elementName="Properties">
+     <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+     <elementMetadata elementName="SchemaBasedProperties">
+       <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+       <includeGroup name="controlHintMetadata"/>
+       <includeGroup name="customProps"/>
+      </elementMetadata>
+     </elementMetadata>
+    <includeGroup name="attributeDependencies"/>
+  </elementMetadata>
+  <elementMetadata elementName="UniquePKValidationBean">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/checkmark.png</smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="ReturnType">
+    <smallIcon></smallIcon>
+    <favoriteProperty>Name</favoriteProperty>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Type">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="AssociationEnd">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/entityObject.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AssociationNodeCustomizer</customizer>-->
+    <includeGroup name="keyAttributes0"/>
+    <attributeMetadata attributeName="Source">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>2</displayOrder>
+      <shortDisplayName>Source</shortDisplayName>
+      <shortDescription>Is this the source Association?</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Owner">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LockLevel">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Cardinality"><group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group></attributeMetadata>
+    <attributeMetadata attributeName="ExposedAccessor"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="HasOwner"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="CascadeDelete"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="CascadeUpdate"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="DeleteContainee"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="LockTopContainer"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="UpdateHistoryColumn"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="SuppressEvent"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ViewObject"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="IntersectEntity"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="AliasName"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="OrderBy">
+     <mmd:reference>oracle.jbo.dt.dependency.xdf.EASQLReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveDated"><hidden>true</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewCriteria">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/ViewCriteria.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ViewNodeCustomizer</customizer>-->
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.ViewCreator</creationWizard>-->
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Name">
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewObjectName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Conjunction"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="Mode"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="DisplayCriteria">
+    <attributeMetadata attributeName="Name">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="PreferredCriteria">
+    <attributeMetadata attributeName="Name">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Data">
+    <smallIcon>/oracle/jbo/dt/ui/wizards/palette/xsqlimages/data-page.png</smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+
+  <elementMetadata elementName="Entity">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/entityObject.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <shortDescription>${md:getTranslatedString("DESCRIPTION_DESCRIPTION_KEY")}</shortDescription>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.EntityNodeCustomizer</customizer>-->
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.EntityCreator</creationWizard>-->
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Name">
+      <writable>false</writable>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+    <mmd:declaration>oracle.jbo.dt.dependency.xdf.ObjectDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AliasName">
+      <group>Core</group>
+      <displayOrder>2</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="HasDataSecurity">
+      <group>Miscellaneous</group>
+      <displayOrder>2</displayOrder>
+      <hidden>${!jboxml:isJaasPlus()}</hidden>
+      <shortDisplayName>${md:getTranslatedString("HAS_DATA_SECURITY_LABEL_KEY")}</shortDisplayName>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RowClass">
+      <group>Core</group>
+      <displayOrder>3</displayOrder>
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("JAVA_CLASS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("JAVA_CLASS_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:refInfo>${mmd:simpleJavaInfoWarning("oracle.jbo.server.EntityImpl")}</mmd:refInfo>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Extends">
+      <group>Core</group>
+      <displayOrder>4</displayOrder>
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("EXTENDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXTENDS_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="xmlns">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="BindingStyle">
+      <group>Core</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DBObjectName">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("SCHEMA_OBJ_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("SCHEMA_OBJ_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.db.DBObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DBObjectType">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("DBOBJECTTYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("DBOBJECTTYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewObjectBase">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="BatchThreshold">
+      <group>Miscellaneous</group>
+      <hidden>false</hidden>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.entity.EovalThreshold</validator>
+      <shortDisplayName>${md:getTranslatedString("BATCHTHRESHOLD_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("BATCHTHRESHOLD_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsPersistent">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUpdatable">
+      <group>Miscellaneous</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("UPDATABLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("UPDATABLE_DESCRIPTION2_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsRefPKBased">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsLibraryPrivate">
+      <group>General</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.LibraryPrivateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationAccessorRetained">
+      <group>Miscellaneous</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("RETAIN_ASSOC_ACCESSOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("RETAIN_ASSOC_ACCESSOR_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="UpdateChangedColumns">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="CollClass">
+      <group>Miscellaneous</group>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DefClass">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="UseGlueCode">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ResourceProviderId">
+      <group>Resource</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MsgBundleClass">
+      <group>Resource</group>
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EJBObjectClassName">
+      <group>EJB</group>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EJBHomeClassName">
+      <group>EJB</group>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EJBHomeJNDIName">
+      <group>EJB</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EffectiveDateType">
+      <group>General</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVE_DATE_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVE_DATE_TYPE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.entity.EffectiveDateTypeEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="BLUClass">
+      <group>${md:getTranslatedString("CATEGORY_BUS_LOGIC_KEY")}</group>
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="BusLogicGroupName">
+      <group>${md:getTranslatedString("CATEGORY_BUS_LOGIC_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("BLGROUPNAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("BLGROUPNAME_DESCRIPTION_KEY")}</shortDescription>
+      <writable>false</writable>
+    </attributeMetadata>
+    <attributeMetadata attributeName="BusLogicUnitName">
+      <group>${md:getTranslatedString("CATEGORY_BUS_LOGIC_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("BLUNITNAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("BLUNITNAME_DESCRIPTION_KEY")}</shortDescription>
+      <writable>false</writable>
+    </attributeMetadata>
+    <includeGroup name="propertySetGroup"/>
+    <elementMetadata elementName="Properties">
+      <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+      <elementMetadata elementName="SchemaBasedProperties">
+        <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+        <includeGroup name="customProps"/>
+      </elementMetadata>
+    </elementMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="EventDef">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+  </elementMetadata>
+<!--
+  <elementMetadata elementName="EventDef">
+    <elementMetadata elementName="Header">
+-->
+      <elementMetadata elementName="HeaderItem">
+        <attributeMetadata attributeName="AttrName">
+          <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+        </attributeMetadata>
+      </elementMetadata>
+<!--
+    </elementMetadata>
+    <elementMetadata elementName="Payload">
+-->
+      <elementMetadata elementName="PayloadItem">
+        <shortDisplayName>${node.attr.AttrName == null ? jboxml:getXmlKeyName(key) : node.attr.AttrName}</shortDisplayName>
+        <attributeMetadata attributeName="AttrName">
+          <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+        </attributeMetadata>
+      </elementMetadata>
+<!--
+    </elementMetadata>
+  </elementMetadata>
+-->
+
+  <elementMetadata elementName="EventPub">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.DefName == null ? jboxml:getXmlKeyName(key) : node.attr.DefName}</shortDisplayName>
+  </elementMetadata>
+<!--
+  <elementMetadata elementName="EventPoint">
+    <elementMetadata elementName="EventPub">
+-->
+      <elementMetadata elementName="RaiseCondition">
+        <shortDisplayName>${node.attr.AttrName == null ? jboxml:getXmlKeyName(key) : node.attr.AttrName}</shortDisplayName>
+        <attributeMetadata attributeName="AttrName">
+          <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+        </attributeMetadata>
+      </elementMetadata>
+<!--
+    </elementMetadata>
+  </elementMetadata>
+-->
+
+  <elementMetadata elementName="BusLogicGroup">
+    <attributeMetadata attributeName="DiscrAttrName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="ViewLogicGroup">
+    <attributeMetadata attributeName="DiscrAttrName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="ViewAccessor">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <attributeMetadata attributeName="Name">
+      <writable>false</writable>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.AccessorDeclaration</mmd:declaration>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewObjectName">
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.ViewSelectorEditor</propertyEditor>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("VOAC_VIEW_OBJECT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VOAC_VIEW_OBJECT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AMUsageName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.UsageReferenceFactory</mmd:reference>
+    </attributeMetadata>    
+    <attributeMetadata attributeName="OrderBy">
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.ViewOrderByEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("VO_ORDERBY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_ORDERBY_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.VASQLReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RowLevelBinds">
+      <shortDisplayName>${md:getTranslatedString("VOAC_ROWLEVEL_BINDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VOAC_ROWLEVEL_BINDS_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewInstanceName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.UsageReferenceFactory</mmd:reference>    
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FetchMode">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.FetchSizeEditor</propertyEditor>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_FETCHMODE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_FETCHMODE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FetchSize">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>2</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_FETCHSIZE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_FETCHSIZE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MaxFetchSize">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>3</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_MAXFETCHSIZE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_MAXFETCHSIZE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AccessMode">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>5</displayOrder>
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.AccessModeEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("VO_ACCESS_MODE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_ACCESS_MODE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RangeSize">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>6</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_RANGE_SIZE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_RANGE_SIZE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RangePagingCacheFactor">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>7</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_RANGE_PAGING_CACHE_FACTOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_RANGE_PAGING_CACHE_FACTOR_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ComponentInterfaceBase">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="Attr">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Value"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewCriteriaItem">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/ViewCriteriaItem.png</smallIcon>
+    <shortDisplayName>${node.attr.ViewAttribute == null ? jboxml:getXmlKeyName(key) : node.attr.ViewAttribute}</shortDisplayName>
+    <attributeMetadata attributeName="ViewAttribute">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Operator"></attributeMetadata>
+    <attributeMetadata attributeName="Conjunction"></attributeMetadata>
+    <attributeMetadata attributeName="UpperColumns"></attributeMetadata>
+    <attributeMetadata attributeName="IsNestedCriteria"></attributeMetadata>
+    <attributeMetadata attributeName="Value">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.VCItemValueReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Properties">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="ViewLinkUsage">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AppModuleNodeCustomizer</customizer>-->
+    <!--includeGroup name="keyAttributes"/-->
+    <attributeMetadata attributeName="Name">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.ObjectDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Name">
+      <writable>false</writable>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.UsageDeclaration</mmd:declaration>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLinkObjectName">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <writable>false</writable>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("AM_VLI_VIEWLINK_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_VLI_VIEWLINK_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SrcViewUsageName">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.UsageReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("AM_VLI_SRC_VOI_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_VLI_SRC_VOI_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DstViewUsageName">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.UsageReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("AM_VLI_DST_VOI_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_VLI_DST_VOI_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Reversed">
+      <hidden>true</hidden>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewObject">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/viewObject.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <shortDescription>${md:getTranslatedString("DESCRIPTION_DESCRIPTION_KEY")}</shortDescription>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ViewNodeCustomizer</customizer>-->
+    <attributeMetadata attributeName="Name">
+      <writable>false</writable>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.ObjectDeclaration</mmd:declaration>
+    </attributeMetadata>   
+    <attributeMetadata attributeName="Extends">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <group>Core</group>
+      <hidden>true</hidden>
+      <displayOrder>2</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("EXTENDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXTENDS_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="xmlns">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DefClass">
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SdoGen">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SdoName">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SdoNameSpace">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ServiceWarnings">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RowClass">
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RowInterface">
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="CustomQuery">
+      <group>SQL Statement</group>
+      <displayOrder>1</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("CUSTOMQUERY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("CUSTOMQUERY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SelectList">
+      <group>SQL Statement</group>
+      <displayOrder>2</displayOrder>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.SQLReferenceFactory</mmd:reference>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.SQLDeclarationFactory</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsLibraryPrivate">
+      <group>General</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.LibraryPrivateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SelectListFlags">
+      <group>SQL Statement</group>
+      <displayOrder>3</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FromList">
+      <group>SQL Statement</group>
+      <displayOrder>4</displayOrder>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.SQLReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FromListFlags">
+      <group>SQL Statement</group>
+      <displayOrder>5</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Where">
+      <group>SQL Statement</group>
+      <displayOrder>6</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_WHERE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_WHERE_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.SQLReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="WhereFlags">
+      <group>SQL Statement</group>
+      <displayOrder>7</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="OrderBy">
+      <group>SQL Statement</group>
+      <displayOrder>8</displayOrder>
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.ViewOrderByEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("VO_ORDERBY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_ORDERBY_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.SQLReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="BindingStyle">
+      <group>SQL Statement</group>
+      <displayOrder>9</displayOrder>
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.BindingStyleEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("VO_BINDING_STYLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_BINDING_STYLE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="queryStatement">
+      <group>SQL Statement</group>
+      <displayOrder>10</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SelectAllAttributes">
+      <group>SQL Statement</group>
+      <displayOrder>11</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="StoredProcedure">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MaxRowsPerNode">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MaxActiveNodes">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ComponentClass">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ComponentInterface">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClientProxyName">
+      <group>Miscellaneous</group>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClientRowProxyName">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="UseGlueCode">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsFinderView">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveDated">
+      <group>Miscellaneous</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_EFFECTIVE_DATED_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_EFFECTIVE_DATED_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FetchMode">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.FetchSizeEditor</propertyEditor>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_FETCHMODE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_FETCHMODE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FetchSize">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>2</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_FETCHSIZE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_FETCHSIZE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MaxFetchSize">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>3</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_MAXFETCHSIZE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_MAXFETCHSIZE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="QueryHint">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>4</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_QUERY_OPTIMIZER_HINT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_QUERY_OPTIMIZER_HINT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AutoRefresh">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>5</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_DCN_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_DCN_TYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="PageIterMode">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_PAGE_ITER_MODE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_PAGE_ITER_MODE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Passivate">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>2</displayOrder>
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.PassivateStateEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("VO_PASSIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_PASSIVATE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLinkAccessorRetained">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>3</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_VLACCESSOR_RETAINED_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_VLACCESSOR_RETAINED_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LBThrowOnMisMatch">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>4</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_LB_THROW_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_LB_THROW_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AccessMode">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>5</displayOrder>
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.AccessModeEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("VO_ACCESS_MODE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_ACCESS_MODE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RangeSize">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>6</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_RANGE_SIZE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_RANGE_SIZE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RangePagingCacheFactor">
+      <group>${md:getTranslatedString("CATEGORY_TUNING_KEY")}</group>
+      <displayOrder>7</displayOrder>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_RANGE_PAGING_CACHE_FACTOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_RANGE_PAGING_CACHE_FACTOR_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MsgBundleClass">
+      <hidden>true</hidden>
+      <group>Resource</group>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ResourceProviderId">
+      <hidden>true</hidden>
+      <group>Resource</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLogicGroupName">
+      <group>${md:getTranslatedString("CATEGORY_VIEW_LOGIC_KEY")}</group>
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_VLGROUPNAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_VLGROUPNAME_DESCRIPTION_KEY")}</shortDescription>
+      <writable>false</writable>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLogicUnitName">
+      <group>${md:getTranslatedString("CATEGORY_VIEW_LOGIC_KEY")}</group>
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("VO_VLUNITNAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("VO_VLUNITNAME_DESCRIPTION_KEY")}</shortDescription>
+      <writable>false</writable>
+    </attributeMetadata>
+    <includeGroup name="propertySetGroup"/>
+    <includeGroup name="sortCriteria"/>
+    <elementMetadata elementName="Properties">
+      <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+      <elementMetadata elementName="SchemaBasedProperties">
+        <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+        <includeGroup name="customProps"/>
+
+      </elementMetadata>
+    </elementMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="DesignTimeStringArray">
+    <includeGroup name="keyAttributes"/>
+  </elementMetadata>
+  <elementMetadata elementName="AppModule">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/applicationModule.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <shortDescription>${md:getTranslatedString("DESCRIPTION_DESCRIPTION_KEY")}</shortDescription>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AppModuleNodeCustomizer</customizer>-->
+    <!--<includeGroup name="keyAttributes"/>-->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <writable>false</writable>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.AppModuleDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ComponentClass">
+      <hidden>true</hidden>
+      <mmd:refInfo>${mmd:simpleJavaInfoWarning("oracle.jbo.server.ApplicationModuleImpl")}</mmd:refInfo>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DefClass">
+      <hidden>true</hidden>
+      <propertyEditor>JAVACLASSNAME</propertyEditor>
+      <mmd:refInfo>${mmd:simpleJavaInfoWarning("oracle.jbo.server.ApplicationModuleDefImpl")}</mmd:refInfo>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Extends">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EXTENDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXTENDS_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="xmlns">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ComponentInterface">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClientProxyName">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsLibraryPrivate">
+      <group>General</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.LibraryPrivateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClearCacheOnCommit">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClearCacheOnRollback">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RequeryOnCommit">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LoadComponentsLazily">
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.appmodule.LazyLoadingEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("AM_LOAD_LAZILY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_LOAD_LAZILY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <includeGroup name="propertySetGroup"/>
+    <elementMetadata elementName="Properties">
+      <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+      <elementMetadata elementName="SchemaBasedProperties">
+        <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+        <includeGroup name="customProps"/>
+      </elementMetadata>
+    </elementMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="DesignTimeStringArray">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes5"/>
+  </elementMetadata>
+  <elementMetadata elementName="StringItem">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+    <attributeMetadata attributeName="Value"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="AttrArray">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/folder.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes5"/>
+  </elementMetadata>
+  <elementMetadata elementName="Substitute">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+    <attributeMetadata attributeName="OldName">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="NewName">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="AccessorAttribute">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/associationEnd.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.EntityCreator</creationWizard>-->
+    <attributeMetadata attributeName="Association">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationEnd">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationOtherEnd">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <includeGroup name="keyAttributes1"/>
+    <attributeMetadata attributeName="Type">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <mmd:refInfo>${mmd:simpleJavaInfoWarning("")}</mmd:refInfo>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="EntityUsage">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/entityObjectInstance.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes4"/>
+    <attributeMetadata attributeName="Entity">
+      <group>Core</group>
+      <displayOrder>2</displayOrder>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.entity.EntityUsageValidator</validator>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EOU_ENTITY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOU_ENTITY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ReadOnly">
+      <group>Core</group>
+      <displayOrder>3</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("EOU_READONLY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOU_READONLY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DeleteParticipant">
+      <group>Core</group>
+      <displayOrder>4</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("EOU_DELETE_PARTICIPANT_LABEL_KEY")}</shortDisplayName>               xxxxxx
+      <shortDescription>${md:getTranslatedString("EOU_DELETE_PARTICIPANT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EntireObjectTable">
+      <group>Core</group>
+      <displayOrder>5</displayOrder>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Reference">
+      <group>Core</group>
+      <displayOrder>6</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("EOU_REFERENCE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOE_REFERENCE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SourceUsage">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.EntityUsageReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationEnd">
+      <group>Miscellaneous</group>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.association.AssociationEndValidator</validator>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EOU_ASSOC_END_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOU_ASSOC_END_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Association">
+      <group>Miscellaneous</group>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.association.AssociationValidator</validator>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EOU_ASSOC_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOU_ASSOC_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="JoinType">
+      <group>Miscellaneous</group>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.view.JoinTypeEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("EOU_JOINTYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOU_JOINTYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="EffectiveDatedUsage">
+      <group>Miscellaneous</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EOU_EFFDT_USAGE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOU_EFFDT_USAGE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="_queryWhere">
+      <hidden>true</hidden>
+      <group>Miscellaneous</group>
+    </attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="Item">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/attribute.png</smallIcon>
+    <shortDisplayName>${node.attr.Value == null ? jboxml:getXmlKeyName(key) : node.attr.Value}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AttrArrayNodeCustomizer</customizer>-->
+    <attributeMetadata attributeName="Value">
+    <mmd:reference>oracle.jbo.dt.dependency.xdf.ItemValueReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="DataItem">
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Value"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="DBConnection">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/dbconn.png</smallIcon>
+    <shortDisplayName></shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="ConnectString"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="UserName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="Password"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Method">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/method_return.png</smallIcon>
+    <shortDisplayName>${jboxml:getMethodNameDisplay(node,key)}</shortDisplayName>
+    <includeGroup name="keyAttributes3"/>
+  </elementMetadata>
+  <elementMetadata elementName="ViewCriteriaItemCompound">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/ViewCriteriaItemCompound.png</smallIcon>
+    <attributeMetadata attributeName="ViewAttribute"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ClientInterface">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+<!--
+    <elementMetadata elementName="ExportedMethod">
+      <attributeMetadata attributeName="Name">
+        <mmd:refInfo2>${jboxml:clientInterface()}</mmd:refInfo2>
+      </attributeMetadata>
+    </elementMetadata>
+    -->
+  </elementMetadata>
+  <elementMetadata elementName="NamedData">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+    <attributeMetadata attributeName="NDName"></attributeMetadata>
+    <attributeMetadata attributeName="NDType"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="NDValue"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="RowInterfaceBase">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="Key">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/key.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.EntityNodeCustomizer</customizer>-->
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.EntityCreator</creationWizard>-->
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Name">
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="PrimaryKey"></attributeMetadata>
+    <attributeMetadata attributeName="AltKey"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewKey">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/altkey.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="ComponentObject">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="ComponentClass"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="NewAttribute1"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="NewAttribute2"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Association">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/bc4jassociation.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <shortDescription>${md:getTranslatedString("DESCRIPTION_DESCRIPTION_KEY")}</shortDescription>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AssociationNodeCustomizer</customizer>-->
+    <attributeMetadata attributeName="Extends">
+      <hidden>true</hidden>
+      <displayOrder>1</displayOrder>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EXTENDS_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EXTENDS_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="xmlns">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Name">
+      <writable>false</writable>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.ObjectDeclaration</mmd:declaration>
+      <displayOrder>2</displayOrder>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Version">
+      <group>General</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsLibraryPrivate">
+      <group>General</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("PRIVATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIVATE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.LibraryPrivateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Where">
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("AS_WHERE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AS_WHERE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="WhereReverse">
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("AS_WHEREREVERSE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AS_WHEREREVERSE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewLinkAccessor">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/associationEnd.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributesName"/>
+    <attributeMetadata attributeName="Type">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLinkEnd">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLinkOtherEnd">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLink">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewLinkName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="Reversed"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Finder">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="ViewObject"></attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="Attribute">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/attribute.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <helpTopic>f1_idepropertyinspector_html</helpTopic>
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.EntityCreator</creationWizard>-->
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AttributeNodeCustomizer</customizer>-->
+    <includeGroup name="keyAttributesAttr"/>
+    <attributeMetadata attributeName="Name">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <writable>false</writable>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.AttributeDeclaration</mmd:declaration>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeOverrideReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ColumnName">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("COLUMN_NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("COLUMN_NAME_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.db.DBColumnReferenceFactory</mmd:reference>      
+    </attributeMetadata>
+    <attributeMetadata attributeName="ColumnType">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("COLUMN_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("COLUMN_TYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SQLType">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <!--propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.TypeListEditor</propertyEditor-->
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="TableName">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.db.DBObjectReferenceFactory</mmd:reference>       
+    </attributeMetadata>
+    <attributeMetadata attributeName="Scale">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Precision">
+      <group>${md:getTranslatedString("CATEGORY_DATABASE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Type">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <!--propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.ColumnTypeListEditor</propertyEditor-->
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <shortDisplayName>${md:getTranslatedString("EOATTR_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOATTR_TYPE_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.TypeDeclaration</mmd:declaration>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Domain">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("PROPERTY_SET_LABEL_KEY")}</shortDisplayName>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <attributeValueProvider>oracle.jbo.dt.jdevx.ui.xmlef.editors.PropertySetAttributeProvider</attributeValueProvider>
+      <writable>${jboxml:propertySetsAvailable()}</writable>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ChangeIndicator">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("CHANGE_INDICATOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("CHANGE_INDICATOR_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DefaultValue">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("DEFAULT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("DEFAULT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DiscrColumn">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("DISCRIMINATOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("DISCRIMINATOR_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="PrecisionRule">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("PRECISIONRULE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRECISIONRULE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="PrimaryKey">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("PRIMARYKEY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PRIMARYKEY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsNotNull">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("MANDATORY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("MANDATORY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsPersistent">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("PERSISTENT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PERSISTENT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUnique">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("UNIQUE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("UNIQUE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsQueriable">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.entity.QueriableSelectorEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("QUERIABLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("QUERIABLE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsSelected">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("SELECTEDINQUERY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("SELECTEDINQUERY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsSessionScope">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveEndDate">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVEDATE_END_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVEDATE_END_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveStartDate">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVEDATE_START_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVEDATE_START_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveDateSequence">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVEDATE_SEQUENCE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVEDATE_SEQUENCE_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsEffectiveDateSequenceFlag">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("EFFECTIVEDATE_SEQUENCE_FLAG_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EFFECTIVEDATE_SEQUENCE_FLAG_DESCRIPTION_KEY")}</shortDescription>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.EffectiveDateBooleanEditor</propertyEditor>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.entity.UpdateableSelectorEditor</propertyEditor>
+      <shortDisplayName>${md:getTranslatedString("UPDATABLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("UPDATABLE_DESCRIPTION_KEY")}</shortDescription>
+      <hidden>false</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsVisible">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LOVName">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LOVFinder">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AttrLoad">
+      <group>Core</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="OIDAttrNames">
+      <group>Miscellaneous</group>
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ChangeIndicator">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("CHANGE_INDICATOR_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("CHANGE_INDICATOR_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RetrievedOnUpdate">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("REFRESH_ON_UPDATE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("REFRESH_ON_UPDATE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="RetrievedOnInsert">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("REFRESH_ON_INSERT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("REFRESH_ON_INSERT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="HistoryColumn">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.entity.HistoryTypesEditor</propertyEditor>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("HISTORY_COLUMN_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("HISTORY_COLUMN_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Expression">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("EOATTR_EXPRESSION_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOATTR_EXPRESSION_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ElemType">
+      <group>Miscellaneous</group>
+      <!--propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.TypeListEditor</propertyEditor-->
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+      <shortDisplayName>${md:getTranslatedString("EOATTR_ELEMTYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOATTR_ELEMTYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <elementMetadata elementName="Properties">
+      <virtualAttributeDataSource>${jboxml:getVirtualAttributeDataSourceValue(context)}</virtualAttributeDataSource>
+      <elementMetadata elementName="SchemaBasedProperties">
+        <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+        <includeGroup name="controlHintMetadata"/>
+        <includeGroup name="customProps"/>
+      </elementMetadata>
+    </elementMetadata>
+    <includeGroup name="attributeDependencies"/>
+  </elementMetadata>
+  <elementMetadata elementName="ViewLinkDefEnd">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/viewObject.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ViewlinkNodeCustomizer</customizer>-->
+    <!--includeGroup name="keyAttributesName"/-->
+    <attributeMetadata attributeName="Name">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Source">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>2</displayOrder>
+      <shortDisplayName>Source</shortDisplayName>
+      <shortDescription>Is this the source Link?</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Owner">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsNavigable">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Cardinality">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsPartitionUsingWhereClause">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="LockLevel">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ComponentUsage">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="ComponentObjectName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ClientProxyName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ServerClassName"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="PublishEvent">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+  </elementMetadata>
+  <elementMetadata elementName="Variable">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/attribute.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<creationWizard>oracle.jbo.dt.jdevx.ui.xmlef.creators.VariableCreator</creationWizard>-->
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ViewNodeCustomizer</customizer>-->
+    <displayOrder>1</displayOrder>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Name">
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Type">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.TypeListEditor</propertyEditor>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.TypeValidator</validator>
+      <shortDisplayName>${md:getTranslatedString("EOATTR_TYPE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("EOATTR_TYPE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Scale">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Precision">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="PrecisionRule">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Kind">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable">
+      <shortDisplayName>${md:getTranslatedString("UPDATABLE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("UPDATABLE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="IsNotNull">
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("PKEY_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PKEY_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="DefaultValue">
+      <group>Miscellaneous</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("DEFAULT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("DEFAULT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+
+    <elementMetadata elementName="Properties">
+      <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+      <elementMetadata elementName="SchemaBasedProperties">
+        <virtualAttributeDataSource>##properties</virtualAttributeDataSource>
+        <includeGroup name="controlHintMetadata"/>
+        <elementMetadata elementName="AUTOSUBMIT">
+          <hidden>true</hidden>
+        </elementMetadata>  
+        <includeGroup name="baseCustomProps"/>
+      </elementMetadata>
+    </elementMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="JboProject">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/project.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ApplicationNodeCustomizer</customizer>-->
+    <includeGroup name="keyAttributesProject"/>
+    <attributeMetadata attributeName="PackageName"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="HasJava"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="JUIProject"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="CliApplication"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ClientType"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="SeparateXMLFiles"><hidden>true</hidden></attributeMetadata>
+    <attributeMetadata attributeName="LazyLoad">
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("APP_LAZYLOAD_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("APP_LAZYLOAD_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Publisher">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.ItemName == null ? jboxml:getXmlKeyName(key) : node.attr.ItemName}</shortDisplayName>
+    <attributeMetadata attributeName="ItemName"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ServiceViewUsage">
+    <attributeMetadata attributeName="ViewUsageName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.UsageReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewUsage">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.AppModuleNodeCustomizer</customizer>-->
+    <includeGroup name="keyAttributes1"/>
+    <attributeMetadata attributeName="Name">
+      <writable>false</writable>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.UsageDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ViewObjectName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <hidden>false</hidden>
+      <shortDisplayName>${md:getTranslatedString("AM_VOI_VIEW_OBJECT_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_VOI_VIEW_OBJECT_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ClientProxyName">
+        <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="InstanceName">
+        <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AccessorName">
+        <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Shared">
+        <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SharedScope">
+        <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ConfigurationName">
+        <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Hidden">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <shortDisplayName>${md:getTranslatedString("AM_USAGE_HIDDEN_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_USAGE_HIDDEN_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Containee">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>    
+    <attributeMetadata attributeName="FullName">
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.FullNameValidator</validator>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ObjectType"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="TransientExpression">
+    <smallIcon></smallIcon>
+    <shortDisplayName></shortDisplayName>
+  </elementMetadata>
+  <elementMetadata elementName="CustomAttribute">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/attribute.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <attributeMetadata attributeName="DefClass"><hidden>true</hidden></attributeMetadata>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Association">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationEnd">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="AssociationOtherEnd">
+      <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Type">
+     <mmd:reference>oracle.jbo.dt.dependency.xdf.TypeReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="CmrAccessor"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="IsUpdateable"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="Property">
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Name">
+      <shortDisplayName>${md:getTranslatedString("PROPNAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PROPNAME_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Value">
+      <shortDisplayName>${md:getTranslatedString("PROPVALUE_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("PROPVALUE_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ClientRowInterface"></elementMetadata>
+  <elementMetadata elementName="StaticList">
+    <attributeMetadata attributeName="Rows"></attributeMetadata>
+    <attributeMetadata attributeName="Columns"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ViewCriteriaRow">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/ViewCriteriaRow.png</smallIcon>
+    <attributeMetadata attributeName="Conjunction"></attributeMetadata>
+    <attributeMetadata attributeName="ItemConjunction"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="BaseValidationBean">
+    <attributeMetadata attributeName="ResId"></attributeMetadata>
+    <attributeMetadata attributeName="Expose"></attributeMetadata>
+    <attributeMetadata attributeName="TransactionLevel"></attributeMetadata>
+    <attributeMetadata attributeName="OnAttribute"></attributeMetadata>
+    <attributeMetadata attributeName="OperandType"></attributeMetadata>
+    <attributeMetadata attributeName="Inverse"></attributeMetadata>
+    <attributeMetadata attributeName="Severity"></attributeMetadata>
+    <elementMetadata elementName="OnAttributes"></elementMetadata>
+    <elementMetadata elementName="ResExpressions"></elementMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ParameterMap"></elementMetadata>
+  <elementMetadata elementName="AppModuleUsage">
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--<customizer>oracle.jbo.dt.jdevx.ui.xmlef.customizers.ApplicationNodeCustomizer</customizer>-->
+    <!--includeGroup name="keyAttributesName"/-->
+    <attributeMetadata attributeName="Name">
+      <group>Name</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.UsageDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="FullName">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="SharedScope">
+      <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="Hidden">
+      <hidden>true</hidden>
+      <shortDisplayName>${md:getTranslatedString("AM_USAGE_HIDDEN_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("AM_USAGE_HIDDEN_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ConfigurationName">
+      <hidden>true</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ConfigReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="RESERVED">
+    <attributeMetadata attributeName="Attrib1"></attributeMetadata>
+    <attributeMetadata attributeName="Attrib2"></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="SubscribeEvent">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.ItemName == null ? jboxml:getXmlKeyName(key) : node.attr.ItemName}</shortDisplayName>
+    <attributeMetadata attributeName="StringItem"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ItemName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="ScopeValue"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="Finder"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="JboObject">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+  </elementMetadata>
+  <elementMetadata elementName="AssociationAccessor">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="Association">
+     <hidden>false</hidden>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="ListBinding">
+    <smallIcon></smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <!--includeGroup name="keyAttributesName"/-->
+    <attributeMetadata attributeName="Name">
+      <group>Name</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ListVOName">
+      <group>Name</group>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+    <attributeMetadata attributeName="StaticList">
+     <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ListRangeSize">
+      <group>Name</group>
+    </attributeMetadata>
+    <attributeMetadata attributeName="ListRSIName">
+     <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="MRUCount">
+     <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="NullValueFlag">
+     <hidden>true</hidden>
+    </attributeMetadata>
+    <attributeMetadata attributeName="NullValueId">
+     <hidden>true</hidden>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="JboPackage">
+    <smallIcon>/oracle/jbo/dt/ui/main/images/package.png</smallIcon>
+    <shortDisplayName>${node.attr.Name == null ? jboxml:getXmlKeyName(key) : node.attr.Name}</shortDisplayName>
+    <includeGroup name="keyAttributes"/>
+    <attributeMetadata attributeName="PackageName"><hidden>false</hidden></attributeMetadata>
+    <attributeMetadata attributeName="SeparateXMLFiles"><hidden>false</hidden></attributeMetadata>
+  </elementMetadata>
+
+  <elementMetadata elementName="Preloaded">
+    <attributeMetadata attributeName="FullName">
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+
+<!--  <elementMetadata elementName="DesignTime">  -->
+<!-- rvgrins 2006/11/02 the nesting doesn't seem to work... -->
+    <elementMetadata elementName="Attr">
+      <attributeMetadata attributeName="Value">
+        <mmd:reference>oracle.jbo.dt.dependency.xdf.DesignTimeReferenceFactory</mmd:reference>
+      </attributeMetadata>
+    </elementMetadata>
+<!--  </elementMetadata> -->
+  <elementMetadata elementName="Permission">
+    <!-- while 'target' initially gets the same name as the object or attribute it is
+      associated with, this is a pseudoname handled within the security environment.
+      renaming the object or attribute should not change this.
+    -->
+    <attributeMetadata attributeName="permissionClass">
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+  <elementMetadata elementName="JavaResourceBundle">
+    <attributeMetadata attributeName="MsgBundleClass">
+      <mmd:reference>oracle.bali.xml.gui.jdev.dependency.java.FqJavaClassReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </elementMetadata>
+
+<!-- groups -->
+  <defineGroup name="keyAttributes">
+  <!-- for main elements (such as Entity) -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.ObjectDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributesProject">
+  <!-- for main elements (such as Entity) -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.ProjectDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributesName">
+  <!-- for sub elements (such as ListBinding) -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributesName1">
+  <!-- for sub elements (such as ListBinding) -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.NameReferenceFactory</mmd:reference>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributesAttr">
+  <!-- for sub elements (such as Attribute) -->
+    <attributeMetadata attributeName="Name">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.AttributeDeclaration</mmd:declaration>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.AttributeOverrideReferenceFactory</mmd:reference>
+    </attributeMetadata>
+ </defineGroup>
+ <defineGroup name="keyAttributes5">
+  <!-- for elements like 'AttrArray' -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributes0">
+  <!-- for sub elements (such as AssociationEnd) -->
+    <attributeMetadata attributeName="Name">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributes1">
+  <!-- for sub elements (such as AccessorAttribute) -->
+    <attributeMetadata attributeName="Name">
+      <group>${md:getTranslatedString("CATEGORY_TYPE_KEY")}</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributes2">
+  <!-- for sub elements (such as AccessorAttribute) -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributes3">
+  <!-- for Exported Methods -->
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.JavaMethodReferenceFactory</mmd:reference>
+      <mmd:declarationInfo>${jboxml:clientInterfaceDecl()}</mmd:declarationInfo>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.NameDeclaration</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+  <defineGroup name="keyAttributes4">
+    <attributeMetadata attributeName="Name">
+      <group>Core</group>
+      <displayOrder>1</displayOrder>
+      <initialValue>name</initialValue>
+      <shortDisplayName>${md:getTranslatedString("NAME_LABEL_KEY")}</shortDisplayName>
+      <shortDescription>${md:getTranslatedString("NAME_DESCRIPTION_KEY")}</shortDescription>
+      <validator>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidator</validator>
+      <validatorCallback>oracle.jbo.dt.jdevx.ui.xmlef.validators.NameValidatorCallback</validatorCallback>
+      <mmd:declaration>oracle.jbo.dt.dependency.xdf.EntityUsageDeclarationFactory</mmd:declaration>
+    </attributeMetadata>
+  </defineGroup>
+
+  <defineGroup name="controlHintMetadata">
+    <elementMetadata elementName="LABEL">
+      <shortDisplayName>${md:getTranslatedString("LABEL_KEY")}</shortDisplayName>
+      <translatable> true </translatable>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>ResId</virtualAttributeDataSource>
+      <attributeMetadata attributeName="ResId">
+        <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+        <translatable> true </translatable>
+        <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.ResourceBundleEditor</propertyEditor>
+        <mmd:reference>oracle.jbo.dt.dependency.xdf.ResourceReferenceFactory</mmd:reference>
+        <shortDescription>${md:getTranslatedString("HINT_LABEL_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="TOOLTIP">
+      <shortDisplayName>${md:getTranslatedString("TOOL_TIP_KEY")}</shortDisplayName>
+      <translatable> true </translatable>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>ResId</virtualAttributeDataSource>
+      <attributeMetadata attributeName="ResId">
+        <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+        <translatable> true </translatable>
+        <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.ResourceBundleEditor</propertyEditor>
+        <mmd:reference>oracle.jbo.dt.dependency.xdf.ResourceReferenceFactory</mmd:reference>
+        <shortDescription>${md:getTranslatedString("HINT_TOOLTIP_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="CONTROLTYPE">
+      <shortDisplayName>${md:getTranslatedString("HINT_TYPE_LABEL_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("HINT_TYPE_DESCRIPTION_KEY")}</shortDescription>
+        <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.ControlTypeProvider</propertyEditor>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="DISPLAYHINT">
+      <shortDisplayName>${md:getTranslatedString("DISPLAY_HINT_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("HINT_DISPLAY_HINT_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="DISPLAYWIDTH">
+      <shortDisplayName>${md:getTranslatedString("DISPLAY_WIDTH_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("HINT_DISPLAYWIDTH_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="DISPLAYHEIGHT">
+      <shortDisplayName>${md:getTranslatedString("DISPLAY_HEIGHT_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("HINT_DISPLAYHEIGHT_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="FORMTYPE">
+      <shortDisplayName>${md:getTranslatedString("FORM_TYPE_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("HINT_FORMTYPE_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="FMT_FORMATTER">
+      <shortDisplayName>${md:getTranslatedString("FORMAT_TYPE_KEY")}</shortDisplayName>
+      <translatable> true </translatable>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>ResId</virtualAttributeDataSource>
+      <attributeMetadata attributeName="ResId">
+        <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+        <shortDescription>${md:getTranslatedString("HINT_FORMATTER_DESCRIPTION_KEY")}</shortDescription>
+        <translatable> true </translatable>
+        <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.FormatterValueProvider</propertyEditor>
+        <mmd:reference>oracle.jbo.dt.dependency.xdf.ResourceReferenceFactory</mmd:reference>
+      </attributeMetadata>
+     <writable>${jboxml:formatTypeEnable(context)}</writable>
+    </elementMetadata>
+
+    <elementMetadata elementName="FMT_FORMAT">
+      <shortDisplayName>${md:getTranslatedString("FORMAT_KEY")}</shortDisplayName>
+      <translatable> true </translatable>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>ResId</virtualAttributeDataSource>
+      <attributeMetadata attributeName="ResId">
+        <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+        <shortDescription>${md:getTranslatedString("HINT_FORMAT_DESCRIPTION_KEY")}</shortDescription>
+        <translatable> true </translatable>
+        <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.FormatValueProvider</propertyEditor>
+        <mmd:reference>oracle.jbo.dt.dependency.xdf.ResourceReferenceFactory</mmd:reference>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="CATEGORY">
+      <shortDisplayName>${md:getTranslatedString("CATEGORY_HINT_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("CATEGORY_HINT_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+
+    <elementMetadata elementName="FIELDORDER">
+      <shortDisplayName>${md:getTranslatedString("FIELD_ORDER_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("FIELD_ORDER_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+    
+    <elementMetadata elementName="AUTOSUBMIT">
+      <shortDisplayName>${md:getTranslatedString("AUTOSUBMIT_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <shortDescription>${md:getTranslatedString("HINT_AUTOSUBMIT_DESCRIPTION_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+  </defineGroup>
+
+  <defineGroup name="baseCustomProps">
+     <elementMetadata elementName="DESCRIPTION">
+      <shortDisplayName>${md:getTranslatedString("DESCRIPTION_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+    </elementMetadata>
+    <elementMetadata elementName="FILE_NAME">
+      <shortDisplayName>${md:getTranslatedString("FILE_NAME_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+    </elementMetadata>
+  </defineGroup>
+
+  <defineGroup name="customProps">
+    <includeGroup name="baseCustomProps"/>
+    <elementMetadata elementName="XML_ELEMENT">
+      <shortDisplayName>${md:getTranslatedString("XML_ELEMENT_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("XML_ELEMENT_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+    <elementMetadata elementName="XML_EXPLICIT_NULL">
+      <shortDisplayName>${md:getTranslatedString("XML_EXPLICIT_NULL_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+       <group>${md:getTranslatedString("CATEGORY_UIHINTS_KEY")}</group>
+       <shortDescription>${md:getTranslatedString("XML_EXPLICIT_NULL_KEY")}</shortDescription>
+      </attributeMetadata>
+    </elementMetadata>
+    <elementMetadata elementName="XML_ROW_ELEMENT">
+      <shortDisplayName>${md:getTranslatedString("XML_ROW_ELEMENT_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+    </elementMetadata>
+    <elementMetadata elementName="DATA_CONTROL_NAME">
+      <shortDisplayName>${md:getTranslatedString("DATA_CONTROL_NAME_KEY")}</shortDisplayName>
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+    </elementMetadata>
+    <elementMetadata elementName="DISPLAY_AS_ATTRIBUTE">
+      <shortDisplayName>${md:getTranslatedString("DISPLAY_AS_ATTRIBUTE_KEY")}</shortDisplayName>"
+      <textTreatedAsVirtualAttribute>true</textTreatedAsVirtualAttribute>
+      <virtualAttributeDataSource>Value</virtualAttributeDataSource>
+      <attributeMetadata attributeName="Value">
+        <hidden>${jboxml:hideProperty(context, node, key)}</hidden>
+      </attributeMetadata>
+    </elementMetadata>
+  </defineGroup>
+
+  <defineGroup name="resourceAttribute">
+    <attributeMetadata attributeName="ResId">
+      <translatable> true </translatable>
+      <propertyEditor>oracle.jbo.dt.jdevx.ui.xmlef.editors.ResourceBundleEditor</propertyEditor>
+      <mmd:reference>oracle.jbo.dt.dependency.xdf.ResourceReferenceFactory</mmd:reference>
+      <shortDescription>${md:getTranslatedString("HINT_LABEL_DESCRIPTION_KEY")}</shortDescription>
+    </attributeMetadata>
+  </defineGroup>
+
+  <defineGroup name="sortCriteria">
+    <elementMetadata elementName="SortCriteria">
+      <elementMetadata elementName="Sort">
+        <attributeMetadata attributeName="Attribute">
+        </attributeMetadata>
+        <attributeMetadata attributeName="Ascending">
+        </attributeMetadata>
+      </elementMetadata>
+    </elementMetadata>
+  </defineGroup>
+  <defineGroup name="attributeDependencies">
+    <elementMetadata elementName="Dependencies">
+      <elementMetadata elementName="Item">
+        <attributeMetadata attributeName="Value">
+          <mmd:reference>oracle.jbo.dt.dependency.xdf.ItemValueReferenceFactory</mmd:reference>
+        </attributeMetadata>
+      </elementMetadata>
+    </elementMetadata>
+  </defineGroup>
+
+ <defineGroup name="propertySetGroup">
+   <attributeMetadata attributeName="PropertySet">
+     <attributeValueProvider>
+       oracle.jbo.dt.jdevx.ui.xmlef.editors.PropertySetAttributeProvider
+     </attributeValueProvider>
+     <shortDisplayName>${md:getTranslatedString("PROPERTY_SET_LABEL_KEY")}</shortDisplayName>
+     <writable>${jboxml:propertySetsAvailable()}</writable>
+     <mmd:reference>oracle.jbo.dt.dependency.xdf.ObjectReferenceFactory</mmd:reference>
+   </attributeMetadata>
+ </defineGroup>
+
+</grammarMetadata>

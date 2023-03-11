@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:validation="http://xmlns.oracle.com/adfm/validation"
+           elementFormDefault="qualified">
+ <xs:simpleType name="DBObjectTypeEnum">
+  <xs:restriction base="xs:string">
+   <xs:enumeration value="table"/>
+   <xs:enumeration value="view"/>
+   <xs:enumeration value="synonym"/>
+   <xs:enumeration value="objtyp"/>
+   <xs:enumeration value="objtab"/>
+  </xs:restriction>
+ </xs:simpleType>           
+  <xs:element name="Entity">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Properties" type="EntityObjectPropertiesType"
+                    minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+        <xs:element ref="PublishEvent" minOccurs="0"/>
+        <xs:element ref="Publisher" minOccurs="0"/>
+        <xs:element ref="validation:BaseValidationBean"/>
+        <xs:element ref="BaseValidationBean"/>
+        <xs:element ref="Attribute"/>
+        <xs:element ref="AccessorAttribute"/>
+        <xs:element ref="CustomAttribute"/>
+        <xs:element ref="AssociationAccessor"/>
+        <xs:element ref="ViewLinkAccessor"/>
+        <xs:element ref="Variable"/>
+        <xs:element ref="Key"/>
+        <xs:element ref="PropertySets"/>
+        <xs:element ref="Publisher"/>
+        <xs:element ref="Permission"/>
+        <xs:element ref="ViewAccessor"/>
+        <xs:element ref="ListBinding"/>
+        <xs:element ref="EventPub" minOccurs="0"/>
+        <xs:element ref="EventDef" minOccurs="0"/>
+        <xs:element ref="PayloadDef" minOccurs="0"/>
+        <xs:element ref="ResourceBundle" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="DataSource" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="BusLogicGroup"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="Extends" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="DBObjectType" type="xs:string"/>
+      <xs:attribute name="DBObjectName" type="xs:string"/>
+      <xs:attribute name="ViewObjectBase" type="xs:string"/>
+      <xs:attribute name="AliasName" type="xs:string"/>
+      <xs:attribute name="BindingStyle" type="xs:string"/>
+      <xs:attribute name="BatchThreshold" type="xs:string"/>
+      <xs:attribute name="PropertySet" type="xs:string"/>
+      <xs:attribute name="IsLibraryPrivate" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsPersistent" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsUpdatable" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsRefPKBased" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="AssociationAccessorRetained" type="xs:string"/>
+      <xs:attribute name="UpdateChangedColumns" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="RowClass" type="xs:string"/>
+      <xs:attribute name="CollClass" type="xs:string"/>
+      <xs:attribute name="DefClass" type="xs:string"/>
+      <xs:attribute name="BLUClass" type="xs:string"/>
+      <xs:attribute name="ResourceProviderId" type="xs:string"/>
+      <xs:attribute name="MsgBundleClass" type="xs:string"/>
+      <xs:attribute name="EJBObjectClassName" type="xs:string"/>
+      <xs:attribute name="EJBHomeClassName" type="xs:string"/>
+      <xs:attribute name="EJBHomeJNDIName" type="xs:string"/>
+      <xs:attribute name="UseGlueCode" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="HasDataSecurity" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="EffectiveDateType" default="None">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Dated"/>
+            <xs:enumeration value="EffectiveDated"/>
+            <xs:enumeration value="None"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="BusLogicGroupName" type="xs:string"/>
+      <xs:attribute name="BusLogicUnitName" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EntityUsage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+        <xs:element ref="AttrArray" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="ViewAttribute" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="Entity" use="required" type="xs:string"/>
+      <xs:attribute name="SourceUsage" type="xs:string"/>
+      <xs:attribute name="AssociationEnd" type="xs:string"/>
+      <xs:attribute name="Association" type="xs:string"/>
+      <xs:attribute name="JoinType" type="xs:string"/>
+      <xs:attribute name="EffectiveDatedUsage" default="NoOverride">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NoOverride"/>
+            <xs:enumeration value="OverrideToFalse"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="_queryWhere" type="xs:string"/>
+      <xs:attribute name="ReadOnly" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Reference" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DeleteParticipant" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="EntireObjectTable" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsAssocPrivate" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewAccessor">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Properties" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+        <xs:element ref="ViewCriteriaUsage" minOccurs="0"/>
+        <xs:element ref="ParameterMap" minOccurs="0" maxOccurs="1"/>
+      </xs:choice>
+      <xs:attribute name="Name" type="xs:ID"/>
+      <xs:attribute name="ViewObjectName" type="xs:string"/>
+      <xs:attribute name="AMUsageName" type="xs:string"/>
+      <xs:attribute name="ViewInstanceName" type="xs:string"/>
+      <xs:attribute name="OrderBy" type="xs:string"/>
+      <xs:attribute name="RowLevelBinds" type="xs:string"/>
+      <xs:attribute name="SharedInstance" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="FetchMode" type="xs:string"/>
+      <xs:attribute name="FetchSize" type="xs:int"/>
+      <xs:attribute name="MaxFetchSize" type="xs:int"/>
+      <xs:attribute name="RangeSize" type="xs:int"/>
+      <xs:attribute name="RangePagingCacheFactor" type="xs:int"/>
+      <xs:attribute name="AccessMode" default="DEFAULT">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="DEFAULT"/>
+            <xs:enumeration value="SCROLLABLE"/>
+            <xs:enumeration value="FORWARD_ONLY"/>
+            <xs:enumeration value="RANGE_PAGING"/>
+            <xs:enumeration value="RANGE_PAGING_AUTO_POST"/>
+            <xs:enumeration value="RANGE_PAGING_INCR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListBinding">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Properties" minOccurs="0"/>
+        <xs:element ref="AttrArray" minOccurs="1"/>
+        <xs:element ref="DesignTime" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="DisplayCriteria"
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="ViewCriteriaUsage" minOccurs="0" maxOccurs="1"/>
+      </xs:choice>
+      <xs:attribute name="Name" type="xs:ID"/>
+      <xs:attribute name="ListVOName" type="xs:string"/>
+      <xs:attribute name="ListRSIName" type="xs:string"/>
+      <xs:attribute name="StaticList" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ListRangeSize" type="xs:string"/>
+      <xs:attribute name="NullValueFlag" type="xs:string"/>
+      <xs:attribute name="NullValueId" type="xs:string"/>
+      <xs:attribute name="MRUCount" type="xs:string"/>
+      <xs:attribute name="ComboAttributeCount" type="xs:int" default="0"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisplayCriteria">
+    <xs:complexType>
+      <xs:attribute name="Name" type="xs:string"/>
+      <xs:attribute name="Hint" default="show">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="showAndExecute"/>
+            <xs:enumeration value="show"/>
+            <xs:enumeration value="hide"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PreferredCriteria">
+    <xs:complexType>
+      <xs:attribute name="Name" type="xs:string"/>
+      <xs:attribute name="FullName" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EventPub">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="RaiseCondition" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="EventPoint" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Create"/>
+            <xs:enumeration value="Update"/>
+            <xs:enumeration value="Delete"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DefName" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RaiseCondition">
+    <xs:complexType>
+      <xs:attribute name="Op" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="AttributeEquals"/>
+            <xs:enumeration value="AttributeChanged"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="AttrName" use="required" type="xs:string"/>
+      <xs:attribute name="Value" use="optional" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EventDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Header" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="Payload" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="HeaderItem" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Payload">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PayloadItem" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="DefName" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PayloadDef">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PayloadItem" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="HeaderItem">
+    <xs:complexType>
+      <xs:attribute name="AttrName" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PayloadItem">
+    <xs:complexType>
+      <xs:attribute name="AttrName" use="required" type="xs:string"/>
+      <xs:attribute name="SendOnlyIfChanged" default="false"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResourceBundle">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="genericResourceBundle" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusLogicGroup">
+    <xs:complexType>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="DiscrAttrName" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

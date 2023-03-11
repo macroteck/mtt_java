@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="ViewCriteria">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ViewCriteriaRow"/>
+        <xs:element ref="ViewCriteria"/>
+        <xs:element ref="ViewCriteriaUsage"/>
+        <xs:element ref="DesignTime"/>
+        <xs:element name="Properties" type="PropertySetType" minOccurs="0"/>
+        <xs:element name="SavedVariables" type="SavedVariablesType" minOccurs="0"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="ViewObjectName" type="xs:string"/>
+      <xs:attribute name="Conjunction" default="AND">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="AND"/>
+            <xs:enumeration value="OR"/>
+            <xs:enumeration value="UNION"/>
+            <xs:enumeration value="NOT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Mode" type="xs:string"/>
+      <xs:attribute name="AppliedIfJoinSatisfied" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewCriteriaRow">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ViewCriteriaItem"/>
+        <xs:element ref="ViewCriteriaItemCompound"/>
+        <xs:element ref="DesignTime"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="Conjunction" default="OR">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="AND"/>
+            <xs:enumeration value="OR"/>
+            <xs:enumeration value="NOT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="UpperColumns" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewCriteriaItem">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Properties" type="PropertySetType" minOccurs="0"/>
+        <xs:element ref="ViewCriteriaItemValue" minOccurs="0"/>
+        <xs:element ref="CompOper"/>
+        <xs:element ref="ViewCriteria"/>
+        <xs:element ref="DesignTime"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="ViewAttribute" type="xs:string"/>
+      <xs:attribute name="Operator" type="xs:string"/>
+      <xs:attribute name="Conjunction" default="AND">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="AND"/>
+            <xs:enumeration value="OR"/>
+            <xs:enumeration value="NOT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="UpperColumns" type="xs:string"/>
+      <xs:attribute name="IsNestedCriteria" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsBindVarValue" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="ValidateBindVars" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="GenerateIsNullClauseForBindVars" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsSqlFragment" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Removable" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Required" default="Optional">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Optional"/>
+            <xs:enumeration value="Required"/>
+            <xs:enumeration value="SelectivelyRequired"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Value" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewCriteriaItemValue">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:attribute name="Name" type="xs:string"/>
+      <xs:attribute name="Value" use="required" type="xs:string"/>
+      <xs:attribute name="IsBindVarValue" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="IsSqlFragment" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewCriteriaItemCompound">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>ViewAttribute</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ViewCriteria"/>
+        <xs:element ref="ViewCriteriaItem"/>
+        <xs:element ref="DesignTime"/>
+      </xs:choice>
+      <xs:attribute name="ViewAttribute" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewCriteriaUsage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Properties" type="PropertySetType" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime" minOccurs="0"/>
+      </xs:all>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="FullName" use="required" type="xs:string"/>
+      <xs:attribute name="Conjunction" default="AND">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="AND"/>
+            <xs:enumeration value="OR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SavedVariablesType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="arg" type="argType"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="argType">    
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="type" type="xs:string" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>
+

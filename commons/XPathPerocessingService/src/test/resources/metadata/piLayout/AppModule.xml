@@ -1,0 +1,14 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}" expanded="true">
+    <display-group id="typeGroup">
+      <property id="@Name"/>
+      <property id="@PropertySet"/>
+      <property id="@IsLibraryPrivate"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="tuning" title="${CATEGORY_TUNING_KEY}" expanded="true">
+    <display-group id="tuningGroup">
+      <property id="@LoadComponentsLazily"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

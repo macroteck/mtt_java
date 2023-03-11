@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema xmlns="http://xmlns.oracle.com/bc4j" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generic="http://xmlns.oracle.com/generic" xmlns:md="http://xmlns.oracle.com/bali/xml/metadata" xmlns:mds="http://xmlns.oracle.com/mds" targetNamespace="http://xmlns.oracle.com/bc4j" elementFormDefault="qualified">
+   <xs:element name="BaseValidationBean" type="BaseValidationBeanType" abstract="true"/>
+   <xs:element name="MethodValidationBean" type="MethodValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="RangeValidationBean" type="RangeValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="UniqueKeyValidationBean" type="UniqueKeyValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="CompareValidationBean" type="CompareValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="ListValidationBean" type="ListValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="ExistsValidationBean" type="ExistsValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="ExpressionValidationBean" type="ExpressionValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="RegExpValidationBean" type="RegExpValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="LengthValidationBean" type="LengthValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="CollectionValidationBean" type="CollectionValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="PreDefinedValidationBean" type="PreDefinedValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="ValidationBean" type="CustomValidationBeanType" substitutionGroup="BaseValidationBean">
+      <xs:annotation>
+         <xs:appinfo>
+            <md:elementMetadata>
+               <mds:customizationAllowed>true</mds:customizationAllowed>
+            </md:elementMetadata>
+         </xs:appinfo>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="BaseValidationBeanType">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+         <xs:element ref="Variable" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="OnAttributes" type="ValueArrayType" minOccurs="0"/>
+         <xs:element name="MsgIds" type="ValueArrayType" minOccurs="0"/>
+         <xs:element name="ResExpressions" type="ResExpressionsType" minOccurs="0"/>
+      </xs:choice>
+      <xs:attribute name="Name" type="xs:string"/>
+      <xs:attribute name="ResId" type="xs:string"/>
+      <xs:attribute name="ResBundleId" type="xs:string"/>
+      <xs:attribute name="Expose" type="xs:boolean"/>
+      <xs:attribute name="TransactionLevel" type="xs:boolean"/>
+      <xs:attribute name="OnAttribute" type="xs:string"/>
+      <xs:attribute name="OperandType" type="xs:string"/>
+      <xs:attribute name="Inverse" type="xs:boolean"/>
+      <xs:attribute name="Severity" type="SeverityType" default="Error"/>
+   </xs:complexType>
+   <xs:complexType name="MethodValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="MethodName" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RangeValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="MinValue" type="xs:string"/>
+            <xs:attribute name="MaxValue" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="UniqueKeyValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="KeyName" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="CompareValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="CompareType" type="xs:string"/>
+            <xs:attribute name="CompareValue" type="xs:string"/>
+            <xs:attribute name="BindingStyle" type="xs:string"/>
+            <xs:attribute name="ViewAccAttrName" type="xs:string"/>
+            <xs:attribute name="ViewAccName" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ListValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+               <xs:element ref="AttrArray" minOccurs="0"/>
+            </xs:choice>
+            <xs:attribute name="ListValue" type="xs:string"/>
+            <xs:attribute name="BindingStyle" type="xs:string"/>
+            <xs:attribute name="ViewAccAttrName" type="xs:string"/>
+            <xs:attribute name="ViewAccName" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ExistsValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+               <xs:element name="TargetAttributes" type="ValueArrayType" minOccurs="0"/>
+            </xs:choice>
+            <xs:attribute name="Target" type="xs:string"/>
+            <xs:attribute name="AssocName" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ExpressionValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+               <xs:element name="TransientExpression" minOccurs="0" maxOccurs="1">
+                  <xs:complexType mixed="true">
+                     <xs:complexContent mixed="true">
+                        <xs:restriction base="xs:anyType"/>
+                     </xs:complexContent>
+                  </xs:complexType>
+               </xs:element>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RegExpValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="Pattern" type="xs:string"/>
+            <xs:attribute name="Flags" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="LengthValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="CompareType" type="xs:string"/>
+            <xs:attribute name="DataType" type="xs:string"/>
+            <xs:attribute name="CompareLength" type="xs:string"/>
+            <xs:attribute name="MinValue" type="xs:integer"/>
+            <xs:attribute name="MaxValue" type="xs:integer"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="CollectionValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="CompareValidationBeanType">
+            <xs:attribute name="Operation" type="xs:string"/>
+            <xs:attribute name="BindingStyle" type="xs:string"/>
+            <xs:attribute name="ViewAccAttrName" type="xs:string"/>
+            <xs:attribute name="ViewAccName" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PreDefinedValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:attribute name="ValName" type="xs:string"/>
+            <xs:attribute name="Subtype" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="CustomValidationBeanType">
+      <xs:complexContent>
+         <xs:extension base="BaseValidationBeanType">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+               <xs:element ref="NamedData" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attribute name="Version" type="xs:string"/>
+            <xs:attribute name="Name" type="xs:string"/>
+            <xs:attribute name="DisplayName" type="xs:string"/>
+            <xs:attribute name="ValidationBeanClass" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ValueArrayType">
+      <xs:sequence>
+         <xs:element ref="Item" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ResExpressionsType">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+         <xs:element name="Expression" minOccurs="0" maxOccurs="unbounded">
+            <xs:complexType mixed="true">
+               <xs:complexContent mixed="true">
+                  <xs:restriction base="xs:anyType"/>
+               </xs:complexContent>
+            </xs:complexType>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+   <xs:simpleType name="SeverityType">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Error"/>
+         <xs:enumeration value="RecoverableError"/>
+         <xs:enumeration value="Warning"/>
+         <xs:enumeration value="VetoableWarning"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

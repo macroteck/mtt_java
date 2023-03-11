@@ -1,0 +1,14 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}">
+    <display-group id="typeGroup">
+      <property id="@Name"/>
+      <property id="@Owner"/>
+      <property id="@Cardinality"/>
+      <property id="@Source"/>
+      <property id="@IsUpdateable"/>
+      <property id="@IsNavigable"/>
+      <property id="@IsPartitionUsingWhereClause"/>
+      <property id="@LockLevel"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

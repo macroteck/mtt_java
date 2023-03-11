@@ -1,0 +1,34 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}" expanded="true">
+    <display-group id="typeGroup">
+      <property id="@Name"/>
+      <property id="@PropertySet"/>
+      <property id="@DBObjectType"/>
+      <property id="@DBObjectName"/>
+      <property id="@IsLibraryPrivate"/>
+      <property id="@EffectiveDateType"/>
+      <property id="@IsUpdatable"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="blu" title="${CATEGORY_BUS_LOGIC_KEY}" expanded="false">
+    <display-group id="bluGroup">
+      <property id="@BLUClass"/>
+      <property id="@BusLogicGroupName"/>
+      <property id="@BusLogicUnitName"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="tuningCategory" title="${CATEGORY_TUNING_KEY}" expanded="false">
+    <display-group id="tuning">
+      <property id="@BatchThreshold"/>
+      <property id="@AssociationAccessorRetained"/>
+    </display-group>
+  </category-layout>
+   <category-layout id="java" title="${CATEGORY_JAVA_KEY}" expanded="true">
+    <display-group id="java">
+      <property id="@RowClass"/>
+      <property id="@DefClass"/>
+      <property id="@CollClass"/>
+      <property id="@MsgBundleClass"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

@@ -1,0 +1,57 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${CATEGORY_TYPE_KEY}" expanded="true">
+    <display-group id="typeGroup">
+      <component class="oracle.jbo.dt.jdevx.ui.xmlef.gui.attr.AttrTypeComponent"/>
+    </display-group>
+    <display-group id="dateEffectiveGroup" title="${DISPLAY_GROUP_DATE_EFF_KEY}">
+      <property id="@IsEffectiveStartDate"/>
+      <property id="@IsEffectiveEndDate"/>
+      <property id="@IsEffectiveDateSequence"/>
+      <property id="@IsEffectiveDateSequenceFlag"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="valueCategory" title="${CATEGORY_VALUE_KEY}" expanded="true">
+    <display-group id="valueGroup">
+      <component class="oracle.jbo.dt.jdevx.ui.xmlef.gui.attr.AttrValueComponent"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="database" title="${CATEGORY_DATABASE_KEY}" expanded="true">  
+    <display-group id="databaseGroup">
+      <property id="@ColumnName"/>
+      <property id="@ColumnType"/>
+      <property id="@PrimaryKey"/>
+      <property id="@IsPersistent"/>
+      <property id="@IsQueriable"/>
+      <property id="@RetrievedOnUpdate"/>
+      <property id="@RetrievedOnInsert"/>
+      <property id="@ChangeIndicator"/>
+      <property id="@HistoryColumn"/>
+      <property id="@PrecisionRule"/>
+    </display-group>
+    <display-group id="generateGroup" title="${DISPLAY_GROUP_DATE_EFF_KEY}">
+      <property id="@IsUnique"/>
+    </display-group>
+  </category-layout>
+  <category-layout id="hints" title="${CATEGORY_UIHINTS_KEY}">
+   <display-group id="propertySetGrp">
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/LABEL"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/TOOLTIP"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/CONTROLTYPE"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYHINT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYWIDTH"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAYHEIGHT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FMT_FORMATTER"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FMT_FORMAT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FORMTYPE"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/AUTOSUBMIT"/>
+    </display-group>
+    
+    <display-group id="displayGroupCustomProps" title="${DISPLAY_GROUP_CUST_PROP_KEY}" expanded="false">
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DESCRIPTION"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/FILE_NAME"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/XML_ELEMENT"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/XML_EXPLICIT_NULL"/>
+      <property id="Properties Properties/SchemaBasedProperties Properties/SchemaBasedProperties/DISPLAY_AS_ATTRIBUTE"/>
+    </display-group>  
+  </category-layout>
+</property-form-layout>

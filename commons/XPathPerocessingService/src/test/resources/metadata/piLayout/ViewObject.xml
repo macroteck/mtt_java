@@ -1,0 +1,55 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="type" title="${NAME_LABEL_KEY}">
+    <display-group id="typeGroup">
+      <property id="@Name"/>
+      <property id="@PropertySet"/>
+      <property id="@IsEffectiveDated"/>
+      <property id="@IsLibraryPrivate"/>
+      <property id="@ServiceWarnings"/>
+    </display-group>
+    </category-layout>
+  <category-layout id="vlu" title="${CATEGORY_VIEW_LOGIC_KEY}" expanded="false">
+    <display-group id="vluGroup">
+      <property id="@ViewLogicGroupName"/>
+      <property id="@ViewLogicUnitName"/>
+    </display-group>
+  </category-layout>
+    <category-layout id="tuningCategory" title="${CATEGORY_TUNING_KEY}">
+    <display-group id="tuningGroup">
+      <property id="@FetchMode"/>
+      <property id="@FetchSize"/>
+      <property id="@MaxFetchSize"/>
+      <property id="@QueryHint"/>
+      <property id="@ViewLinkAccessorRetained"/>
+      <property id="@PageIterMode"/>
+      <property id="@Passivate"/>
+      <property id="@AutoRefresh"/>
+      <property id="@AccessMode"/>
+      <property id="@RangeSize"/>
+      <property id="@RangePagingCacheFactor"/>
+    </display-group>
+    </category-layout>
+    <category-layout id="queryCategory" title="${CATEGORY_SQL_KEY}" expanded="true">
+    <display-group id="queryGroup">
+      <property id="@BindingStyle"/>
+      <property id="@CustomQuery"/>
+      <property id="@SelectList"/>
+      <property id="@FromList"/>
+      <property id="@Where"/>
+      <property id="@OrderBy"/>
+      <property id="@queryStatement"/>
+    </display-group>
+    </category-layout>
+    <category-layout id="javaCategory" title="${CATEGORY_JAVA_KEY}">
+    <display-group id="javaGroup">
+      <property id="@ComponentClass"/>
+      <property id="@DefClass"/>
+      <property id="@ComponentInterface"/>
+      <property id="@ClientProxyName"/>
+      <property id="@RowClass"/>
+      <property id="@RowInterface"/>
+      <property id="@ClientRowProxyName"/>
+      <property id="@MsgBundleClass"/>
+    </display-group>
+    </category-layout>
+</property-form-layout>

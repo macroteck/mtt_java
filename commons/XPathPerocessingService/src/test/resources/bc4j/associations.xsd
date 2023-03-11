@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema xmlns="http://xmlns.oracle.com/bc4j" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generic="http://xmlns.oracle.com/generic" xmlns:md="http://xmlns.oracle.com/bali/xml/metadata" xmlns:mds="http://xmlns.oracle.com/mds" targetNamespace="http://xmlns.oracle.com/bc4j" elementFormDefault="qualified">
+	<xs:element name="AssociationAccessor">
+		<xs:annotation>
+			<xs:appinfo>
+				<md:elementMetadata>
+					<mds:customizationAllowed>true</mds:customizationAllowed>
+				</md:elementMetadata>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:complexContent mixed="true">
+				<xs:restriction base="xs:anyType">
+					<xs:attribute name="Name" type="xs:ID"/>
+					<xs:attribute name="Association" type="xs:string"/>
+				</xs:restriction>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AssociationEnd">
+		<xs:annotation>
+			<xs:appinfo>
+				<md:elementMetadata>
+					<mds:customizationAllowed>true</mds:customizationAllowed>
+					<mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+				</md:elementMetadata>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Data" minOccurs="0"/>
+				<xs:element ref="AttrArray" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DesignTime" minOccurs="0"/>
+			</xs:choice>
+			<xs:attribute name="Name" type="xs:string" use="required"/>
+			<xs:attribute name="Cardinality" type="xs:string" use="required"/>
+			<xs:attribute name="Source" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ExposedAccessor" default="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="HasOwner" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CascadeDelete" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CascadeUpdate" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DeleteContainee" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="LockLevel" default="TOPCONTAINER">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="NONE"/>
+						<xs:enumeration value="CONTAINER"/>
+						<xs:enumeration value="TOPCONTAINER"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="UpdateHistoryColumn" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="IsEffectiveDated" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="IsEffectiveDatedDuringJoin" default="true">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="SuppressEvent" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Owner" type="xs:string" use="required"/>
+			<xs:attribute name="ViewObject" type="xs:string"/>
+			<xs:attribute name="IntersectEntity" type="xs:string"/>
+			<xs:attribute name="AliasName" type="xs:string"/>
+			<xs:attribute name="OrderBy" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Association">
+		<xs:annotation>
+			<xs:appinfo>
+				<md:elementMetadata>
+					<mds:customizationAllowed>true</mds:customizationAllowed>
+					<mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+				</md:elementMetadata>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="AssociationEnd"/>
+				<xs:element ref="DesignTime"/>
+				<xs:element ref="Data"/>
+				<xs:element name="Properties" type="AssociationPropertiesType" minOccurs="0"/>
+				<xs:element ref="DesignTimeStringArray"/>
+			</xs:choice>
+			<xs:attribute name="Name" type="xs:string" use="required"/>
+			<xs:attribute name="Version" type="xs:string"/>
+			<xs:attribute name="Where" type="xs:string"/>
+			<xs:attribute name="WhereReverse" type="xs:string"/>
+			<xs:attribute name="Extends" type="xs:string"/>
+			<xs:attribute name="IsLibraryPrivate" default="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="true"/>
+						<xs:enumeration value="false"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AssociationUsage">
+		<xs:annotation>
+			<xs:appinfo>
+				<md:elementMetadata>
+					<mds:customizationAllowed>true</mds:customizationAllowed>
+					<mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+				</md:elementMetadata>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Association"/>
+				<xs:element ref="AttrArray" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="Name" type="xs:string" use="required"/>
+			<xs:attribute name="Version" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

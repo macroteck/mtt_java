@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema
+   targetNamespace="http://xmlns.oracle.com/bc4j"
+   xmlns="http://xmlns.oracle.com/bc4j"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+   xmlns:generic="http://xmlns.oracle.com/generic"
+   elementFormDefault="qualified">
+   <xs:element name="genericResourceBundle" type="GenericResourceBundle" abstract="true"/>
+   <xs:complexType name="GenericResourceBundle">
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,13 @@
+<property-form-layout xmlns="http://xmlns.oracle.com/ide/extension">
+  <category-layout id="common" title="${CATEGORY_TYPE_KEY}">
+    <display-group id="commonGroup">
+      <property id="@Name"/>
+      <property id="@AMUsageName"/>
+      <property id="@ViewObjectName"/>
+      <property id="@ViewInstanceName"/>
+      <property id="@RowLevelBinds"/>
+      <property id="@OrderBy"/>
+      <property id="@SharedInstance"/>
+    </display-group>
+  </category-layout>
+</property-form-layout>

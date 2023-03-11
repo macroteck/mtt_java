@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:element name="ViewLinkAccessor">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ViewLinkAccessorType"></xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewLinkUsage">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="ViewLinkUsageType">
+          <xs:sequence>
+            <xs:element ref="DesignTime" minOccurs="0"/>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewLinkDefEnd" type="ViewLinkDefEndType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ViewLink" type="ViewLinkType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="ViewLinkType">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+          <mds:localUniqueAttribute>Name</mds:localUniqueAttribute>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="Data"/>
+      <xs:element ref="DesignTime"/>
+      <xs:element ref="ViewLinkDefEnd"/>
+      <xs:element name="Properties" type="ViewLinkPropertiesType"
+                      minOccurs="0"/>
+      <xs:element ref="DesignTime" minOccurs="0"/>
+    </xs:choice>
+    <xs:attribute name="Name" use="required" type="xs:string"/>
+    <xs:attribute name="Version" type="xs:string"/>
+    <xs:attribute name="Where" type="xs:string"/>
+    <xs:attribute name="WhereReverse" type="xs:string"/>
+    <xs:attribute name="WhereFlags" type="xs:string"/>
+    <xs:attribute name="Extends" type="xs:string"/>
+    <xs:attribute name="EntityAssociation" type="xs:string"/>
+    <xs:attribute name="EntityAssociationReversed" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ScanView" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsLibraryPrivate" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SDOHidden" type="xs:boolean"/>
+  </xs:complexType>
+  <xs:complexType mixed="true" name="ViewLinkAccessorType">
+    <xs:complexContent>
+      <xs:restriction base="xs:anyType">
+        <xs:attribute name="Name" type="xs:string"/>
+        <xs:attribute name="Type" type="xs:string"/>
+        <xs:attribute name="ViewLinkEnd" type="xs:string"/>
+        <xs:attribute name="ViewLinkOtherEnd" type="xs:string"/>
+        <xs:attribute name="ViewLink" type="xs:string"/>
+        <xs:attribute name="ViewLinkName" type="xs:string"/>
+        <xs:attribute name="Reversed" default="false">
+          <xs:simpleType>
+            <xs:restriction base="xs:NMTOKEN">
+              <xs:enumeration value="true"/>
+              <xs:enumeration value="false"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="IsUpdateable" default="true">
+          <xs:simpleType>
+            <xs:restriction base="xs:NMTOKEN">
+              <xs:enumeration value="true"/>
+              <xs:enumeration value="while_insert"/>
+              <xs:enumeration value="false"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ViewLinkUsageType">
+    <xs:all>
+      <xs:element ref="Properties" minOccurs="0"/>
+      <xs:element ref="Data" minOccurs="0"/>
+    </xs:all>
+    <xs:attribute name="Name" use="required" type="xs:ID"/>
+    <xs:attribute name="Version" type="xs:string"/>
+    <xs:attribute name="ViewLinkObjectName" use="required" type="xs:string"/>
+    <xs:attribute name="SrcViewUsageName" type="xs:string"/>
+    <xs:attribute name="DstViewUsageName" type="xs:string"/>
+    <xs:attribute name="Reversed" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="ViewLinkDefEndType">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="Data" minOccurs="0"/>
+      <xs:element ref="DesignTime" minOccurs="0"/>
+      <xs:element ref="AttrArray" minOccurs="0"/>
+      <xs:element ref="ViewCriteriaUsage" minOccurs="0" maxOccurs="1"/>
+    </xs:choice>
+    <xs:attribute name="Name" use="required" type="xs:string"/>
+    <xs:attribute name="Owner" use="required" type="xs:string"/>
+    <xs:attribute name="IsNavigable" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsUpdateable" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="while_insert"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Cardinality" type="xs:string"/>
+    <xs:attribute name="LockLevel" default="TOPCONTAINER">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="NONE"/>
+          <xs:enumeration value="CONTAINER"/>
+          <xs:enumeration value="TOPCONTAINER"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsPartitionUsingWhereClause" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Source" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsEffectiveDatedDuringJoin" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>

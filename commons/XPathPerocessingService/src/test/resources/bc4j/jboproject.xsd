@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="JboProject">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Properties" minOccurs="0"/>
+        <xs:element ref="Data" minOccurs="0"/>
+        <xs:element ref="DesignTime"/>
+        <xs:element ref="Containee"/>
+        <xs:element ref="AppContainee"/>
+        <xs:element ref="Preloaded"/>
+        <xs:element ref="Substitutes"/>
+        <!--xs:element ref="RegisteredRule"/-->
+        <xs:element ref="AppModuleUsage"/>
+        <xs:element ref="AttrArray"/>
+        <xs:element ref="BusLogicUnits"/>
+        <xs:element ref="ViewLogicUnits"/>
+      </xs:choice>
+      <xs:attribute name="Name" use="required" type="xs:string"/>
+      <xs:attribute name="PackageName" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="HasJava" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="LazyLoad" default="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="JUIProject" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="CliApplication" type="xs:string"/>
+      <xs:attribute name="ClientType" type="xs:string"/>
+      <xs:attribute name="SeparateXMLFiles" default="false">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!--xs:element name="RegisteredRule">
+    <xs:complexType mixed="true">
+      <xs:complexContent>
+        <xs:restriction base="xs:anyType">
+          <xs:attribute name="Name" use="required" type="xs:string"/>
+          <xs:attribute name="ValidationBeanClass" use="required"
+                        type="xs:string"/>
+          <xs:attribute name="DisplayName" type="xs:string"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element-->
+  <xs:element name="BusLogicUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="BusLogicUnit" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BusLogicUnit">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:restriction base="xs:anyType">
+          <xs:attribute name="FullName" use="required" type="xs:string"/>
+          <xs:attribute name="Name" use="required" type="xs:string"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewLogicUnits">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="ViewLogicUnit" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewLogicUnit">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:restriction base="xs:anyType">
+          <xs:attribute name="FullName" use="required" type="xs:string"/>
+          <xs:attribute name="Name" use="required" type="xs:string"/>
+        </xs:restriction>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

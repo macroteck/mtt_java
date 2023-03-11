@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright (c) 2007, 2009, Oracle and/or its affiliates. 
+All rights reserved. -->
+<xs:schema targetNamespace="http://xmlns.oracle.com/bc4j"
+           xmlns="http://xmlns.oracle.com/bc4j"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:generic="http://xmlns.oracle.com/generic"
+           xmlns:md="http://xmlns.oracle.com/bali/xml/metadata"
+           xmlns:mds="http://xmlns.oracle.com/mds"
+           elementFormDefault="qualified">
+  <xs:element name="PDefViewObject">
+    <xs:annotation>
+      <xs:appinfo>
+        <md:elementMetadata>
+          <mds:customizationAllowed>true</mds:customizationAllowed>
+        </md:elementMetadata>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="SQLQuery" minOccurs="0" maxOccurs="1"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="Data"/>
+          <xs:element ref="Properties"/>
+          <xs:element ref="Attribute"/>
+          <xs:element ref="PDefAttribute"/>
+          <xs:element ref="PDefVariable"/>
+          <xs:element ref="ViewAttribute"/>
+          <xs:element ref="ViewCriteria"/>
+          <xs:element ref="ViewCriteriaUsage"/>
+          <xs:element ref="ViewLink"/>
+          <xs:element ref="AttrArray"/>
+          <xs:element ref="DesignTime"/>
+          <xs:element ref="Publisher"/>
+          <xs:element ref="ViewLinkAccessor"/>
+          <xs:element ref="Variable"/>
+          <xs:element ref="Finder"/>
+          <xs:element ref="EntityUsage"/>
+          <xs:element ref="ClientInterface"/>
+          <xs:element ref="ClientRowInterface"/>
+          <xs:element ref="ViewAccessor"/>
+          <xs:element ref="ListBinding"/>
+          <xs:element ref="LOVUIHints" maxOccurs="1"/>
+          <xs:element ref="StaticList" maxOccurs="1"/>
+        </xs:choice>
+        <xs:element ref="ComponentInterfaceBase" minOccurs="0"/>
+        <xs:element ref="RowInterfaceBase" minOccurs="0"/>
+        <xs:element ref="ResourceBundle" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="DeclarativeWhereClause" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="SortCriteria" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="Name" use="required" type="xs:ID"/>
+      <xs:attribute name="StaticDef" type="xs:string"/>
+      <xs:attribute name="Version" type="xs:string"/>
+      <xs:attribute name="queryStatement" type="xs:string"/>
+      <xs:attribute name="SelectList" type="xs:string"/>
+      <xs:attribute name="FromList" type="xs:string"/>
+      <xs:attribute name="Where" type="xs:string"/>
+      <xs:attribute name="SelectListFlags" type="xs:int"/>
+      <xs:attribute name="FromListFlags" type="xs:int"/>
+      <xs:attribute name="WhereFlags" type="xs:int"/>
+      <xs:attribute name="OrderBy" type="xs:string"/>
+      <xs:attribute name="SortBy" type="xs:string"/>
+      <xs:attribute name="QueryHint" type="xs:string"/>
+      <xs:attribute name="RowMatch" type="xs:string"/>
+      <xs:attribute name="BindingStyle" type="xs:string"/>
+      <xs:attribute name="CustomQuery" type="xs:string"/>
+      <xs:attribute name="MaxRowsPerNode" type="xs:string"/>
+      <xs:attribute name="MaxActiveNodes" type="xs:string"/>
+      <xs:attribute name="RowClass" type="xs:string"/>
+      <xs:attribute name="ComponentClass" type="xs:string"/>
+      <xs:attribute name="MsgBundleClass" type="xs:string"/>
+      <xs:attribute name="DefClass" type="xs:string"/>
+      <xs:attribute name="ComponentInterface" type="xs:string"/>
+      <xs:attribute name="ClientProxyName" type="xs:string"/>
+      <xs:attribute name="ClientRowProxyName" type="xs:string"/>
+      <xs:attribute name="ResourceProviderId" type="xs:string"/>
+      <xs:attribute name="RowInterface" type="xs:string"/>
+      <xs:attribute name="FetchMode" type="xs:string"/>
+      <xs:attribute name="FetchSize" type="xs:int"/>
+      <xs:attribute name="MaxFetchSize" type="xs:int"/>
+      <xs:attribute name="StoredProcedure" type="xs:string"/>
+      <xs:attribute name="SdoName" type="xs:string"/>
+      <xs:attribute name="SdoNameSpace" type="xs:string"/>
+      <xs:attribute name="SdoGen" type="xs:string"/>
+      <xs:attribute name="Passivate" type="xs:string"/>
+      <xs:attribute name="PageIterMode" type="xs:string"/>
+      <xs:attribute name="ViewLinkAccessorRetained" type="xs:string"/>
+      <xs:attribute name="Extends" type="xs:string"/>
+      <xs:attribute name="IsFinderView" type="xs:string"/>
+      <xs:attribute name="IsEffectiveDated" type="xs:string"/>
+      <xs:attribute name="RemoveSortCriteria" type="xs:string"/>
+      <xs:attribute name="RangeSize" type="xs:int"/>
+      <xs:attribute name="RangePagingCacheFactor" type="xs:int"/>
+      <xs:attribute name="AccessMode">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="DEFAULT"/>
+            <xs:enumeration value="SCROLLABLE"/>
+            <xs:enumeration value="FORWARD_ONLY"/>
+            <xs:enumeration value="RANGE_PAGING"/>
+            <xs:enumeration value="RANGE_PAGING_AUTO_POST"/>
+            <xs:enumeration value="RANGE_PAGING_INCR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
