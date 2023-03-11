@@ -1,0 +1,2278 @@
+/**
+ * Class: $Id: GenericUtils.java v 1.2 2003/01/05 17:46:09 rqualis Exp $
+ * Design Pattern: Helper
+ *
+ * @(#)GenericUtils.java	v1.00
+ *
+ *
+ * Description:	This contains methods that will be reused regularly.
+ *
+ * NOTE:        This application supports true portability to various OS platform
+ *              @see GetOSPathDelimiter()
+ *
+ *				Since this is a compilation of many usefull methods, I will not
+ *				implement the version.  The version number will always remain
+ *				1.0.0 and the date will not change
+ *
+ * @author: 	$author Richard Qualis
+ *
+ *<pre>
+ *<strong>CVS log</strong>
+ * $Log: GenericUtils.jaVa,v $
+ *</pre>
+ */
+
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.File;
+import java.io.FilenameFilter;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+//import java.nio.ByteBuffer;
+
+
+import java.io.IOException;
+import java.io.*;
+
+import java.net.URL;
+import java.util.*;
+import java.lang.System;
+
+import java.util.zip.ZipOutputStream;
+import java.util.zip.*;
+
+/**
+ * jse 1.4 or higher is required for the following imports
+ */
+//import java.nio.*;
+//import java.nio.charset.*;
+//import java.nio.channels.*;
+//import java.util.regex.*;
+
+
+/**
+  * <B>GenericUtils</B> is an
+  * @author Richard Qualis (rqualis@national.aaa.com)
+  */
+
+public class GenericUtils {
+	public String logFile = "";  //If user does not set this, use value as default
+
+	/**
+	 * Constructor
+	 *
+	 * Will set the log file to GenericUtils.log
+	 */
+	public GenericUtils (){
+		this.logFile = "GenericUtils.log";
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * Will use the logfile passed in when instantiated
+	 *
+	 * @param String
+	 */
+	public GenericUtils (String logFileName){
+		this.logFile = logFileName;
+	}
+
+	/**
+	 * Used when debugging you code
+	 *
+	 * Output debug information to screen or file (mode)
+	 * Need some more work.
+	 *
+	 * @param String, String
+	 * @return String
+	 */
+	public String DEBUG(String mode, String msg){
+			String debugFileFileName = "debug.log";
+
+		   	if(mode.equals("SCREEN")){
+				System.out.println("[ DEBUG ] : " + msg);
+			} else if (mode.equals("FILE")){
+				//TO DO
+				System.out.println("TO DO : Print to a file");
+			}
+
+			return debugFileFileName;
+	}
+
+	/**
+	 * Format and return the error message.
+	 *
+	 * @param String
+	 * @return String
+	 */
+	//public String GetErrorMsg(String eMsg) {
+    //	String errorMsg =(String)errors.get(eMsg.trim());
+    //	return (errorMsg == null) ? "":errorMsg;
+  	//}
+
+	/**
+	 * Determin the version of the os
+	 *
+	 * @param none
+	 * @see GetOSPathDelimiter()
+	 * @return String
+	 */
+	public String GetOSVersion(){
+		return System.getProperty("os.version");
+	}
+
+	/**
+	 * Determine the name of the OS.
+	 *
+	 * @param none
+	 * @see GetOSPathDelimiter() also
+	 * @return String
+	 */
+	public String GetOSName(){
+		return System.getProperty("os.name");
+	}
+
+	/**
+	 * In an effort to support true portability of Java, the user of this
+	 * library is advised to dynamically determin the OS their application
+	 * is running.  With this information the path delimiter can be dynamically
+	 * determined. And that's just what this method does.
+	 * Please feel free to add additional plat forms
+	 *
+	 * @param none
+	 * @see GetOSName()
+	 * @return String
+	 */
+	public String GetOSPathDelimiter(){
+			String pathDelim = "";
+			String os = GetOSName().toUpperCase();
+
+			if ((os.indexOf("WINDOWS") >=0) || (os.indexOf("WIN") >=0)){
+				pathDelim = "\\";
+			}else if (os.indexOf("OS/400") >=0 ){
+				pathDelim = "??";
+			}else if ((os.indexOf("SUN") >=0 ) || (os.indexOf("UNIX") >=0 ) || (os.indexOf("LINUX") >=0 )){
+				pathDelim = "/";
+			} else {
+				pathDelim = "Unable to determin path.";
+			}
+
+			return pathDelim;
+	}
+
+	/**
+	 * Determin the line separator used by the system the program is running on
+	 *
+	 * @return String
+	 */
+	public String GetLineSeparator(){
+			return System.getProperty("line.separator");
+	}
+
+	/**
+	 * Put the program to sleep for a specied amount of time
+	 * Need more work
+	 * @param int
+	 * @return void
+	 */
+	public void ProgramSleeper(int sleepSeconds){
+		   for(int t=0; t <= sleepSeconds; t++){
+		   }
+	}
+	/**
+	 * There is too much to do when appending a string, so I created
+	 * this method that will take the two string passed to it and
+	 * append them together.
+	 */
+	public String AppendStrings(String strOne, String strTwo){
+			StringBuffer strBuf = new StringBuffer();
+
+			strBuf.append(strOne);
+			strBuf.append(strTwo);
+
+			return strBuf.toString();
+	}
+
+
+	/**
+	 * Read lines from a file and place each line in an array then
+	 * return the array to the caller.  Caller must specify the number
+	 * of lines to read in.
+	 *
+	 * @param String, int
+	 * @return String[]
+	 */
+	public String [] GetFileLinesInArray(String fileName, int lineCount){
+		String [] myArray = new String[lineCount];
+		String lineBuf = "";
+		int x = 0;
+
+		try {
+			File fHandle = new File(fileName);
+			FileReader fRead = new FileReader(fHandle);
+			BufferedReader bufRead = new BufferedReader(fRead);
+
+			while(((lineBuf = bufRead.readLine()) != null) || (x < lineCount)){
+				myArray[x] = lineBuf;
+				x++;
+			}
+			fRead.close();
+
+		} catch (Exception e) {
+			System.out.println("ERROR reading from file " + fileName);
+		}
+
+		return myArray;
+	}
+
+
+	/**
+	 * Since Java only has replace(char this, char with_this) and none
+	 * for String, this method will do the same but for a String within
+	 * a String.  Given a String, a String to look for(a single word),
+	 * and a String to replace the word with, this method will perform
+	 * the search and replace.  You will also need to provide a delimiter
+	 * since your string of word may be separated by somethign else rather
+	 * than blank space. This delimmiter can be a single char or a string
+	 * of possible charaters.
+	 *
+	 * @param String orgi_str, String str_to_look_for, String new_str, String delimStr
+	 * @return String
+	 */
+	public String ReplaceStringInString(String origStr, String lookForStr, String replaceStr, String delimStr){
+		StringBuffer strBuf = new StringBuffer();
+		String newStr = "";
+		String _tmpStr = "";
+		String _tmpStrB = "";
+		int count = 0;
+		int pos = 0;
+
+		StringTokenizer sT = null;
+
+		if(origStr.indexOf(lookForStr) > 0){
+			sT = new StringTokenizer(origStr, delimStr);
+
+			while(sT.hasMoreTokens()){
+				_tmpStr = sT.nextToken();
+
+				if(_tmpStr.trim().startsWith(lookForStr)){
+					strBuf.append(delimStr);
+
+					_tmpStrB = _tmpStr.substring(0, _tmpStr.lastIndexOf(">"));
+					pos = (_tmpStrB.length() + 1);
+					_tmpStrB = _tmpStr.substring(pos);
+
+					strBuf.append(_tmpStrB);
+
+				} else if(_tmpStr.indexOf(lookForStr) > 0){
+					strBuf.append(delimStr);
+
+					_tmpStrB = _tmpStr.substring(0, _tmpStr.lastIndexOf("<"));
+					strBuf.append(_tmpStrB);
+					strBuf.append(delimStr);
+
+					_tmpStrB = _tmpStr.substring(0, _tmpStr.lastIndexOf(">"));
+					pos = (_tmpStrB.length() + 1);
+
+					_tmpStrB = _tmpStr.substring(pos);
+					strBuf.append(_tmpStrB);
+				}else{
+					strBuf.append(delimStr);
+					strBuf.append(_tmpStr);
+				}
+			}
+
+			newStr = strBuf.toString().trim();
+
+		} else {
+			newStr = origStr;
+		}
+
+		return newStr;
+	}
+
+
+	/**
+	 * Create a blankfile.  Made this because windows can be a little
+	 * anal about lock file.
+	 */
+	public boolean CreateBlankFile(String fileName){
+		boolean boolResp = false;
+
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(fileName, false));
+			out.close();
+
+			boolResp = true;
+
+		} catch (IOException e) {
+			WriteToFile(logFile, ("ERROR : Unable to create blank file " + fileName), true);
+			boolResp = false;
+		}
+
+		return boolResp;
+	}
+
+	/**
+	 * Extracts the base name from a give filename with path
+	 * Will determine if UNIX or Windows
+	 *
+	 * @see GetOSPathDelimiter()
+	 * @param String <filename with path>
+	 * @return String
+	 */
+   	public String GetBaseFileName(String fileNameWithPath){
+		String fileName = "";
+		int newPos = 0;
+
+		fileName = fileNameWithPath.substring(0,fileNameWithPath.lastIndexOf(GetOSPathDelimiter()));
+
+		newPos = (fileName.length() + 1);
+		fileName = fileNameWithPath.substring(newPos);
+
+		return fileName;
+	}
+
+	/**
+	 * Copy oldFile to newFile
+	 *
+	 * @param String oldFIle, String newFile
+	 * @return true or false
+	 * @exception IOException
+	 */
+	public boolean CopyFile(String oldFile, String newFile) {
+		boolean boolResp = false;
+
+		try {
+			File inputFile = new File(oldFile);
+			File outputFile = new File(newFile);
+
+			FileReader in = new FileReader(inputFile);
+			FileWriter out = new FileWriter(outputFile);
+			int c;
+
+			while ((c = in.read()) != -1)
+           		out.write(c);
+
+        		in.close();
+        		out.close();
+
+			boolResp = true;
+
+		} catch (IOException e) {
+			System.out.println("ERROR gU.CopyFile(): Unable to copy file " + oldFile + " to " + newFile);
+			boolResp = false;
+		}
+
+ 		return boolResp;
+  }
+
+
+    /**
+     * Copies src file to dst file. If the dst file does not exist, it is created
+     *
+     * @param String, String
+     * @return boolean
+     */
+	public boolean CopyFileUseStream(String srcFile, String destFile){
+			boolean boolResp = false;
+
+			try {
+				File inputFile = new File(srcFile);
+				File outputFile = new File(destFile);
+
+        	InputStream in = new FileInputStream(inputFile);
+        	OutputStream out = new FileOutputStream(outputFile);
+
+       		// Transfer bytes from in to out
+        	byte[] buf = new byte[1024];
+        	int len;
+        	while ((len = in.read(buf)) > 0) {
+            	out.write(buf, 0, len);
+        	}
+        	in.close();
+        	out.close();
+
+        	boolResp = true;
+ 			} catch (IOException e) {
+ 				System.out.println("ERROR gU.CopyFileUseStream(): Unable to copy file " + srcFile + " to " + destFile);
+ 				boolResp = false;
+ 			}
+
+ 			return boolResp;
+    }
+
+
+
+
+	/**
+	 * Create a directory
+	 * All ancestor must be availabale
+	 */
+	public boolean CreateDirectory(String dirNameWithPath){
+		boolean success = (new File(dirNameWithPath)).mkdir();
+
+		if(!success){
+			System.out.println("ERROR CreateDirectory() : Failed to create the directory " + dirNameWithPath);
+		}
+
+		return success;
+	}
+
+	/**
+	 * If the directory is not empty, it is necessary to first recursively
+	 * delete all files and subdirectories in the directory.
+
+     * Deletes all files and subdirectories under dir.
+     * Returns true if all deletions were successful.
+     * If a deletion fails, the method stops attempting to delete and returns false.
+     *
+     * Need to work on some more
+     */
+	public boolean DeleteDir(File dir) {
+		//Deleting a Directory
+    		// Delete an empty directory
+    		//boolean success = (new File("directoryName")).delete();
+    		//if (!success) {
+        	// Deletion failed
+    		//}
+
+
+        	if (dir.isDirectory()) {
+            		String[] children = dir.list();
+
+            		for (int i=0; i<children.length; i++) {
+                		boolean success = DeleteDir(new File(dir, children[i]));
+                		if (!success) {
+							System.out.println("FAILED to delete dir");
+                    		return false;
+                		}
+            		}
+        	}
+
+
+        // The directory is now empty so delete it
+		return dir.delete();
+	}
+
+
+	/**
+	 * A given file will be zipped
+	 */
+	public boolean ZipSingleFile(String fileName){
+		boolean boolResp = false;
+
+		String zipArcName = (fileName + ".zip");
+
+		//Create a buffer for reading the files
+		byte[] fileBuf = new byte[1024];
+
+		try {
+			//Create the Zip File using the fileName as the arch name
+			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipArcName));
+
+			//Compress the file
+			String file = (fileName);
+			FileInputStream in = new FileInputStream(file);
+
+			//Add ZIP entry to output stream
+			out.putNextEntry(new ZipEntry(file));
+
+			//Transfer bytes from the file to the ZIP file
+			int length;
+			while ((length = in.read(fileBuf)) > 0){
+				out.write(fileBuf, 0, length);
+			}
+
+			//Complete the entry
+			out.closeEntry();
+			in.close();
+
+			//Complete the ZIP file
+			out.close();
+
+			boolResp = true;
+
+		} catch (IOException e){
+			boolResp = false;
+		}
+
+		return boolResp;
+	}
+
+
+
+	/**
+	 * Files located in the given dir will be zipped. Path delimiter will
+	 * be determined dynamically.
+	 *
+	 * @see GetOSPathDelimiter()
+	 * @param String (path to dir with files to be ziped>
+	 * @return boolean
+	 */
+	public boolean ZipFiles(String contDirName){
+		boolean boolResp = false;
+
+		String fileList = GetFileList(contDirName);
+		String zipArcName = (contDirName + ".zip");
+
+		//Create a buffer for reading the files
+		byte[] fileBuf = new byte[1024];
+
+		try {
+			//Create the Zip File using the contDirName as the arch name
+			ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipArcName));
+
+			//Compress the files
+			StringTokenizer sT = new StringTokenizer(fileList, "|");
+			while(sT.hasMoreTokens()){
+				String file = (contDirName + GetOSPathDelimiter() + sT.nextToken());
+				FileInputStream in = new FileInputStream(file);
+
+				//Add ZIP entry to output stream
+				out.putNextEntry(new ZipEntry(file));
+
+				//Transfer bytes from the file to the ZIP file
+				int length;
+				while ((length = in.read(fileBuf)) > 0){
+					out.write(fileBuf, 0, length);
+				}
+
+				//Complete the entry
+				out.closeEntry();
+				in.close();
+			}
+
+			//Complete the ZIP file
+			out.close();
+
+			boolResp = true;
+
+		} catch (IOException e){
+		    System.out.println("ERROR gU.ZipFiles() : Zipping files");
+			//e.printStackTrace();
+			boolResp = false;
+		}
+
+		return boolResp;
+	}
+
+	/**
+	 * Will reverse the order of charaters in a string
+	 */
+	public String ReverseString(String strBuf) {
+		StringBuffer newStrBuf = new StringBuffer();
+		char c;
+
+		for(int j = strBuf.length() - 1; j >= 0; j--) {
+			c = strBuf.charAt(j);
+			newStrBuf = newStrBuf.append(c);
+		}
+
+		return newStrBuf.toString();
+	}
+
+
+	/**
+	 * Given a string of charaters, the position of a character is located at
+	 * and wheather or not you want it so processes the request forward or
+	 * backward, this method will return the characters as a string.
+	 */
+	public String GetCharactersFromPos(String strBuf, int pos, char forwardOrBackward){
+		StringBuffer newStrBuf = new StringBuffer();
+		int i = 0;
+		int startPos = 0;
+		char c;
+
+		if(forwardOrBackward == 'b'){
+			startPos = (strBuf.length() - (pos + 1));
+
+			for (i = startPos; i >= 0; --i){
+				c = strBuf.charAt(i);
+				newStrBuf = newStrBuf.append(c);
+			}
+			return strBuf = ReverseString(newStrBuf.toString()).toString();
+
+		} else if(forwardOrBackward == 'p'){
+			for(i = pos; i < strBuf.length(); i++){
+				c = strBuf.charAt(i);
+				newStrBuf = newStrBuf.append(c);
+			}
+		} else if(forwardOrBackward == 'f'){
+			for (i = pos; i < strBuf.length(); ++i){
+				c = strBuf.charAt(i);
+				newStrBuf = newStrBuf.append(c);
+			}
+		} else {
+			System.out.println("%%ERROR : Improper use of getCharactersFromPos() mod.");
+			System.exit(1);
+		}
+
+		return newStrBuf.toString();
+	}
+
+
+
+	/**
+	 * Given a string of charaters, a specific number of
+	 * charaters you want back from the end of the string.
+	 */
+	public String GetNumOfCharactersEndOfStr(String strBuf, int numChar){
+			StringBuffer newStrBuf = new StringBuffer();
+			int i = 0;
+			int startPos = 1;
+			int endPos = 0;
+			char c;
+
+			startPos = (strBuf.length() - numChar);
+
+			for (i = startPos; i < strBuf.length(); ++i){
+				c = strBuf.charAt(i);
+				newStrBuf = newStrBuf.append(c);
+			}
+
+			return newStrBuf.toString().trim();
+	}
+
+
+	/**
+	 * Given a string of charaters, a specific number of
+	 * charaters you want back from the end of the string.
+	 */
+	public String GetNumOfCharactersFromStartOfStr(String strBuf, int numChar){
+			StringBuffer newStrBuf = new StringBuffer();
+			int i = 0;
+			char c;
+
+			for (i = 0; i <= numChar; ++i){
+				c = strBuf.charAt(i);
+				newStrBuf = newStrBuf.append(c);
+			}
+
+			return newStrBuf.toString().trim();
+	}
+
+
+   /**
+     * Given a string, a specific character, where to start from and a number,
+     * this function will parse through the string and retrieve all characters
+     * from the startFrom point (FRONT or END) until it reaches the nth a specific character
+     * then it will return this as a string
+     *
+     * @param String, char, int, String
+     * @return String
+     */
+	public String GetCharsUpToTheNthPosOfAGivenChar(String strBuf, char d, int ntD, String startFrom){
+			StringBuffer newStrBuf = new StringBuffer();
+			int i = 0;
+			int startPos = 0;
+			char c;
+			int ntDCount = 0;
+			String finalString = "";
+
+
+			if(startFrom.equals("END")){
+				startPos = (strBuf.length());
+
+				for (i = startPos; i != 0; --i){
+					c = strBuf.charAt(i);
+
+					if(c == d){
+						if(ntDCount == ntD){
+							i = 0;
+						} else {
+							ntDCount++;
+						}
+					} else {
+						newStrBuf = newStrBuf.append(c);
+					}
+				}
+
+				finalString = ReverseString((newStrBuf.toString().trim()));
+
+			} else if (startFrom.equals("FRONT")){
+				startPos = 0;
+
+				for (i = startPos; i < strBuf.length() ; ++i){
+					c = strBuf.charAt(i);
+
+					if(c == d){
+						if(ntDCount == ntD){
+							i = (strBuf.length() + 1);
+						} else {
+							ntDCount++;
+						}
+					} else {
+						newStrBuf = newStrBuf.append(c);
+					}
+				}
+
+				finalString = newStrBuf.toString().trim();
+
+			}
+
+			return finalString;
+	}
+
+
+
+	/**
+	 * Get a list of subdirectories
+	 */
+	public String GetDirList(String rootDir){
+		String strRes = "";
+
+		StringBuffer listBuf = new StringBuffer();
+		File dir = new File(rootDir);
+		String [] dList = dir.list();
+		int i = 0;
+
+		for(i = 0; i < dList.length; i++) {
+			File dH = new File(rootDir + GetOSPathDelimiter() + dList[i]);
+
+			if(dH.isDirectory()){
+				listBuf.append((dList[i] + "|"));
+			}
+		}
+
+		strRes = listBuf.toString();
+
+		return strRes;
+	}
+
+	/**
+	 * Return the list of files found in a given directory
+	 */
+	public String GetFileList(String rootDir){
+		String strRes = "";
+
+		StringBuffer listBuf = new StringBuffer();
+		File dir = new File(rootDir);
+		String [] dList = dir.list();
+		int i = 0;
+
+		for(i = 0; i < dList.length; i++) {
+			File dH = new File(rootDir + GetOSPathDelimiter() + dList[i]);
+
+			if(dH.isDirectory()){
+				String ignor = "";
+			} else {
+				listBuf.append((dList[i] + "|"));
+			}
+		}
+
+		strRes = listBuf.toString();
+
+		return strRes;
+	}
+
+
+//407-302-3631
+	/**
+	 * Return he list of files and return as as File objects
+	 * TODO:
+	 *	Apply filter to filter out . files
+	 */
+	 public File[] GetFileListAsFileObj(String rootDir){
+			File dir = new File(rootDir);
+			return dir.listFiles();
+		}
+
+
+		/**
+		 * Return he list of dir and return as dir objects
+		 */
+		 public File[] GetDirListAsDirObj(String rootDir){
+			File dir = new File(rootDir);
+
+		    File[] dirArray = dir.listFiles();
+
+		    // This filter only returns directories
+		    FileFilter dirFilter = new FileFilter() {
+		    	public boolean accept(File file) {
+		            return file.isDirectory();
+		        }
+		    };
+
+		    dirArray = dir.listFiles(dirFilter);
+
+		    return dirArray;
+		}
+
+
+	/**
+	 * Returns an input stream for a ByteBuffer.
+		* The read() methods use the relative ByteBuffer get() methods.
+		*/
+	/*public InputStream NewInputStream(final ByteBuffer bBuf) {
+			return new InputStream() {
+				public synchronized int read() throws IOException {
+					if (!bBuf.hasRemaining()) {
+						return -1;
+					}
+
+					return bBuf.get();
+				}
+
+				public synchronized int read(byte[] bytes, int off, int len) throws IOException {
+					// Read only what's left
+					len = Math.min(len, bBuf.remaining());
+					bBuf.get(bytes, off, len);
+
+					return len;
+				}
+			};
+		}*/
+
+
+
+
+
+/**
+	public String GetStream(String imageFile){
+		   String fileFormat = "";
+
+		   //Create a ByteBuffer using a byte array
+		   byte[] byte = new byte[10];
+		   ByteBuffer buf = ByteBuffer.wrap(bytes);
+
+		   //Create a non-direct ByteBuffer with a 10 byte capacity
+		   //The underlying storage is a byte array
+		   buf = ByteBuffer.allocate(10);
+
+		   //Create a direct (memory-mapped) ByteBuffer with a 10 byte capacity
+		   buf = ByteBuffer.allocateDirect(10);
+
+
+
+
+		   //To create a
+		   //Obtain a ByteBuffer. Use one of the above
+		   ByteBuffer bBuf = ByteBuffer.allocate(10);
+
+		   //Create an output stream on the ByteBuffer
+		   OutputStream os = newOutputStream(bBuf);
+
+		   //Create an input stream on the ByteBuffer
+		   InputStream is = newInputStream(bBuf);
+
+		   //Returns an output stream for the ByteBuffer
+		   //The write() methods use the relative ByteBuffer put() methods
+		   public static OutputStream newOutputStream(final ByteBuffer bBuf){
+			   return new OutputStream(){
+				   public synchronized void write(int b) throws IOException{
+					   bBuf.put((byte)b);
+				   }
+
+				   public synchronized void write(byte[] bytes, int off, int len) throws IOException{
+					   buf.put(bytes, off, len);
+				   }
+			   };
+		   }
+
+
+	// Returns an input stream for a ByteBuffer.
+		// The read() methods use the relative ByteBuffer get() methods.
+		       public static InputStream newInputStream(final ByteBuffer buf) {
+		           return new InputStream() {
+		               public synchronized int read() throws IOException {
+		                   if (!buf.hasRemaining()) {
+		                       return -1;
+		                   }
+		                   return buf.get();
+		               }
+
+		               public synchronized int read(byte[] bytes, int off, int len) throws IOException {
+		                   // Read only what's left
+		                   len = Math.min(len, buf.remaining());
+		                   buf.get(bytes, off, len);
+		                   return len;
+		               }
+		           };
+		       }
+
+
+
+		   //iInfo.setInput(InputStream inputStream);
+
+		   return fileFormat;
+	}
+
+
+*/
+
+
+	/**
+	 * Return the list of files found in a given directory
+	 */
+/**	public File[] GetFileList(String rootDir){
+		File fileList = null;
+
+		File dir = new File(rootDir);
+		File [] children = dir.list();
+
+		if(children == null){
+			//Either dir does not exist or is not a directory
+		} else {
+			for(int i=0; i<children.length; i++){
+				//Get filename of file or directory
+				String fileName = children[i]
+			}
+		}
+
+		//File the . files
+		FilenameFilter filter = new FilenameFilter(){
+			public boolean accept(File dir, String name){
+				return !name.startsWith(".");
+			}
+		};
+		children = dir.list(filter);
+
+		return fileList;
+	}*/
+
+
+	//######################################
+	//Get a list of files (ALL or with a given extension).
+	//######################################
+	public String GetFileList(String strBuf, final String fileType) {
+		String strRes = "";
+
+		StringBuffer listBuf = new StringBuffer();
+		File dir = new File(strBuf);
+		String [] fList= dir.list();
+		int i = 0;
+
+		if(fileType.equals("ALL")) {
+				for(i = 0; i < fList.length; i++) {
+					listBuf.append((fList[i] + "|"));
+				}
+				strRes = listBuf.toString();
+
+		} else {
+			for(i = 0; i < fList.length; i++) {
+				if(fList[i].endsWith(fileType)){
+					listBuf.append((fList[i] + "|"));
+				}
+			}
+
+			strRes = listBuf.toString();
+		}
+
+		return strRes;
+	}
+
+
+	/**
+	 * Rename a file or directory
+	 */
+	public boolean RenameFileDir(String oldName, String newName) {
+		boolean boolResp = false;
+
+    	// File (or directory) with old name
+    	File file = new File(oldName);
+
+    	// File (or directory) with new name
+    	File file2 = new File(newName);
+
+    	// Rename file (or directory)
+    	return boolResp = file.renameTo(file2);
+    }
+
+
+	/** Get and return to caller the size of a given file. Size
+	 * will be in bytes.
+	 *
+	 * @param String, String
+	 * @return long
+	 */
+	public long GetFileSize(String fileName, String unitType) {
+		File file = new File(fileName);
+
+		long length = file.length();
+
+		return length;
+	}
+
+
+	//############################################
+	//Determining If a File or Directory Exists
+	//############################################
+ 	public boolean CheckForFile(String fileName) {
+		boolean exists = (new File(fileName)).exists();
+		return exists;
+	}
+
+
+	/**
+	 * Used to convert all characters in a given string to ASCII
+	 * literals. This will allow dynamic converstion alternate to
+	 * use of properties files againts data file.
+	 */
+	public  String ConvStringToASCII(String strBuf){
+		StringBuffer newStrBuf = new StringBuffer();
+
+		for (int i = 0; i < strBuf.length(); ++i){
+			char c = strBuf.charAt(i);
+
+			if (c > 191) {
+				newStrBuf = newStrBuf.append(ConvertLatinISOToASCII(c));
+			} else {
+				newStrBuf = newStrBuf.append(c);
+		    }
+		}
+
+		return newStrBuf.toString();
+	}
+
+	/**
+	 *This method determine the country for a given state id
+	 * Need to be done a little better. Should create one for state name
+	 */
+	public String CountryName(String cAbb) {
+		String countryName = "FAILED";
+
+		if(cAbb.equals("AL") || cAbb.equals("AB")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("AZ")){countryName = "UNITED STATES";}
+		if(cAbb.equals("AK")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("BC")){countryName = "CANADA";}
+		if(cAbb.equals("CA")){countryName = "UNITED STATES";}
+		if(cAbb.equals("CT")){countryName = "UNITED STATES";}
+		if(cAbb.equals("DE")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("DC")){countryName = "UNITED STATES";}
+		if(cAbb.equals("FL")){countryName = "UNITED STATES";}
+		if(cAbb.equals("GA")){countryName = "UNITED STATES";}
+		if(cAbb.equals("HI")){countryName = "UNITED STATES";}
+
+
+		if(cAbb.equals("ID")){countryName = "UNITED STATES";}
+		if(cAbb.equals("IL")){countryName = "UNITED STATES";}
+		if(cAbb.equals("IN")){countryName = "UNITED STATES";}
+		if(cAbb.equals("IO")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("KS")){countryName = "UNITED STATES";}
+		if(cAbb.equals("KY")){countryName = "UNITED STATES";}
+		if(cAbb.equals("LA")){countryName = "UNITED STATES";}
+		if(cAbb.equals("ME")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("MB")){countryName = "CANADA";}
+		if(cAbb.equals("MD")){countryName = "UNITED STATES";}
+		if(cAbb.equals("MA")){countryName = "UNITED STATES";}
+		if(cAbb.equals("MI")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("MN")){countryName = "UNITED STATES";}
+		if(cAbb.equals("MS")){countryName = "UNITED STATES";}
+		if(cAbb.equals("MO")){countryName = "UNITED STATES";}
+		if(cAbb.equals("MT")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("NE")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NV")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NB")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NH")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("NJ")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NM")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NY")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NF")){countryName = "CANADA";}
+
+		if(cAbb.equals("NC")){countryName = "UNITED STATES";}
+		if(cAbb.equals("ND")){countryName = "UNITED STATES";}
+		if(cAbb.equals("NT")){countryName = "CANADA";}
+		if(cAbb.equals("NS")){countryName = "CANADA";}
+
+		if(cAbb.equals("OH")){countryName = "UNITED STATES";}
+		if(cAbb.equals("OK")){countryName = "UNITED STATES";}
+		if(cAbb.equals("ON")){countryName = "CANADA";}
+		if(cAbb.equals("OR")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("PA")){countryName = "UNITED STATES";}
+		if(cAbb.equals("PE")){countryName = "CANADA";}
+		if(cAbb.equals("QC")){countryName = "CANADA";}
+		if(cAbb.equals("RI")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("SK")){countryName = "CANADA";}
+		if(cAbb.equals("SC")){countryName = "UNITED STATES";}
+		if(cAbb.equals("SD")){countryName = "UNITED STATES";}
+		if(cAbb.equals("TN")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("TX")){countryName = "UNITED STATES";}
+		if(cAbb.equals("UT")){countryName = "UNITED STATES";}
+		if(cAbb.equals("VT")){countryName = "UNITED STATES";}
+		if(cAbb.equals("VA")){countryName = "UNITED STATES";}
+
+		if(cAbb.equals("WA")){countryName = "UNITED STATES";}
+		if(cAbb.equals("WV")){countryName = "UNITED STATES";}
+		if(cAbb.equals("WI")){countryName = "UNITED STATES";}
+		if(cAbb.equals("YT")){countryName = "CANADA";}
+
+		return countryName;
+	}
+
+
+
+	/**
+	 * Used to convert all diacriticals to standard ASCII chars
+	 * This will allow dynamic converstion alternate to
+	 * use of properties files againts data file.
+	 * The ConvStringToASCII, above, can be used to interact
+	 * with this module or one can implement there own string
+	 * parser then call this method.  This is an alternate to using
+	 * properties file against the entire file.
+	 */
+	public  char ConvertLatinISOToASCII(char charBuf) {
+		String strBuf = "";
+
+	   switch( charBuf ) {
+		case 65: return 'A';
+		case 192: return 'A';
+		case 193: return 'A';
+		case 194: return 'A';
+		case 195: return 'A';
+		case 196: return 'A';
+		case 197: return 'A';
+		case 198: return 'A';
+		case 199: return 'C';
+		case 200: return 'E';
+		case 201: return 'E';
+		case 202: return 'E';
+		case 203: return 'E';
+		case 204: return 'I';
+		case 205: return 'I';
+		case 206: return 'I';
+		case 207: return 'I';
+		case 208: return 'D';
+		case 209: return 'N';
+		case 210: return 'O';
+		case 211: return 'O';
+		case 212: return 'O';
+		case 213: return 'O';
+		case 214: return 'O';
+		case 215: return 'X';
+		case 216: return 'Ø';
+		case 217: return 'U';
+		case 218: return 'U';
+		case 219: return 'U';
+		case 220: return 'U';
+		case 221: return 'Y';
+		case 222: return 'Þ';
+		case 223: return 'ß';
+
+		case 224: return 'a';
+		case 225: return 'a';
+		case 226: return 'a';
+		case 227: return 'a';
+		case 228: return 'a';
+		case 229: return 'a';
+		case 230: return 'a';
+		case 231: return 'c';
+		case 232: return 'e';
+		case 233: return 'e';
+		case 234: return 'e';
+		case 235: return 'e';
+		case 236: return 'i';
+		case 237: return 'i';
+		case 238: return 'i';
+		case 239: return 'i';
+		case 240: return 'o';
+		case 241: return 'n';
+		case 242: return 'o';
+		case 243: return 'o';
+		case 244: return 'o';
+		case 245: return 'o';
+		case 246: return 'o';
+		case 247: return '÷';
+		case 248: return 'ø';
+		case 249: return 'u';
+		case 250: return 'u';
+		case 251: return 'u';
+		case 252: return 'u';
+		case 253: return 'y';
+		case 254: return 'þ';
+		case 255: return 'y';
+
+		case 256: return 'A';
+		case 257: return 'a';
+		case 258: return 'A';
+		case 259: return 'a';
+		case 260: return 'A';
+		case 261: return 'a';
+		case 262: return 'C';
+		case 263: return 'c';
+		case 264: return 'C';
+		case 265: return 'c';
+		case 266: return 'C';
+		case 267: return 'c';
+		case 268: return 'C';
+		case 269: return 'c';
+		case 270: return 'D';
+		case 271: return 'd';
+		case 272: return 'd';
+		case 273: return 'd';
+		case 274: return 'E';
+		case 275: return 'e';
+		case 276: return 'E';
+		case 277: return 'e';
+		case 278: return 'E';
+		case 279: return 'e';
+		case 280: return 'E';
+		case 281: return 'e';
+		case 282: return 'E';
+		case 283: return 'e';
+		case 284: return 'G';
+		case 285: return 'g';
+		case 286: return 'G';
+		case 287: return 'g';
+		case 288: return 'G';
+		case 289: return 'g';
+		case 290: return 'G';
+		case 291: return 'g';
+		case 292: return 'H';
+		case 293: return 'h';
+		case 294: return 'H';
+		case 295: return 'h';
+		case 296: return 'I';
+		case 297: return 'i';
+		case 298: return 'I';
+		case 299: return 'i';
+		case 300: return 'I';
+		case 301: return 'i';
+		case 302: return 'I';
+		case 303: return 'j';
+		case 304: return 'I';
+		case 305: return 'j';
+		case 308: return 'J';
+		case 309: return 'j';
+		case 310: return 'K';
+		case 311: return 'k';
+		case 312: return 'k';
+		case 313: return 'L';
+		case 314: return 'l';
+		case 315: return 'L';
+		case 316: return 'l';
+		case 317: return 'L';
+		case 318: return 'l';
+		case 319: return 'L';
+		case 320: return 'l';
+		case 321: return 'L';
+		case 322: return 'l';
+		case 323: return 'N';
+		case 324: return 'n';
+		case 325: return 'N';
+		case 326: return 'n';
+		case 327: return 'N';
+		case 328: return 'n';
+		case 329: return 'n';
+		case 330: return 'N';
+		case 331: return 'n';
+		case 332: return 'O';
+		case 333: return 'o';
+		case 334: return 'O';
+		case 335: return 'o';
+		case 336: return 'O';
+		case 337: return 'o';
+		case 340: return 'R';
+		case 341: return 'r';
+		case 342: return 'R';
+		case 343: return 'r';
+		case 344: return 'R';
+		case 345: return 'r';
+		case 346: return 'S';
+		case 347: return 's';
+		case 348: return 'S';
+		case 349: return 's';
+		case 350: return 'S';
+		case 351: return 's';
+		case 352: return 'S';
+		case 353: return 's';
+		case 354: return 'T';
+		case 355: return 't';
+		case 356: return 'T';
+		case 357: return 't';
+		case 358: return 'T';
+		case 359: return 't';
+		case 360: return 'U';
+		case 361: return 'u';
+		case 362: return 'U';
+		case 363: return 'u';
+		case 364: return 'U';
+		case 365: return 'u';
+		case 366: return 'U';
+		case 367: return 'u';
+		case 368: return 'U';
+		case 369: return 'u';
+		case 370: return 'U';
+		case 371: return 'u';
+		case 372: return 'W';
+		case 373: return 'w';
+		case 374: return 'Y';
+		case 375: return 'y';
+		case 376: return 'Y';
+		case 377: return 'Z';
+		case 378: return 'z';
+		case 379: return 'Z';
+		case 380: return 'z';
+		case 381: return 'Z';
+		case 382: return 'z';
+		case 506: return 'A';
+		case 507: return 'A';
+
+		default : if(charBuf < 32){charBuf = ((char)(charBuf+64)); return charBuf;}
+		          else {return charBuf;}
+	   }
+	}
+
+
+	/**
+	 * Used to convert all diacriticals to standard HTML codes
+	 * This will allow dynamic converstion alternate to
+	 * use of properties files againts data file.
+	 * The ConvStringToHTMLCoding, above, can be used to interact
+	 * with this module or one can implement there own string
+	 * parser then call this method.
+	 */
+	public String ConvertDiacriticalsToHTMLCoding(char charBuf) {
+		String strBuf = "";
+
+	   switch( charBuf ) {
+		case 65: return "A";
+		case 192: return "&Aacute;";	//Capital A, acute accent
+		case 193: return "&Agrave;";	//Capital A, grave accent
+		case 194: return "&Acirc;";	//Capital A, circumflex accent
+		case 195: return "&Atilde;";	//Capital A, tilde
+		case 196: return "&Aring;";	//Capital A, ring
+		case 197: return "&Auml;";	//Capital A, dieresis or umlaut mark
+		case 198: return "&Elig;";	//Capital AE, dipthong (ligature)
+		case 199: return "&Ccedil;";	//Capital C, cedilla
+
+		case 200: return "&Eacute;";	//Capital E, acute accent
+		case 201: return "&Egrave;";	//Capital E, grave accent
+		case 202: return "&Ecirc;";	//Capital E, circumflex accent
+		case 203: return "&Etilde;";	//Capital E, tilde
+
+		case 204: return "&Iacute;";	//Capital I, acute accent
+		case 205: return "&Igrave;";	//Capital I, grave accent
+		case 206: return "&Icirc;";	//Capital I, circumflex accent
+		case 207: return "&Iuml;";	//Capital I, dieresis or umlaut mark
+
+		case 208: return "&ETH;";	//Capital Eth, Icelandic
+		case 209: return "&Ntilde;";	//Capital N, tilde
+
+		case 210: return "&Oacute;";	//Capital O, acute accent
+		case 211: return "&Ograve;";	//Capital O, grave accent
+		case 212: return "&Ocirc;";	//Capital O, circumflex accent
+		case 213: return "&Otilde;";	//Capital O, tilde
+		case 214: return "&Ouml;";	//Capital O, dieresis or umlaut mark
+
+		case 215: return "x";
+
+		case 216: return "&Oslash;";	//Capital O, slash
+
+		case 217: return "&Uacute;";	//Capital U, acute accent
+		case 218: return "&Ugrave;";	//Capital U, grave accent
+		case 219: return "&Ucirc;";	//Capital U, circumflex accent
+		case 220: return "&Uuml;";	//Capital U, dieresis or umlaut mark
+
+		case 221: return "&Yacute;";	//Capital Y, acute accent
+
+		case 222: return "&THORN;";	//Capital THORN, Icelandic
+		case 223: return "&szlig;";	//Samll sharp s, German (sz ligature)
+
+		case 224: return "&aacute";	//Small a, acute accent
+		case 225: return "&agrave";	//Small a, grave accent
+		case 226: return "&acirc";	//Small a, circumflex accent
+		case 227: return "&atilde";	//Small a, tilde
+		case 228: return "&atilde";	//Small a, tilde
+		case 229: return "&auml";	//Small a, dieresis or umlaut mark
+
+		case 230: return "&aelig";	//Small ae, dipthong (ligature)
+
+		case 231: return "c";
+		case 232: return "e";
+		case 233: return "e";
+		case 234: return "e";
+		case 235: return "e";
+		case 236: return "i";
+		case 237: return "i";
+		case 238: return "i";
+		case 239: return "i";
+		case 240: return "o";
+		case 241: return "n";
+		case 242: return "o";
+		case 243: return "o";
+		case 244: return "o";
+		case 245: return "o";
+		case 246: return "o";
+		case 247: return "÷";
+		case 248: return "ø";
+		case 249: return "u";
+		case 250: return "u";
+		case 251: return "u";
+		case 252: return "u";
+		case 253: return "y";
+		case 254: return "þ";
+		case 255: return "y";
+
+		case 256: return "A";
+		case 257: return "a";
+		case 258: return "A";
+		case 259: return "a";
+		case 260: return "A";
+		case 261: return "a";
+		case 262: return "C";
+		case 263: return "c";
+		case 264: return "C";
+		case 265: return "c";
+		case 266: return "C";
+		case 267: return "c";
+		case 268: return "C";
+		case 269: return "c";
+		case 270: return "D";
+		case 271: return "d";
+		case 272: return "d";
+		case 273: return "d";
+		case 274: return "E";
+		case 275: return "e";
+		case 276: return "E";
+		case 277: return "e";
+		case 278: return "E";
+		case 279: return "e";
+		case 280: return "E";
+		case 281: return "e";
+		case 282: return "E";
+		case 283: return "e";
+		case 284: return "G";
+		case 285: return "g";
+		case 286: return "G";
+		case 287: return "g";
+		case 288: return "G";
+		case 289: return "g";
+		case 290: return "G";
+		case 291: return "g";
+		case 292: return "H";
+		case 293: return "h";
+		case 294: return "H";
+		case 295: return "h";
+		case 296: return "I";
+		case 297: return "i";
+		case 298: return "I";
+		case 299: return "i";
+		case 300: return "I";
+		case 301: return "i";
+		case 302: return "I";
+		case 303: return "j";
+		case 304: return "I";
+		case 305: return "j";
+		case 308: return "J";
+		case 309: return "j";
+		case 310: return "K";
+		case 311: return "k";
+		case 312: return "k";
+		case 313: return "L";
+		case 314: return "l";
+		case 315: return "L";
+		case 316: return "l";
+		case 317: return "L";
+		case 318: return "l";
+		case 319: return "L";
+		case 320: return "l";
+		case 321: return "L";
+		case 322: return "l";
+		case 323: return "N";
+		case 324: return "n";
+		case 325: return "N";
+		case 326: return "n";
+		case 327: return "N";
+		case 328: return "n";
+		case 329: return "n";
+		case 330: return "N";
+		case 331: return "n";
+		case 332: return "O";
+		case 333: return "o";
+		case 334: return "O";
+		case 335: return "o";
+		case 336: return "O";
+		case 337: return "o";
+		case 340: return "R";
+		case 341: return "r";
+		case 342: return "R";
+		case 343: return "r";
+		case 344: return "R";
+		case 345: return "r";
+		case 346: return "S";
+		case 347: return "s";
+		case 348: return "S";
+		case 349: return "s";
+		case 350: return "S";
+		case 351: return "s";
+		case 352: return "S";
+		case 353: return "s";
+		case 354: return "T";
+		case 355: return "t";
+		case 356: return "T";
+		case 357: return "t";
+		case 358: return "T";
+		case 359: return "t";
+		case 360: return "U";
+		case 361: return "u";
+		case 362: return "U";
+		case 363: return "u";
+		case 364: return "U";
+		case 365: return "u";
+		case 366: return "U";
+		case 367: return "u";
+		case 368: return "U";
+		case 369: return "u";
+		case 370: return "U";
+		case 371: return "u";
+		case 372: return "W";
+		case 373: return "w";
+		case 374: return "Y";
+		case 375: return "y";
+		case 376: return "Y";
+		case 377: return "Z";
+		case 378: return "z";
+		case 379: return "Z";
+		case 380: return "z";
+		case 381: return "Z";
+		case 382: return "z";
+		case 506: return "A";
+		case 507: return "A";
+
+		default : if(charBuf < 32){charBuf = ((char)(charBuf+64)); return strBuf;}
+		          else {return strBuf;}
+	   }
+	}
+
+	public  String RemPunctuations(String strBuf){
+		StringBuffer newStrBuf = new StringBuffer();
+		StringBuffer dumpPunc = new StringBuffer();
+
+		for (int i = 0; i < strBuf.length(); ++i){
+			char c = strBuf.charAt(i);
+
+			if (c > 127) {
+				dumpPunc = new StringBuffer().append(c);
+			} else {
+				newStrBuf = newStrBuf.append(Integer.toString(c));
+			}
+		}
+
+		return newStrBuf.toString();
+	}
+
+
+	public boolean CheckLeapYear(int year){
+		boolean boolResp = false;
+
+		GregorianCalendar cal = new GregorianCalendar();
+
+		return boolResp = cal.isLeapYear(year);
+	}
+
+	//NEED MORE WORK
+	public int GetNumDaysInMonth(String month, int year){
+		// Create a calendar object of the desired month
+		Calendar cal = new GregorianCalendar(year, Calendar.MARCH, 1);
+
+		// Get the number of days in that month
+		int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+		return days;
+	}
+
+	public String GetTime(char delimiter){
+		String time = "";
+
+		long startTime = System.currentTimeMillis();
+
+		return time;
+	}
+
+    public int GetIntFromKeyBoard(){
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        String digitString;
+        int menuOp=0;
+
+        try {
+          digitString = stdin.readLine();
+          menuOp = Integer.parseInt(digitString);
+        } catch (IOException ioe) {
+          System.out.println("GetMenuOption() Exception error");
+          System.exit(1);
+        }
+
+        return menuOp;
+    }
+
+    public String ReadeKeyboardString(){
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        String str = "";
+
+        try {
+          str = stdin.readLine();
+        } catch (IOException ioe) {
+          System.exit(1);
+        }
+
+        return str;
+    }
+
+
+    public String GetDate(char delimiter){
+       	Calendar cal = new GregorianCalendar();
+		String dateStr = "";
+
+       	// Get the components of the date
+       	int era = cal.get(Calendar.ERA);               // 0=BC, 1=AD
+       	int year = cal.get(Calendar.YEAR);             // 2002
+       	int month = cal.get(Calendar.MONTH);           // 0=Jan, 1=Feb, ...
+       	int day = cal.get(Calendar.DAY_OF_MONTH);      // 1...
+       	int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1=Sunday, 2=Monday, ...
+
+       	dateStr = ("" + month + "" + delimiter + "" + day + "" + delimiter + "" + year);
+
+      	return dateStr;
+    }
+
+
+public int ConvertStringToInt(String strBuf){
+  BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+  int intVal=0;
+
+  intVal = Integer.parseInt(strBuf);
+
+  return intVal;
+}
+
+public float ConvertStringToFloat(String strBuf){
+  BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+  int intVal=0;
+  float floatVal = 0;
+
+  floatVal = (float)Integer.parseInt(strBuf);
+
+  return floatVal;
+}
+
+
+/**
+ * Might not work
+ */
+public String ConvertIntToString(int intVal){
+   String strBuf = "";
+
+   strBuf = ("" + intVal);
+
+   //strBuf = String.valueOf(intVal);
+
+   return strBuf;
+}
+
+
+
+public String GetLastLineInFile(String fileNameWithPath) {
+   String lastLine = "";
+
+   try {
+      String strBuf = "";
+
+      FileReader fRead = new FileReader(fileNameWithPath);
+      BufferedReader bufRead = new BufferedReader(fRead);
+
+      while(null != (strBuf = bufRead.readLine())) {
+	if (strBuf != null){
+	   //System.out.println(strBuf);
+	   lastLine = strBuf;
+	}
+      }
+   } catch (Exception e) {
+        e.printStackTrace();
+        System.exit(1);
+   }
+
+   return lastLine;
+}
+
+
+public String FileSearch(String fileNameWithPath, String findThis) {
+   int numTokens = 0;
+   String searchResult = "FALSE";
+
+   try {
+      String tokBuf = "";
+      String strBuf = "";
+
+      FileReader fRead = new FileReader(fileNameWithPath);
+      BufferedReader bufRead = new BufferedReader(fRead);
+
+      while(null != (strBuf = bufRead.readLine())) {
+         StringTokenizer st = new StringTokenizer(strBuf);
+         numTokens = st.countTokens();
+
+         while (st.hasMoreTokens()) {
+              tokBuf = st.nextToken();
+
+              if( tokBuf.equals(findThis) )
+                 searchResult = "TRUE";
+           }
+      }
+   } catch (Exception e) {
+        e.printStackTrace();
+        System.exit(1);
+   }
+
+   return searchResult;
+}
+
+
+
+public boolean FileAppend(String fileName, String appendThis) {
+   boolean boolResp = false;
+
+   if(CheckForFile(fileName)){
+      try {
+
+           BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
+           out.write(appendThis);
+           out.newLine();
+           out.close();
+
+           boolResp = true;
+      } catch (IOException e) {
+	System.out.println("ERROR FileAppend()");
+	boolResp = false;
+      }
+   } else {
+      boolResp = false;
+   }
+
+   return boolResp;
+}
+
+
+/**
+	 * Good practice to keep a log of what is going on, so this method,
+	 * if called, will do just that for you. Since log files tend to get
+	 * oversize, let me know when to archive old log data and start a new
+	 * log file by providing a max logfilesize.
+	 *
+	 * @return tru or false, but checking return is optional
+	 * @param String data, int file_size_limit
+	 */
+	public boolean WriteToLog(String logMsg, int fSizeLimit){
+		long curFileSize = 0;
+		String FLAG = "";
+		String oldLogFileN = "";
+		boolean boolResp = false;
+		BufferedWriter out = null;
+
+		try {
+			curFileSize = GetFileSize(this.logFile, "bytes");
+
+			if(curFileSize < fSizeLimit){
+				FLAG = "OK";
+				out = new BufferedWriter(new FileWriter(this.logFile, true));
+				boolResp = true;
+			} else {
+				//Copy the old log file to new file appending date stamp
+				oldLogFileN = (this.logFile + "_" + GetDate('-') + ".log");
+				if(CopyFile(this.logFile, oldLogFileN) != false){
+					//Make a note about the old log file in the new log file
+					out = new BufferedWriter(new FileWriter(this.logFile, false));
+					out.write("  Created new logfile.  Fize size reached max. Old logfile name = " + oldLogFileN);
+					FLAG = "";
+
+					boolResp = true;
+
+				} else {
+					boolResp = false;
+				}
+			}
+
+			out.write(logMsg);
+			out.newLine();
+
+			out.flush();
+			out.close();
+
+		} catch (IOException e) {
+			System.out.println("ERROR WriteToLog() writing to logfile " + this.logFile);
+			boolResp = false;
+		}
+
+		return boolResp;
+	}
+
+
+	/**
+	 * For users who just want to pass a file
+	 * Good practice to keep a log of what is going on, so this method,
+	 * if called, will do just that for you. Since log files tend to get
+	 * oversize, let me know when to archive old log data and start a new
+	 * log file by providing a max logfilesize.
+	 *
+	 * @return tru or false, but checking return is optional
+	 * @param String data, int file_size_limit
+	 */
+	public boolean WriteToLog(String logMsg, String logFileName, int fSizeLimit){
+		long curFileSize = 0;
+		String FLAG = "";
+		String oldLogFileN = "";
+		boolean boolResp = false;
+		BufferedWriter out = null;
+
+		try {
+			curFileSize = GetFileSize(logFileName, "bytes");
+
+			if(curFileSize < fSizeLimit){
+				FLAG = "OK";
+				out = new BufferedWriter(new FileWriter(logFileName, true));
+				boolResp = true;
+			} else {
+				//Copy the old log file to new file appending date stamp
+				oldLogFileN = (logFileName + "_" + GetDate('-') + ".log");
+				if(CopyFile(logFileName, oldLogFileN) != false){
+					//Make a note about the old log file in the new log file
+					out = new BufferedWriter(new FileWriter(logFileName, false));
+					out.write("  Created new logfile.  Fize size reached max. Old logfile name = " + oldLogFileN);
+					FLAG = "";
+
+					boolResp = true;
+
+				} else {
+					boolResp = false;
+				}
+			}
+
+			out.write(logMsg);
+			out.newLine();
+
+			out.flush();
+			out.close();
+
+		} catch (IOException e) {
+			System.out.println("ERROR WriteToLog() writing to logfile " + logFileName);
+			boolResp = false;
+		}
+
+		return boolResp;
+	}
+
+
+
+	/**
+	 * This will append or create and then write data to a file. Need to specify
+	 * true or false for append or just overwrite file
+	 *
+	 * @param String, String, boolean
+	 * @return boolean
+	 */
+	public boolean WriteToFile(String fileName, String fileData, boolean appendOrCreate){
+		boolean boolResp = false;
+		BufferedWriter out = null;
+
+		try {
+			out = new BufferedWriter(new FileWriter(fileName, appendOrCreate));
+			//PrintWriter out = new PrintWriter (new FileWriter (fileName));
+
+			out.write(fileData);
+			out.newLine();
+			out.flush();
+			out.close();
+
+			boolResp = true;
+
+		} catch (IOException e) {
+			System.out.println("ERROR writing to file " + fileName);
+			boolResp = false;
+		}
+
+		return boolResp;
+	}
+
+	//#####################################
+	//HANDLE THE CHECKING OF DATA IF VALID
+	//If a data needs to have a number of tokens, this will
+	//perform the validation.
+	//#####################################
+	public  boolean CheckIfValidData(String strBuf, String Delim, int numDelim) {
+			boolean strResp;
+
+			String[] strArray = new String[strBuf.length()];
+			int x = 1;
+			int count = 0;
+
+			try{
+				for(int i = 0; i < strBuf.length(); i++) {
+					String c = strBuf.substring(i,x);
+
+					if (c.equals(Delim)){
+						count++;
+					}
+					x++;
+				}
+
+				if(count != numDelim) {
+					strResp = false;
+				} else {
+					strResp = true;
+				}
+			} catch (StringIndexOutOfBoundsException e){
+				strResp = false;
+			}
+
+			return strResp;
+	}
+
+
+
+	/**Instead of using substring method, this method can be used to
+	 * better handle long unpredicatable piped strings.
+	 * The string NONE will be placed in blank columns
+	*/
+	public String ReplaceConsecPipes(String strBuf){
+		StringBuffer newStrBuf = new StringBuffer();
+		StringBuffer tmpStrBuf = new StringBuffer();
+		int i = 0;
+		int x = 0;
+		int flag = 0;
+		char c = ' ';
+		char nextChar;
+
+		for (i = 0; i < (strBuf.length() - 1); i++){
+			c = strBuf.charAt(i);
+			nextChar = strBuf.charAt(i + 1);
+
+			if((c == '|') && (nextChar == '|')){
+				newStrBuf = newStrBuf.append(c);
+				newStrBuf = newStrBuf.append('N');
+				newStrBuf = newStrBuf.append('O');
+				newStrBuf = newStrBuf.append('N');
+				newStrBuf = newStrBuf.append('E');
+
+				nextChar = ' ';
+			} else {
+				newStrBuf = newStrBuf.append(c);
+			}
+		}
+
+		//Some string will have a pipe at the end some won't
+		if(c != '|'){
+			c = strBuf.charAt(i);
+			newStrBuf = newStrBuf.append(c);
+		}
+
+		return newStrBuf.toString();
+	}
+
+
+	/**
+	 * Instead of using java's substring method on each string, this method
+	 * can be used to retrieve a value from a given col.
+	 *
+	 * @param String, int, char
+	 * @param String is the data
+	 * @param int is the column number
+	 * @param char is the delimiter
+	 * @return String
+	 */
+	 	public String GetStringFromString(String strBuf, int colNumber, char colDelim){
+	 		StringBuffer colStrBuf = new StringBuffer();
+	 		int i = 0;
+	 		int colCount = 1;
+	 		String colValue = "";
+	 		char c;
+	 		String colStart = "ON";
+	 		String colEnd = "OFF";
+
+
+	 		while(i < strBuf.length()){
+	 			c = strBuf.charAt(i);
+
+	 			if(i < 1){
+	 				colStart = "ON";
+
+	 				if(c != colDelim){
+	 					colStrBuf = colStrBuf.append(c);
+	 				}
+	 			} else {
+	 				if((c == colDelim) && (colEnd.equals("OFF")) && (colStart.equals("ON"))){
+	 					if(colCount == colNumber){
+	 						return colStrBuf.toString();
+	 					} else {
+	 						colStart = "ON";
+	 						colEnd = "OFF";
+
+	 						colStrBuf = new StringBuffer();
+	 					}
+
+	 					colCount++;
+	 				} else {
+	 					colStrBuf = colStrBuf.append(c);
+	 				}
+	 			}
+
+	 			i++;
+	 		}
+
+	 		return colValue;
+	}
+/*	public String GetStringFromString(String strBuf, int colNumber, char colDelim){
+		StringBuffer colStrBuf = new StringBuffer();
+			int i = 0;
+			int colCount = 0;
+			char c;
+
+			while((i < strBuf.length()) && (colNumber != colCount)){
+				c = strBuf.charAt(i);
+
+				if((i == 0) && (c == colDelim)){
+					//Do nothing but continue
+					colStrBuf = new StringBuffer();
+				} else if ((i > 0) && (c == colDelim)){
+					colCount = (colCount + 1);
+
+					if(colNumber != colCount){
+						colStrBuf = new StringBuffer();
+					}
+				}else{
+					colStrBuf = colStrBuf.append(c);
+				}
+
+				i = (i + 1);
+			}
+
+			return colStrBuf.toString();
+	}*/
+
+
+	/**
+	 * Checks how many times a character appears in a given string.
+	 *
+	 * @param String, char
+	 * @param String is the data
+	 * @param char is the delimiter
+	 * @return int
+	 */
+	public int GetSpecifiedCharCount(String strBuf, char sChar){
+			int i = 0;
+			int charCount = 0;
+			char c = ' ';
+
+			while(i < strBuf.length()){
+				c = strBuf.charAt(i++);
+
+				if(c == sChar){
+					charCount = (charCount + 1);
+				}
+			}
+
+			if(sChar == (strBuf.charAt(strBuf.length() - 1))){
+				return (charCount - 1);
+			} else {
+				return charCount;
+			}
+	}
+
+	public String GetLastColumn(String strBuf){
+		int colNum = 0;
+		String lastCol = "";
+
+		colNum = ((GetSpecifiedCharCount(strBuf, ',')) + 1);
+
+		lastCol = (GetStringFromString(strBuf, colNum, ',').trim());
+
+		return lastCol;
+	}
+
+
+
+	//Given a piped delimited list, convert it to an int array
+	public String [] ConvertToArray(String infoList){
+		StringTokenizer sT = new StringTokenizer(infoList, "|");
+		int numTokens = sT.countTokens();
+
+		String [] myDataArray = new String[numTokens];
+
+		int x = 0;
+		String tmpStr = "";
+
+
+		if(numTokens < 1){
+
+			myDataArray[x] = "";
+
+		} else {
+
+			while (sT.hasMoreTokens()){
+				tmpStr = sT.nextToken();
+
+				myDataArray[x] = tmpStr;
+
+				x++;
+			}
+		}
+
+		return myDataArray;
+	}
+
+
+	private boolean nullString(String str) {
+		try{
+		  //if (str == "null") {
+		  if (str.equals("null")) {
+				return true;
+		  } else {
+				return false;
+		  }
+	  } catch (NullPointerException npe){
+		  return true;
+	  }
+	}
+/**
+* Reallocates an array with a new size, and copies the contents
+* of the old array to the new array.
+* @param oldArray  the old array, to be reallocated.
+* @param newSize   the new array size.
+* @return          A new array with the same contents.
+*/
+/*
+private static Object resizeArray (Object oldArray, int newSize) {
+   int oldSize = java.lang.reflect.Array.getLength(oldArray);
+   Class elementType = oldArray.getClass().getComponentType();
+   Object newArray = java.lang.reflect.Array.newInstance(
+         elementType,newSize);
+   int preserveLength = Math.min(oldSize,newSize);
+   if (preserveLength > 0)
+      System.arraycopy (oldArray,0,newArray,0,preserveLength);
+   return newArray; }
+
+
+// Test routine for resizeArray().
+public static void main (String[] args) {
+   int[] a = {1,2,3};
+   a = (int[])resizeArray(a,5);
+   a[3] = 4;
+   a[4] = 5;
+   for (int i=0; i<a.length; i++)
+      System.out.println (a[i]); }
+
+*/
+				//Create a ByteBuffer using a byte array
+				//byte[] bytes = new byte[1024];
+				//ByteBuffer bBuf = ByteBuffer.wrap(bytes);
+
+				//Create a non-direct ByteBuffer with a 10 byte capacity
+				//The underlying storage is a byte array
+				//bBuf = ByteBuffer.allocate(256);
+
+				//Create a direct (memory-mapped) ByteBuffer with a 10 byte capacity
+				//buf = ByteBuffer.allocateDirect(10);
+
+				//To create a
+				//Obtain a ByteBuffer. Use one of the above
+				//ByteBuffer bBuf = ByteBuffer.allocate(10);
+
+
+				//Create an input stream on the ByteBuffer
+				//InputStream is = NewInputStream(bBuf);
+
+				//iInfo.setInput(NewInputStream(bBuf));
+				//iInfo.getFormatName();
+	//public boolean CreatePDFFile(String filename){
+	//	return _result;
+	//}
+
+
+
+	// Initialized array
+	//public String []InitArray(String [] Arryay){
+		//String sa[] = new String[];
+
+		//for(int i = 0; i < sa.length; i++) {
+		//	sa[i] = new String();
+		//}
+
+		//sa[0].charAt(0);
+
+		//return sa;
+	//}
+
+	//Converts IOS Latin Characters (c > 127) to English standard
+/**
+	public  String ConvertFromISO(String strBuf) {
+		//Create the encoder and decoder for ISO-8859-1
+		Charset charset = Charset.forName("ISO-8859-1");
+		CharsetDecoder decoder = charset.newDecoder();
+		CharsetEncoder encoder = charset.newEncoder();
+
+		StringBuffer newStrBuf = new StringBuffer();
+		StringBuffer puncDump = new StringBuffer();
+		int i = 0;
+
+		ByteBuffer bBuf = null;
+	    CharBuffer cBuf = null;
+
+		try {
+			while(!newStrBuf.toString().equals("ERROR") && (i < 2)){
+			if(strBuf.charAt(i)  == '&'){
+				if(strBuf.charAt(++i) == '#'){
+					    newStrBuf = newStrBuf.append("ERROR");
+				} else {
+					if ((int) strBuf.charAt(i++) > 127) {
+						//Convert the string to ISO-LATIN-1 bytes in a ByteBuffer
+						bBuf = encoder.encode(CharBuffer.wrap(strBuf));
+
+						//Convert ISO-LATIN-1 bytes in a ByteBuffer to a character ByteBuffer
+						//and then to a string
+						cBuf = decoder.decode(bBuf);
+						}
+				}
+			 } else {
+				 cBuf = decoder.decode(bBuf);
+				 System.out.println("FINALLY " + cBuf.toString());
+			 }
+		}
+		} catch (CharacterCodingException e) {
+		}
+
+		return cBuf.toString();
+	}
+
+*/
+
+
+			/**
+			//FilePermission perm = new FilePermission(fileName, "read");
+
+			//AccessController.doPrivileged(new PrivilegedAction() {
+			//public Object run() {
+			//boolean success = (new File(fileName)).delete();
+						//System.out.println(success);
+						//return null;
+						//}
+						//});
+
+			if(!success){
+				System.out.println("ERROR : Delete Process failed. Unable to complete ConvertFileroperty() process.");
+				System.exit(1);
+			} else {
+				if(gU.RenameFileDir(_lTmpFile, fileName) != false){
+					result = true;
+				} else {
+					System.out.println("ERROR : Unable to complete ConvertFileroperty() process.");
+					result = false;
+				}
+			}
+			*/
+}
